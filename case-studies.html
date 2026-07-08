@@ -26,7 +26,7 @@
               <span class="card-tag">Case Study</span>
               <h2 style="margin-bottom: 1rem;">Legacy Knowledge Copilot</h2>
               <p style="font-size: 1.05rem; font-weight: 500; color: var(--text-primary);">Eliminating documentation sprawl with strict source-grounded retrieval.</p>
-              <p>In mid-market organizations, critical operational information is often scattered across SharePoint, Confluence, and network drives. We built a RAG (Retrieval-Augmented Generation) copilot that indexes unstructured documentation and enforces strict source citations, preventing model hallucinations.</p>
+              <p>In mid-market organizations, critical operational information is often scattered across SharePoint, Confluence, and network drives. We built an internal knowledge copilot that indexes unstructured documentation and enforces strict source citations, preventing model hallucinations.</p>
               
               <h4 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Outcomes</h4>
               <ul class="checklist" style="margin-bottom: 1.5rem;">
@@ -38,13 +38,13 @@
               <h3 style="margin-bottom: 1.25rem;">Technical Profile</h3>
               <ul class="spec-list" style="gap: 1.25rem;">
                 <li>
-                  <strong>Problem:</strong> Hallucination-prone searches across fragmented PDF, markdown, and Word documents in scattered SharePoint drives.
+                  <strong>Problem:</strong> Documentation sprawl across SharePoint, Confluence, and file shares in Microsoft 365 and Azure-heavy environments.
                 </li>
                 <li>
-                  <strong>Solution:</strong> Custom Python ingestion pipelines, semantic text indexing, and strict context grounding with citation mapping.
+                  <strong>Solution:</strong> An internal knowledge copilot built with Python ingestion pipelines and strict citation-first retrieval grounding.
                 </li>
                 <li>
-                  <strong>Why It Matters:</strong> Faster access to verified internal knowledge, complete traceability of answers to source files, and safer AI rollout.
+                  <strong>Why It Matters:</strong> Grounded answers with traceable citations, zero hallucination risk, and 75% faster search times.
                 </li>
                 <li>
                   <strong>Tech Stack:</strong> LangChain, Azure AI Search, Python, Vector DB.
@@ -63,13 +63,13 @@
               <h3 style="margin-bottom: 1.25rem;">Technical Profile</h3>
               <ul class="spec-list" style="gap: 1.25rem;">
                 <li>
-                  <strong>Problem:</strong> AI agents lacking a secure, standardized interface to read Git logs, workflows, and PR metrics on server environments.
+                  <strong>Problem:</strong> AI agents lacking secure, standardized access to repository logs, commits, and deployment pipelines.
                 </li>
                 <li>
-                  <strong>Solution:</strong> A Model Context Protocol server exposing repository stats, workflows, commits, and PR status tools.
+                  <strong>Solution:</strong> A custom Model Context Protocol server exposing secure stats, workflow tools, and repository inspection APIs.
                 </li>
                 <li>
-                  <strong>Why It Matters:</strong> Standardized tool boundaries for AI agents, providing secure credential containment and better engineering visibility.
+                  <strong>Why It Matters:</strong> Better engineering visibility, strict credential containment, and direct senior-led deployment of custom developer tools.
                 </li>
                 <li>
                   <strong>Tech Stack:</strong> Node.js, TypeScript, GitHub API, Model Context Protocol (MCP).
@@ -112,13 +112,13 @@
               <h3 style="margin-bottom: 1.25rem;">Technical Profile</h3>
               <ul class="spec-list" style="gap: 1.25rem;">
                 <li>
-                  <strong>Problem:</strong> Complex development workflows breaking due to token limits and lack of state persistence in single agent setups.
+                  <strong>Problem:</strong> Engineering workflow bottlenecks and task failures due to context window limits and state loss in single-agent LLM systems.
                 </li>
                 <li>
-                  <strong>Solution:</strong> Stateful graph-based routing architecture directing tasks to focused sub-agents with distinct tool permissions.
+                  <strong>Solution:</strong> Stateful graph-based orchestration routing tasks to focused sub-agents with strict, governed tool permissions.
                 </li>
                 <li>
-                  <strong>Why It Matters:</strong> Safer automation of developer processes without losing traceability or context.
+                  <strong>Why It Matters:</strong> Safer pipeline automation, reduced manual review burden, and traceable task routing.
                 </li>
                 <li>
                   <strong>Tech Stack:</strong> LangGraph, Python, FastAPI, Docker.
@@ -137,13 +137,13 @@
               <h3 style="margin-bottom: 1.25rem;">Technical Profile</h3>
               <ul class="spec-list" style="gap: 1.25rem;">
                 <li>
-                  <strong>Problem:</strong> Code reviews causing pipeline bottlenecks, taking up to 48 hours for basic style and compliance checks.
+                  <strong>Problem:</strong> Code review latency causing pipeline bottlenecks and delaying merges by up to 48 hours for basic style checks.
                 </li>
                 <li>
-                  <strong>Solution:</strong> PR webhook listener triggering a Claude-powered reviewer that comments on security risks, logic gaps, and styling.
+                  <strong>Solution:</strong> An automated review bot triggered by Azure DevOps webhooks using serverless functions and Claude review routing.
                 </li>
                 <li>
-                  <strong>Why It Matters:</strong> Catching security flaws early (like hardcoded keys), faster PR turnaround times, and reduced manual review burden.
+                  <strong>Why It Matters:</strong> Faster PR turnaround times, caught security vulnerabilities (like hardcoded keys), and reduced manual review burden for senior developers.
                 </li>
                 <li>
                   <strong>Tech Stack:</strong> Claude API, Azure DevOps Services, Node.js, serverless functions.
@@ -169,8 +169,8 @@
       <!-- CTA -->
       <section class="section" style="text-align: center;">
         <div class="container">
-          <h2>Ready to Build a Credible AI System?</h2>
-          <p style="font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">Our case studies represent real working code. Let's discuss how we can adapt these architectures to solve your documentation or DevOps friction.</p>
+          <h2>Start with a technical feasibility call.</h2>
+          <p style="font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">Discuss your environment, constraints, and pilot fit directly with a senior engineer.</p>
           <a href="/contact.html" class="btn btn-primary" style="padding: 1rem 2rem;">Book a discovery call</a>
         </div>
       </section>
