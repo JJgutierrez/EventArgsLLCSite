@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Case Studies | EventArgs LLC</title>
+    <meta name="description" content="Read case studies of AI engineering solutions built by EventArgs LLC, including knowledge copilots, MCP servers, and multi-agent systems." />
+  </head>
+  <body>
+    <div id="app">
+      <section class="section" style="padding-top: 5rem; padding-bottom: 3rem;">
+        <div class="container">
+          <div style="max-width: 700px; margin-bottom: 4rem;">
+            <h1 style="font-size: 3rem; margin-bottom: 1rem;">Project Case Studies</h1>
+            <p style="font-size: 1.2rem; color: var(--text-secondary);">Explore real systems built for operations, knowledge retrieval, and software development pipelines. We focus on correctness, auditability, and safety.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Case Study 1 -->
+      <section id="legacy-knowledge-copilot" class="section" style="border-top: 1px solid var(--border); background-color: var(--bg-card);">
+        <div class="container">
+          <div class="grid grid-2" style="gap: 4rem;">
+            <div>
+              <span class="card-tag">Case Study</span>
+              <h2 style="margin-bottom: 1rem;">Legacy Knowledge Copilot</h2>
+              <p style="font-size: 1.05rem; font-weight: 500; color: var(--text-primary);">Eliminating documentation sprawl with strict source-grounded retrieval.</p>
+              <p>In mid-market organizations, critical operational information is often scattered across SharePoint, Confluence, and network drives. We built a RAG (Retrieval-Augmented Generation) copilot that indexes unstructured documentation and enforces strict source citations, preventing model hallucinations.</p>
+              
+              <h4 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Outcomes</h4>
+              <ul class="checklist" style="margin-bottom: 1.5rem;">
+                <li>Reduced internal search time by 75% for technical documentation.</li>
+                <li>Ensured 100% citation coverage, guaranteeing no hallucinated answers are presented.</li>
+              </ul>
+            </div>
+            <div class="spec-grid" style="background-color: var(--bg-secondary);">
+              <h3 style="margin-bottom: 1.25rem;">Technical Profile</h3>
+              <ul class="spec-list" style="gap: 1.25rem;">
+                <li>
+                  <strong>Problem:</strong> Hallucination-prone searches across fragmented PDF, markdown, and Word documents in scattered SharePoint drives.
+                </li>
+                <li>
+                  <strong>Solution:</strong> Custom Python ingestion pipelines, semantic text indexing, and strict context grounding with citation mapping.
+                </li>
+                <li>
+                  <strong>Why It Matters:</strong> Faster access to verified internal knowledge, complete traceability of answers to source files, and safer AI rollout.
+                </li>
+                <li>
+                  <strong>Tech Stack:</strong> LangChain, Azure AI Search, Python, Vector DB.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Case Study 2 -->
+      <section id="github-mcp-server" class="section" style="border-top: 1px solid var(--border); background-color: var(--bg-secondary);">
+        <div class="container">
+          <div class="grid grid-2" style="gap: 4rem;">
+            <div class="spec-grid" style="background-color: var(--bg-card);">
+              <h3 style="margin-bottom: 1.25rem;">Technical Profile</h3>
+              <ul class="spec-list" style="gap: 1.25rem;">
+                <li>
+                  <strong>Problem:</strong> AI agents lacking a secure, standardized interface to read Git logs, workflows, and PR metrics on server environments.
+                </li>
+                <li>
+                  <strong>Solution:</strong> A Model Context Protocol server exposing repository stats, workflows, commits, and PR status tools.
+                </li>
+                <li>
+                  <strong>Why It Matters:</strong> Standardized tool boundaries for AI agents, providing secure credential containment and better engineering visibility.
+                </li>
+                <li>
+                  <strong>Tech Stack:</strong> Node.js, TypeScript, GitHub API, Model Context Protocol (MCP).
+                </li>
+              </ul>
+            </div>
+            <div>
+              <span class="card-tag">Case Study</span>
+              <h2 style="margin-bottom: 1rem;">GitHub Engineering MCP Server</h2>
+              <p style="font-size: 1.05rem; font-weight: 500; color: var(--text-primary);">Standardizing tool interfaces for AI agents in repository automation.</p>
+              <p>To enable LLM agents to act autonomously on developer tasks, they need reliable tool boundaries. We designed and built a custom MCP server that allows AI agents to securely query workflow logs, inspect commits, and analyze open pull requests.</p>
+              
+              <h4 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Outcomes</h4>
+              <ul class="checklist" style="margin-bottom: 1.5rem;">
+                <li>Created 20+ specialized Git and GitHub API tools accessible to MCP-compliant AI assistants.</li>
+                <li>Accelerated custom engineering bot development and integration times.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Case Study 3 -->
+      <section id="multi-agent-orchestrator" class="section" style="border-top: 1px solid var(--border); background-color: var(--bg-card);">
+        <div class="container">
+          <div class="grid grid-2" style="gap: 4rem;">
+            <div>
+              <span class="card-tag">Case Study</span>
+              <h2 style="margin-bottom: 1rem;">Multi-Agent Engineering Orchestrator</h2>
+              <p style="font-size: 1.05rem; font-weight: 500; color: var(--text-primary);">Routing developer workflows across specialized AI agents.</p>
+              <p>Single-prompt LLMs fail on complex, multi-stage engineering tasks. We built an orchestrator that coordinates specialized, stateful agent routines (reviewing code, triaging bug reports, writing release notes) using LangGraph and state machine routing.</p>
+              
+              <h4 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Outcomes</h4>
+              <ul class="checklist" style="margin-bottom: 1.5rem;">
+                <li>Automated 60% of repetitive task triage and issue-labeling steps.</li>
+                <li>Kept human developers in the loop for final approvals, maintaining strict governance.</li>
+              </ul>
+            </div>
+            <div class="spec-grid" style="background-color: var(--bg-secondary);">
+              <h3 style="margin-bottom: 1.25rem;">Technical Profile</h3>
+              <ul class="spec-list" style="gap: 1.25rem;">
+                <li>
+                  <strong>Problem:</strong> Complex development workflows breaking due to token limits and lack of state persistence in single agent setups.
+                </li>
+                <li>
+                  <strong>Solution:</strong> Stateful graph-based routing architecture directing tasks to focused sub-agents with distinct tool permissions.
+                </li>
+                <li>
+                  <strong>Why It Matters:</strong> Safer automation of developer processes without losing traceability or context.
+                </li>
+                <li>
+                  <strong>Tech Stack:</strong> LangGraph, Python, FastAPI, Docker.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Case Study 4 -->
+      <section id="azure-devops-reviewer" class="section" style="border-top: 1px solid var(--border); background-color: var(--bg-secondary); border-bottom: 1px solid var(--border);">
+        <div class="container">
+          <div class="grid grid-2" style="gap: 4rem;">
+            <div class="spec-grid" style="background-color: var(--bg-card);">
+              <h3 style="margin-bottom: 1.25rem;">Technical Profile</h3>
+              <ul class="spec-list" style="gap: 1.25rem;">
+                <li>
+                  <strong>Problem:</strong> Code reviews causing pipeline bottlenecks, taking up to 48 hours for basic style and compliance checks.
+                </li>
+                <li>
+                  <strong>Solution:</strong> PR webhook listener triggering a Claude-powered reviewer that comments on security risks, logic gaps, and styling.
+                </li>
+                <li>
+                  <strong>Why It Matters:</strong> Catching security flaws early (like hardcoded keys), faster PR turnaround times, and reduced manual review burden.
+                </li>
+                <li>
+                  <strong>Tech Stack:</strong> Claude API, Azure DevOps Services, Node.js, serverless functions.
+                </li>
+              </ul>
+            </div>
+            <div>
+              <span class="card-tag">Case Study</span>
+              <h2 style="margin-bottom: 1rem;">Azure DevOps + Claude PR Reviewer</h2>
+              <p style="font-size: 1.05rem; font-weight: 500; color: var(--text-primary);">Automated feedback cycles directly in the pull request interface.</p>
+              <p>Senior engineers spend too much time reviewing basic linting errors, file paths, and simple security anti-patterns. We integrated Claude reviews directly into Azure DevOps PRs. The bot reviews the diff within 2 minutes of creation, highlighting concerns inline.</p>
+              
+              <h4 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Outcomes</h4>
+              <ul class="checklist" style="margin-bottom: 1.5rem;">
+                <li>Reduced average PR turnaround time by 40%.</li>
+                <li>Caught 15 common security flaws and architectural violations prior to deployment.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="section" style="text-align: center;">
+        <div class="container">
+          <h2>Ready to Build a Credible AI System?</h2>
+          <p style="font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">Our case studies represent real working code. Let's discuss how we can adapt these architectures to solve your documentation or DevOps friction.</p>
+          <a href="/contact.html" class="btn btn-primary" style="padding: 1rem 2rem;">Book a discovery call</a>
+        </div>
+      </section>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
