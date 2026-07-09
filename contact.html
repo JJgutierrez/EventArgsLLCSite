@@ -29,10 +29,11 @@
               <h3 style="margin-bottom: 1rem; color: var(--accent);">Start with a technical feasibility call.</h3>
               <p style="font-size: 0.95rem; margin-bottom: 1.5rem; color: var(--text-secondary);">Discuss your environment, constraints, and pilot fit directly with a senior engineer. Select a time below to connect with a senior practitioner.</p>
               
-              <div style="background-color: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1.5rem; text-align: center; margin-bottom: 1.5rem;">
-                <h4 style="margin-bottom: 0.25rem;">Technical Discovery Call</h4>
+              <!-- Calendly Inline Embed Container -->
+              <div style="margin-bottom: 1.5rem;">
+                <h4 style="margin-bottom: 0.5rem; color: var(--text-primary);">Technical Discovery Call</h4>
                 <p style="font-size: 0.85rem; margin-bottom: 1rem; color: var(--text-secondary);">30 mins &bull; Video/Voice Call</p>
-                <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/eventargs/feasibility-call'}); return false;" class="btn btn-primary" style="width: 100%; justify-content: center;">Select a Date & Time</button>
+                <div id="calendly-inline-container" style="min-width: 320px; height: 700px; border: 1px solid var(--border); border-radius: var(--radius-sm); background-color: var(--bg-secondary); overflow: hidden;"></div>
               </div>
               
               <ul class="checklist" style="font-size: 0.85rem;">
@@ -44,7 +45,13 @@
 
             <div>
               <h3 style="margin-bottom: 1.5rem;">Share Project Details</h3>
-              <form id="intake-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+              <form id="intake-form" action="/api/contact" method="POST">
+                <!-- Honeypot spam protection -->
+                <div style="display: none;" aria-hidden="true">
+                  <label for="honeypot">Do not fill this out if you are human:</label>
+                  <input type="text" id="honeypot" name="honeypot" tabindex="-1" autocomplete="off">
+                </div>
+
                 <div class="form-group">
                   <label for="name">Name</label>
                   <input type="text" id="name" name="name" class="form-control" placeholder="Jane Doe" required>
@@ -71,6 +78,10 @@
                   <input type="text" id="stack" name="stack" class="form-control" placeholder="e.g. Microsoft 365, Azure, Python">
                 </div>
                 <div class="form-group">
+                  <label for="subject">Subject (Optional)</label>
+                  <input type="text" id="subject" name="subject" class="form-control" placeholder="e.g. Partnership inquiry, scoping question">
+                </div>
+                <div class="form-group">
                   <label for="message">Project Requirements</label>
                   <textarea id="message" name="message" class="form-control" placeholder="Describe your data source, security constraints, and desired goals..." required></textarea>
                 </div>
@@ -92,6 +103,99 @@
           const selectElement = document.getElementById('service');
           if (selectElement) {
             selectElement.value = serviceParam;
+          }
+        }
+      });
+
+      // Calendly Widget Initialization and Prefill Sync
+      window.hasInteractedWithCalendly = false;
+      window.currentCalendlyPrefill = null;
+
+      function initCalendlyWidget(prefill = {}) {
+        // Safe check for async loaded Calendly JS library
+        if (typeof Calendly === 'undefined') {
+          setTimeout(() => initCalendlyWidget(prefill), 100);
+          return;
+        }
+
+        const container = document.getElementById('calendly-inline-container');
+        if (!container) return;
+
+        // Prevent reloading the iframe if user is already interacting with the scheduling workflow
+        if (window.hasInteractedWithCalendly) return;
+
+        // Check if prefill parameters have actually changed to avoid redundant iframe reloads
+        if (
+          window.currentCalendlyPrefill &&
+          prefill.name === window.currentCalendlyPrefill.name &&
+          prefill.email === window.currentCalendlyPrefill.email
+        ) {
+          return;
+        }
+
+        window.currentCalendlyPrefill = { ...prefill };
+        container.innerHTML = ''; // Clear container
+
+        // Extract UTM parameters to pass through to Calendly configuration
+        const utm = {};
+        const urlParams = new URLSearchParams(window.location.search);
+        const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+        utmFields.forEach(field => {
+          if (urlParams.has(field)) {
+            utm[field] = urlParams.get(field);
+          }
+        });
+
+        // Initialize inline widget
+        Calendly.initInlineWidget({
+          url: 'https://calendly.com/gutierrez014642',
+          parentElement: container,
+          prefill: {
+            name: prefill.name || undefined,
+            email: prefill.email || undefined
+          },
+          utm: Object.keys(utm).length > 0 ? utm : undefined
+        });
+      }
+
+      // Initialize with empty prefill on load
+      window.addEventListener('DOMContentLoaded', () => {
+        initCalendlyWidget({});
+      });
+
+      // Sync form input name/email with Calendly prefill (triggered on change or focus out)
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+
+      const handlePrefillSync = () => {
+        const name = nameInput ? nameInput.value.trim() : '';
+        const email = emailInput ? emailInput.value.trim() : '';
+        if (name || email) {
+          initCalendlyWidget({ name, email });
+        }
+      };
+
+      if (nameInput) {
+        nameInput.addEventListener('blur', handlePrefillSync);
+        nameInput.addEventListener('change', handlePrefillSync);
+      }
+      if (emailInput) {
+        emailInput.addEventListener('blur', handlePrefillSync);
+        emailInput.addEventListener('change', handlePrefillSync);
+      }
+
+      // Listen for postMessage events from Calendly iframe
+      window.addEventListener('message', (e) => {
+        if (e.data && e.data.event && e.data.event.indexOf('calendly.') === 0) {
+          const eventName = e.data.event;
+          const payload = e.data.payload || {};
+          
+          console.log(`[Calendly Event] ${eventName}`, payload);
+          window.hasInteractedWithCalendly = true;
+
+          // Dispatch event to track in analytics if needed
+          if (typeof window.trackCalendlyAnalytics === 'function') {
+            window.trackCalendlyAnalytics(eventName, payload);
           }
         }
       });
@@ -120,26 +224,26 @@
           const action = form.getAttribute('action');
 
           try {
-            // Mock mode fallback if action URL is placeholder or empty
-            if (!action || action.includes('YOUR_FORMSPREE_ID') || action === '#' || action === '') {
-              await new Promise(resolve => setTimeout(resolve, 1000));
-              console.warn("EventArgs LLC Contact Form: Running in Mock Success mode. To connect real emails, update the form action attribute in contact.html to your Formspree or Web3Forms URL.");
-            } else {
-              const response = await fetch(action, {
-                method: 'POST',
-                headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-              });
-              
-              if (!response.ok) {
-                throw new Error('Failed to send details. Please check your network and try again.');
-              }
+            const response = await fetch(action, {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+            });
+            
+            const resData = await response.json();
+            if (!response.ok) {
+              throw new Error(resData.message || 'Sorry, something went wrong sending your message. Please try again.');
             }
 
-            // Success UI transition (replace form card with beautiful confirmation)
+            // Sync final name/email to Calendly
+            if (data.name || data.email) {
+              initCalendlyWidget({ name: data.name, email: data.email });
+            }
+
+            // Success UI transition
             formContainer.innerHTML = `
               <div class="card success-card" style="padding: 2.5rem; background-color: var(--bg-card); border: 1px solid var(--success); border-radius: var(--radius-sm); text-align: center; animation: fadeIn 0.4s ease-out;">
                 <div style="color: var(--success); margin-bottom: 1.5rem;">
@@ -148,7 +252,7 @@
                   </svg>
                 </div>
                 <h3 style="margin-bottom: 1rem; color: var(--text-primary);">Details Sent Successfully</h3>
-                <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">Thank you for sharing your project requirements. A senior engineer will review your environment parameters and reply within 24 business hours.</p>
+                <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">Thanks — your message was sent. I’ll get back to you soon.</p>
                 <button onclick="window.location.reload();" class="btn btn-secondary" style="margin: 0 auto; display: inline-flex;">Send Another Message</button>
               </div>
             `;
@@ -169,7 +273,7 @@
             errorDiv.style.padding = '1rem';
             errorDiv.style.marginTop = '1rem';
             errorDiv.style.fontSize = '0.9rem';
-            errorDiv.innerText = err.message || 'There was an error sending your message. Please try again.';
+            errorDiv.innerText = err.message || 'Sorry, something went wrong sending your message. Please try again.';
             
             form.appendChild(errorDiv);
 
