@@ -13,38 +13,35 @@
   <body>
     <div id="app">
       <section class="section" style="padding-top: 5rem; padding-bottom: 3rem;">
-        <div class="container" style="max-width: 800px;">
+        <div class="container">
           <h1 style="font-size: 3rem; margin-bottom: 1rem;">Book a Discovery Call</h1>
-          <p style="font-size: 1.2rem; color: var(--text-secondary);">Discuss your environment, constraints, and pilot fit directly with a senior engineer, or share your project details below.</p>
+          <p style="font-size: 1.2rem; color: var(--text-secondary); max-width: 800px;">Discuss your environment, constraints, and pilot fit directly with a senior engineer, or share your project details below.</p>
         </div>
       </section>
 
       <!-- Contact Form & Calendly Layout -->
       <section class="section" style="border-top: 1px solid var(--border); background-color: var(--bg-secondary); border-bottom: 1px solid var(--border);">
-        <div class="container" style="max-width: 800px;">
+        <div class="container">
           <div class="grid grid-2" style="gap: 4rem; align-items: start;">
             
             <!-- Booking Column (Primary) -->
-            <div class="card fit-card" style="padding: 2.5rem; background-color: var(--bg-card); box-shadow: var(--shadow-md);">
-              <h3 style="margin-bottom: 1rem; color: var(--accent);">Start with a technical feasibility call.</h3>
+            <div>
+              <h3 style="margin-bottom: 0.5rem; color: var(--accent);">Start with a technical feasibility call.</h3>
               <p style="font-size: 0.95rem; margin-bottom: 1.5rem; color: var(--text-secondary);">Discuss your environment, constraints, and pilot fit directly with a senior engineer. Select a time below to connect with a senior practitioner.</p>
               
-              <!-- Calendly Inline Embed Container -->
-              <div style="margin-bottom: 1.5rem;">
-                <h4 style="margin-bottom: 0.5rem; color: var(--text-primary);">Technical Discovery Call</h4>
-                <p style="font-size: 0.85rem; margin-bottom: 1rem; color: var(--text-secondary);">30 mins &bull; Video/Voice Call</p>
-                <div id="calendly-inline-container" style="min-width: 320px; height: 700px; border: 1px solid var(--border); border-radius: var(--radius-sm); background-color: var(--bg-secondary); overflow: hidden;"></div>
-              </div>
-              
-              <ul class="checklist" style="font-size: 0.85rem;">
+              <ul class="checklist" style="font-size: 0.85rem; margin-bottom: 2rem;">
                 <li>No sales representatives; talk directly to senior builders</li>
                 <li>Audit compliance, security boundaries, and data containment</li>
                 <li>Receive initial scoping details and ballpark timelines</li>
               </ul>
+
+              <!-- Calendly Inline Embed Card -->
+              <div id="calendly-inline-container" style="min-width: 320px; height: 700px; border: 1px solid var(--border); border-top: 4px solid var(--success); border-radius: var(--radius-md); background-color: var(--bg-card); box-shadow: var(--shadow-md); overflow: hidden;"></div>
             </div>
 
-            <div>
-              <h3 style="margin-bottom: 1.5rem;">Share Project Details</h3>
+            <!-- Form Column -->
+            <div class="card" style="padding: 2.5rem; background-color: var(--bg-card); box-shadow: var(--shadow-md); border-top: 4px solid var(--accent); border-radius: var(--radius-md);">
+              <h3 style="margin-bottom: 1.5rem; color: var(--text-primary);">Share Project Details</h3>
               <form id="intake-form" action="/api/contact" method="POST">
                 <!-- Honeypot spam protection -->
                 <div style="display: none;" aria-hidden="true">
