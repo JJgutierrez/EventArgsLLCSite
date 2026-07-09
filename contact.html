@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact Us | EventArgs LLC</title>
     <meta name="description" content="Get in touch with EventArgs LLC. Submit your project requirements or book a technical discovery call directly." />
-    <!-- Calendly integration -->
-    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
   </head>
   <body>
     <div id="app">
@@ -109,13 +107,12 @@
         }
       });
 
-      // Direct booking button handler with popup + prefill + progressive enhancement link fallback
+      // Direct booking button handler: dynamically sync Name/Email and UTM parameters to target link
       const nameInput = document.getElementById('name');
       const emailInput = document.getElementById('email');
       const bookCallBtn = document.getElementById('book-call-btn');
 
-      // Dynamically sync Name/Email to the fallback link href so ad-blockers still get prefill when navigating
-      const syncFallbackLink = () => {
+      const syncBookingLink = () => {
         if (!bookCallBtn) return;
         const nameVal = nameInput ? nameInput.value.trim() : '';
         const emailVal = emailInput ? emailInput.value.trim() : '';
@@ -125,77 +122,28 @@
         if (nameVal) queryParams.set('name', nameVal);
         if (emailVal) queryParams.set('email', emailVal);
         
-        // Sync UTMs
+        // Forward all query parameters (including UTMs) automatically to Calendly
         const urlParams = new URLSearchParams(window.location.search);
-        const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
-        utmFields.forEach(field => {
-          if (urlParams.has(field)) {
-            queryParams.set(field, urlParams.get(field));
-          }
-        });
+        for (const [key, value] of urlParams.entries()) {
+          queryParams.set(key, value);
+        }
 
         const finalUrl = queryParams.toString() ? `${baseUrl}?${queryParams.toString()}` : baseUrl;
         bookCallBtn.setAttribute('href', finalUrl);
       };
 
       if (nameInput) {
-        nameInput.addEventListener('input', syncFallbackLink);
-        nameInput.addEventListener('change', syncFallbackLink);
+        nameInput.addEventListener('input', syncBookingLink);
+        nameInput.addEventListener('change', syncBookingLink);
       }
       if (emailInput) {
-        emailInput.addEventListener('input', syncFallbackLink);
-        emailInput.addEventListener('change', syncFallbackLink);
+        emailInput.addEventListener('input', syncBookingLink);
+        emailInput.addEventListener('change', syncBookingLink);
       }
 
-      // Initial fallback link sync
+      // Initial booking link sync
       window.addEventListener('DOMContentLoaded', () => {
-        syncFallbackLink();
-      });
-
-      if (bookCallBtn) {
-        bookCallBtn.addEventListener('click', (e) => {
-          // If Calendly external widget JS successfully loaded, intercept click and open modal
-          if (typeof Calendly !== 'undefined' && typeof Calendly.initPopupWidget === 'function') {
-            e.preventDefault();
-
-            const nameVal = nameInput ? nameInput.value.trim() : '';
-            const emailVal = emailInput ? emailInput.value.trim() : '';
-            
-            const utm = {};
-            const urlParams = new URLSearchParams(window.location.search);
-            const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
-            utmFields.forEach(field => {
-              if (urlParams.has(field)) {
-                utm[field] = urlParams.get(field);
-              }
-            });
-
-            Calendly.initPopupWidget({
-              url: 'https://calendly.com/gutierrez014642',
-              prefill: {
-                name: nameVal || undefined,
-                email: emailVal || undefined
-              },
-              utm: Object.keys(utm).length > 0 ? utm : undefined
-            });
-          }
-          // If Calendly is blocked (e.g. adblocker in incognito), we do NOT call preventDefault.
-          // The browser will natively and safely open the pre-filled href link in a new tab without being blocked by popup blockers!
-        });
-      }
-
-      // Listen for postMessage events from Calendly (modal overlay)
-      window.addEventListener('message', (e) => {
-        if (e.data && e.data.event && e.data.event.indexOf('calendly.') === 0) {
-          const eventName = e.data.event;
-          const payload = e.data.payload || {};
-          console.log(`[Calendly Event] ${eventName}`, payload);
-
-          // Dispatch event to track in analytics if needed
-          if (typeof window.trackCalendlyAnalytics === 'function') {
-            window.trackCalendlyAnalytics(eventName, payload);
-          }
-        }
+        syncBookingLink();
       });
 
       // Production-grade form submit handler
