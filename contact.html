@@ -33,7 +33,7 @@
                 <div style="background-color: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 2rem; text-align: center; margin-bottom: 2rem;">
                   <h4 style="margin-bottom: 0.25rem; color: var(--text-primary);">Technical Discovery Call</h4>
                   <p style="font-size: 0.85rem; margin-bottom: 1.5rem; color: var(--text-secondary);">30 mins &bull; Video/Voice Call</p>
-                  <button id="book-call-btn" class="btn btn-primary" style="width: 100%; justify-content: center;">Select a Date & Time</button>
+                  <a id="book-call-btn" href="https://calendly.com/gutierrez014642" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; justify-content: center;">Select a Date & Time</a>
                 </div>
               </div>
               
@@ -109,54 +109,78 @@
         }
       });
 
-      // Direct booking button handler with popup + prefill + fallback
+      // Direct booking button handler with popup + prefill + progressive enhancement link fallback
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
       const bookCallBtn = document.getElementById('book-call-btn');
+
+      // Dynamically sync Name/Email to the fallback link href so ad-blockers still get prefill when navigating
+      const syncFallbackLink = () => {
+        if (!bookCallBtn) return;
+        const nameVal = nameInput ? nameInput.value.trim() : '';
+        const emailVal = emailInput ? emailInput.value.trim() : '';
+        
+        const baseUrl = 'https://calendly.com/gutierrez014642';
+        const queryParams = new URLSearchParams();
+        if (nameVal) queryParams.set('name', nameVal);
+        if (emailVal) queryParams.set('email', emailVal);
+        
+        // Sync UTMs
+        const urlParams = new URLSearchParams(window.location.search);
+        const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+        utmFields.forEach(field => {
+          if (urlParams.has(field)) {
+            queryParams.set(field, urlParams.get(field));
+          }
+        });
+
+        const finalUrl = queryParams.toString() ? `${baseUrl}?${queryParams.toString()}` : baseUrl;
+        bookCallBtn.setAttribute('href', finalUrl);
+      };
+
+      if (nameInput) {
+        nameInput.addEventListener('input', syncFallbackLink);
+        nameInput.addEventListener('change', syncFallbackLink);
+      }
+      if (emailInput) {
+        emailInput.addEventListener('input', syncFallbackLink);
+        emailInput.addEventListener('change', syncFallbackLink);
+      }
+
+      // Initial fallback link sync
+      window.addEventListener('DOMContentLoaded', () => {
+        syncFallbackLink();
+      });
+
       if (bookCallBtn) {
         bookCallBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-
-          // Safely extract prefill values from input fields
-          const nameInput = document.getElementById('name');
-          const emailInput = document.getElementById('email');
-          const nameVal = nameInput ? nameInput.value.trim() : '';
-          const emailVal = emailInput ? emailInput.value.trim() : '';
-
-          // Parse UTM parameters from the URL query string
-          const utm = {};
-          const urlParams = new URLSearchParams(window.location.search);
-          const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
-          utmFields.forEach(field => {
-            if (urlParams.has(field)) {
-              utm[field] = urlParams.get(field);
-            }
-          });
-
-          const baseUrl = 'https://calendly.com/gutierrez014642';
-
+          // If Calendly external widget JS successfully loaded, intercept click and open modal
           if (typeof Calendly !== 'undefined' && typeof Calendly.initPopupWidget === 'function') {
-            // Open official Calendly popup overlay
+            e.preventDefault();
+
+            const nameVal = nameInput ? nameInput.value.trim() : '';
+            const emailVal = emailInput ? emailInput.value.trim() : '';
+            
+            const utm = {};
+            const urlParams = new URLSearchParams(window.location.search);
+            const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+            utmFields.forEach(field => {
+              if (urlParams.has(field)) {
+                utm[field] = urlParams.get(field);
+              }
+            });
+
             Calendly.initPopupWidget({
-              url: baseUrl,
+              url: 'https://calendly.com/gutierrez014642',
               prefill: {
                 name: nameVal || undefined,
                 email: emailVal || undefined
               },
               utm: Object.keys(utm).length > 0 ? utm : undefined
             });
-          } else {
-            // Fallback for adblockers: open direct page in new tab
-            const queryParams = new URLSearchParams();
-            if (nameVal) queryParams.set('name', nameVal);
-            if (emailVal) queryParams.set('email', emailVal);
-            utmFields.forEach(field => {
-              if (urlParams.has(field)) {
-                queryParams.set(field, urlParams.get(field));
-              }
-            });
-
-            const finalUrl = queryParams.toString() ? `${baseUrl}?${queryParams.toString()}` : baseUrl;
-            window.open(finalUrl, '_blank', 'noopener,noreferrer');
           }
+          // If Calendly is blocked (e.g. adblocker in incognito), we do NOT call preventDefault.
+          // The browser will natively and safely open the pre-filled href link in a new tab without being blocked by popup blockers!
         });
       }
 
