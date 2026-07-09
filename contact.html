@@ -36,7 +36,21 @@
               </ul>
 
               <!-- Calendly Inline Embed Card -->
-              <div id="calendly-inline-container" style="min-width: 320px; height: 700px; border: 1px solid var(--border); border-top: 4px solid var(--success); border-radius: var(--radius-md); background-color: var(--bg-card); box-shadow: var(--shadow-md); overflow: hidden;"></div>
+              <div id="calendly-card" style="border: 1px solid var(--border); border-top: 4px solid var(--success); border-radius: var(--radius-md); background-color: var(--bg-card); box-shadow: var(--shadow-md); overflow: hidden; display: flex; flex-direction: column; min-height: 250px;">
+                <!-- Loading State -->
+                <div id="calendly-loading-message" style="text-align: center; padding: 3rem 1.5rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                  <h4 style="margin-bottom: 0.5rem; color: var(--text-primary);">Loading Scheduling Calendar...</h4>
+                  <p style="font-size: 0.85rem; color: var(--text-secondary);">Connecting securely to Calendly</p>
+                </div>
+                <!-- Fallback Blocked State -->
+                <div id="calendly-fallback-message" style="display: none; text-align: center; padding: 3rem 2rem; max-width: 500px; margin: 0 auto;">
+                  <h4 style="margin-bottom: 0.5rem; color: var(--text-primary);">Calendar Blocked or Unavailable</h4>
+                  <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.5;">Ad-blockers, script blockers, or strict privacy shields may be blocking the external scheduling widget.</p>
+                  <p style="font-size: 0.9rem; color: var(--accent); font-weight: 600; line-height: 1.5;">No problem! Please fill out the **Share Project Details** form on the right. Our team will review your requirements and follow up with a direct booking option.</p>
+                </div>
+                <!-- Actual Inline Widget Container -->
+                <div id="calendly-inline-container" style="min-width: 320px; height: 700px;"></div>
+              </div>
             </div>
 
             <!-- Form Column -->
@@ -155,9 +169,38 @@
         });
       }
 
-      // Initialize with empty prefill on load
+      // Fallback detection if Calendly script fails to load or is blocked (e.g. ad blockers)
+      function checkCalendlyLoadStatus() {
+        setTimeout(() => {
+          const inlineContainer = document.getElementById('calendly-inline-container');
+          const loadingMsg = document.getElementById('calendly-loading-message');
+          const fallbackMsg = document.getElementById('calendly-fallback-message');
+          
+          if (!inlineContainer) return;
+          
+          const iframe = inlineContainer.querySelector('iframe');
+          if (typeof Calendly === 'undefined' || !iframe) {
+            console.warn('[Calendly Blocked] Calendly script was blocked or failed to load. Showing fallback form option.');
+            if (loadingMsg) loadingMsg.style.display = 'none';
+            if (fallbackMsg) fallbackMsg.style.display = 'block';
+            inlineContainer.style.display = 'none';
+            
+            const card = document.getElementById('calendly-card');
+            if (card) {
+              card.style.borderStyle = 'dashed';
+              card.style.borderColor = 'var(--accent)';
+              card.style.minHeight = 'auto'; // Let it auto-shrink
+            }
+          } else {
+            if (loadingMsg) loadingMsg.style.display = 'none';
+          }
+        }, 3500);
+      }
+
+      // Initialize with empty prefill on load and run safety load check
       window.addEventListener('DOMContentLoaded', () => {
         initCalendlyWidget({});
+        checkCalendlyLoadStatus();
       });
 
       // Sync form input name/email with Calendly prefill (triggered on change or focus out)
@@ -189,6 +232,10 @@
           
           console.log(`[Calendly Event] ${eventName}`, payload);
           window.hasInteractedWithCalendly = true;
+
+          // Hide loading message immediately once the iframe starts rendering
+          const loadingMsg = document.getElementById('calendly-loading-message');
+          if (loadingMsg) loadingMsg.style.display = 'none';
 
           // Dispatch event to track in analytics if needed
           if (typeof window.trackCalendlyAnalytics === 'function') {
