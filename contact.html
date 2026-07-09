@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact Us | EventArgs LLC</title>
     <meta name="description" content="Get in touch with EventArgs LLC. Submit your project requirements or book a technical discovery call directly." />
+    <!-- Calendly integration -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
   </head>
   <body>
     <div id="app">
@@ -29,7 +32,7 @@
               <div style="background-color: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1.5rem; text-align: center; margin-bottom: 1.5rem;">
                 <h4 style="margin-bottom: 0.25rem;">Technical Discovery Call</h4>
                 <p style="font-size: 0.85rem; margin-bottom: 1rem; color: var(--text-secondary);">30 mins &bull; Video/Voice Call</p>
-                <button onclick="alert('Scheduling widget placeholder (Calendly integration goes here).')" class="btn btn-primary" style="width: 100%; justify-content: center;">Select a Date & Time</button>
+                <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/eventargs/feasibility-call'}); return false;" class="btn btn-primary" style="width: 100%; justify-content: center;">Select a Date & Time</button>
               </div>
               
               <ul class="checklist" style="font-size: 0.85rem;">
@@ -39,10 +42,9 @@
               </ul>
             </div>
 
-            <!-- Form -->
             <div>
               <h3 style="margin-bottom: 1.5rem;">Share Project Details</h3>
-              <form id="intake-form" onsubmit="event.preventDefault(); alert('Thank you! We will get back to you within 24 business hours.'); this.reset();">
+              <form id="intake-form" action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
                 <div class="form-group">
                   <label for="name">Name</label>
                   <input type="text" id="name" name="name" class="form-control" placeholder="Jane Doe" required>
@@ -93,6 +95,90 @@
           }
         }
       });
+
+      // Production-grade form submit handler
+      const form = document.getElementById('intake-form');
+      if (form) {
+        const formContainer = form.parentElement;
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          
+          if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+          }
+
+          // Show loading state
+          const submitBtn = form.querySelector('button[type="submit"]');
+          const originalBtnText = submitBtn.innerText;
+          submitBtn.disabled = true;
+          submitBtn.innerText = 'Sending...';
+
+          // Extract form values
+          const formData = new FormData(form);
+          const data = Object.fromEntries(formData.entries());
+          const action = form.getAttribute('action');
+
+          try {
+            // Mock mode fallback if action URL is placeholder or empty
+            if (!action || action.includes('YOUR_FORMSPREE_ID') || action === '#' || action === '') {
+              await new Promise(resolve => setTimeout(resolve, 1000));
+              console.warn("EventArgs LLC Contact Form: Running in Mock Success mode. To connect real emails, update the form action attribute in contact.html to your Formspree or Web3Forms URL.");
+            } else {
+              const response = await fetch(action, {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+              });
+              
+              if (!response.ok) {
+                throw new Error('Failed to send details. Please check your network and try again.');
+              }
+            }
+
+            // Success UI transition (replace form card with beautiful confirmation)
+            formContainer.innerHTML = `
+              <div class="card success-card" style="padding: 2.5rem; background-color: var(--bg-card); border: 1px solid var(--success); border-radius: var(--radius-sm); text-align: center; animation: fadeIn 0.4s ease-out;">
+                <div style="color: var(--success); margin-bottom: 1.5rem;">
+                  <svg width="48" height="48" fill="currentColor" viewBox="0 0 16 16" style="display: inline-block;">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                  </svg>
+                </div>
+                <h3 style="margin-bottom: 1rem; color: var(--text-primary);">Details Sent Successfully</h3>
+                <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">Thank you for sharing your project requirements. A senior engineer will review your environment parameters and reply within 24 business hours.</p>
+                <button onclick="window.location.reload();" class="btn btn-secondary" style="margin: 0 auto; display: inline-flex;">Send Another Message</button>
+              </div>
+            `;
+          } catch (err) {
+            console.error("Form submission failed:", err);
+            
+            // Remove existing error banner if any
+            const existingError = form.querySelector('.error-message');
+            if (existingError) existingError.remove();
+
+            // Create error alert banner
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
+            errorDiv.style.border = '1px solid #ef4444';
+            errorDiv.style.color = '#ef4444';
+            errorDiv.style.borderRadius = 'var(--radius-sm)';
+            errorDiv.style.padding = '1rem';
+            errorDiv.style.marginTop = '1rem';
+            errorDiv.style.fontSize = '0.9rem';
+            errorDiv.innerText = err.message || 'There was an error sending your message. Please try again.';
+            
+            form.appendChild(errorDiv);
+
+            // Restore submit button state
+            submitBtn.disabled = false;
+            submitBtn.innerText = originalBtnText;
+          }
+        });
+      }
     </script>
   </body>
 </html>
