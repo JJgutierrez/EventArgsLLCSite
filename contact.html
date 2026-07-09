@@ -25,32 +25,23 @@
           <div class="grid grid-2" style="gap: 4rem; align-items: start;">
             
             <!-- Booking Column (Primary) -->
-            <div>
-              <h3 style="margin-bottom: 0.5rem; color: var(--accent);">Start with a technical feasibility call.</h3>
-              <p style="font-size: 0.95rem; margin-bottom: 1.5rem; color: var(--text-secondary);">Discuss your environment, constraints, and pilot fit directly with a senior engineer. Select a time below to connect with a senior practitioner.</p>
+            <div class="card fit-card" style="padding: 2.5rem; background-color: var(--bg-card); box-shadow: var(--shadow-md); border-top: 4px solid var(--success); border-radius: var(--radius-md); display: flex; flex-direction: column; justify-content: space-between; min-height: 520px;">
+              <div>
+                <h3 style="margin-bottom: 1rem; color: var(--accent);">Start with a technical feasibility call.</h3>
+                <p style="font-size: 0.95rem; margin-bottom: 1.5rem; color: var(--text-secondary);">Discuss your environment, constraints, and pilot fit directly with a senior engineer. Select a time below to connect with a senior practitioner.</p>
+                
+                <div style="background-color: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 2rem; text-align: center; margin-bottom: 2rem;">
+                  <h4 style="margin-bottom: 0.25rem; color: var(--text-primary);">Technical Discovery Call</h4>
+                  <p style="font-size: 0.85rem; margin-bottom: 1.5rem; color: var(--text-secondary);">30 mins &bull; Video/Voice Call</p>
+                  <button id="book-call-btn" class="btn btn-primary" style="width: 100%; justify-content: center;">Select a Date & Time</button>
+                </div>
+              </div>
               
-              <ul class="checklist" style="font-size: 0.85rem; margin-bottom: 2rem;">
+              <ul class="checklist" style="font-size: 0.85rem;">
                 <li>No sales representatives; talk directly to senior builders</li>
                 <li>Audit compliance, security boundaries, and data containment</li>
                 <li>Receive initial scoping details and ballpark timelines</li>
               </ul>
-
-              <!-- Calendly Inline Embed Card -->
-              <div id="calendly-card" style="border: 1px solid var(--border); border-top: 4px solid var(--success); border-radius: var(--radius-md); background-color: var(--bg-card); box-shadow: var(--shadow-md); overflow: hidden; display: flex; flex-direction: column; min-height: 250px;">
-                <!-- Loading State -->
-                <div id="calendly-loading-message" style="text-align: center; padding: 3rem 1.5rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                  <h4 style="margin-bottom: 0.5rem; color: var(--text-primary);">Loading Scheduling Calendar...</h4>
-                  <p style="font-size: 0.85rem; color: var(--text-secondary);">Connecting securely to Calendly</p>
-                </div>
-                <!-- Fallback Blocked State -->
-                <div id="calendly-fallback-message" style="display: none; text-align: center; padding: 3rem 2rem; max-width: 500px; margin: 0 auto;">
-                  <h4 style="margin-bottom: 0.5rem; color: var(--text-primary);">Calendar Blocked or Unavailable</h4>
-                  <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.5;">Ad-blockers, script blockers, or strict privacy shields may be blocking the external scheduling widget.</p>
-                  <p style="font-size: 0.9rem; color: var(--accent); font-weight: 600; line-height: 1.5;">No problem! Please fill out the **Share Project Details** form on the right. Our team will review your requirements and follow up with a direct booking option.</p>
-                </div>
-                <!-- Actual Inline Widget Container -->
-                <div id="calendly-inline-container" style="min-width: 320px; height: 700px;"></div>
-              </div>
             </div>
 
             <!-- Form Column -->
@@ -118,124 +109,63 @@
         }
       });
 
-      // Calendly Widget Initialization and Prefill Sync
-      window.hasInteractedWithCalendly = false;
-      window.currentCalendlyPrefill = null;
+      // Direct booking button handler with popup + prefill + fallback
+      const bookCallBtn = document.getElementById('book-call-btn');
+      if (bookCallBtn) {
+        bookCallBtn.addEventListener('click', (e) => {
+          e.preventDefault();
 
-      function initCalendlyWidget(prefill = {}) {
-        // Safe check for async loaded Calendly JS library
-        if (typeof Calendly === 'undefined') {
-          setTimeout(() => initCalendlyWidget(prefill), 100);
-          return;
-        }
+          // Safely extract prefill values from input fields
+          const nameInput = document.getElementById('name');
+          const emailInput = document.getElementById('email');
+          const nameVal = nameInput ? nameInput.value.trim() : '';
+          const emailVal = emailInput ? emailInput.value.trim() : '';
 
-        const container = document.getElementById('calendly-inline-container');
-        if (!container) return;
-
-        // Prevent reloading the iframe if user is already interacting with the scheduling workflow
-        if (window.hasInteractedWithCalendly) return;
-
-        // Check if prefill parameters have actually changed to avoid redundant iframe reloads
-        if (
-          window.currentCalendlyPrefill &&
-          prefill.name === window.currentCalendlyPrefill.name &&
-          prefill.email === window.currentCalendlyPrefill.email
-        ) {
-          return;
-        }
-
-        window.currentCalendlyPrefill = { ...prefill };
-        container.innerHTML = ''; // Clear container
-
-        // Extract UTM parameters to pass through to Calendly configuration
-        const utm = {};
-        const urlParams = new URLSearchParams(window.location.search);
-        const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
-        utmFields.forEach(field => {
-          if (urlParams.has(field)) {
-            utm[field] = urlParams.get(field);
-          }
-        });
-
-        // Initialize inline widget
-        Calendly.initInlineWidget({
-          url: 'https://calendly.com/gutierrez014642',
-          parentElement: container,
-          prefill: {
-            name: prefill.name || undefined,
-            email: prefill.email || undefined
-          },
-          utm: Object.keys(utm).length > 0 ? utm : undefined
-        });
-      }
-
-      // Fallback detection if Calendly script fails to load or is blocked (e.g. ad blockers)
-      function checkCalendlyLoadStatus() {
-        setTimeout(() => {
-          const inlineContainer = document.getElementById('calendly-inline-container');
-          const loadingMsg = document.getElementById('calendly-loading-message');
-          const fallbackMsg = document.getElementById('calendly-fallback-message');
-          
-          if (!inlineContainer) return;
-          
-          const iframe = inlineContainer.querySelector('iframe');
-          if (typeof Calendly === 'undefined' || !iframe) {
-            console.warn('[Calendly Blocked] Calendly script was blocked or failed to load. Showing fallback form option.');
-            if (loadingMsg) loadingMsg.style.display = 'none';
-            if (fallbackMsg) fallbackMsg.style.display = 'block';
-            inlineContainer.style.display = 'none';
-            
-            const card = document.getElementById('calendly-card');
-            if (card) {
-              card.style.borderStyle = 'dashed';
-              card.style.borderColor = 'var(--accent)';
-              card.style.minHeight = 'auto'; // Let it auto-shrink
+          // Parse UTM parameters from the URL query string
+          const utm = {};
+          const urlParams = new URLSearchParams(window.location.search);
+          const utmFields = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+          utmFields.forEach(field => {
+            if (urlParams.has(field)) {
+              utm[field] = urlParams.get(field);
             }
+          });
+
+          const baseUrl = 'https://calendly.com/gutierrez014642';
+
+          if (typeof Calendly !== 'undefined' && typeof Calendly.initPopupWidget === 'function') {
+            // Open official Calendly popup overlay
+            Calendly.initPopupWidget({
+              url: baseUrl,
+              prefill: {
+                name: nameVal || undefined,
+                email: emailVal || undefined
+              },
+              utm: Object.keys(utm).length > 0 ? utm : undefined
+            });
           } else {
-            if (loadingMsg) loadingMsg.style.display = 'none';
+            // Fallback for adblockers: open direct page in new tab
+            const queryParams = new URLSearchParams();
+            if (nameVal) queryParams.set('name', nameVal);
+            if (emailVal) queryParams.set('email', emailVal);
+            utmFields.forEach(field => {
+              if (urlParams.has(field)) {
+                queryParams.set(field, urlParams.get(field));
+              }
+            });
+
+            const finalUrl = queryParams.toString() ? `${baseUrl}?${queryParams.toString()}` : baseUrl;
+            window.open(finalUrl, '_blank', 'noopener,noreferrer');
           }
-        }, 3500);
+        });
       }
 
-      // Initialize with empty prefill on load and run safety load check
-      window.addEventListener('DOMContentLoaded', () => {
-        initCalendlyWidget({});
-        checkCalendlyLoadStatus();
-      });
-
-      // Sync form input name/email with Calendly prefill (triggered on change or focus out)
-      const nameInput = document.getElementById('name');
-      const emailInput = document.getElementById('email');
-
-      const handlePrefillSync = () => {
-        const name = nameInput ? nameInput.value.trim() : '';
-        const email = emailInput ? emailInput.value.trim() : '';
-        if (name || email) {
-          initCalendlyWidget({ name, email });
-        }
-      };
-
-      if (nameInput) {
-        nameInput.addEventListener('blur', handlePrefillSync);
-        nameInput.addEventListener('change', handlePrefillSync);
-      }
-      if (emailInput) {
-        emailInput.addEventListener('blur', handlePrefillSync);
-        emailInput.addEventListener('change', handlePrefillSync);
-      }
-
-      // Listen for postMessage events from Calendly iframe
+      // Listen for postMessage events from Calendly (modal overlay)
       window.addEventListener('message', (e) => {
         if (e.data && e.data.event && e.data.event.indexOf('calendly.') === 0) {
           const eventName = e.data.event;
           const payload = e.data.payload || {};
-          
           console.log(`[Calendly Event] ${eventName}`, payload);
-          window.hasInteractedWithCalendly = true;
-
-          // Hide loading message immediately once the iframe starts rendering
-          const loadingMsg = document.getElementById('calendly-loading-message');
-          if (loadingMsg) loadingMsg.style.display = 'none';
 
           // Dispatch event to track in analytics if needed
           if (typeof window.trackCalendlyAnalytics === 'function') {
@@ -282,10 +212,7 @@
               throw new Error(resData.message || 'Sorry, something went wrong sending your message. Please try again.');
             }
 
-            // Sync final name/email to Calendly
-            if (data.name || data.email) {
-              initCalendlyWidget({ name: data.name, email: data.email });
-            }
+
 
             // Success UI transition
             formContainer.innerHTML = `
