@@ -24,18 +24,20 @@
           <div class="grid grid-2" style="gap: 4rem;">
             <div>
               <span class="offer-badge">Primary Offer</span>
-              <h2 style="margin-bottom: 1rem;">Internal Knowledge Copilot Pilot</h2>
-              <p style="font-size: 1.1rem; font-weight: 500; color: var(--text-primary);">Outcome: Find internal answers in seconds with traceable citations and zero hallucination risk.</p>
-              <p>Deploy a secure, grounded internal knowledge copilot connected directly to your company knowledge base with traceable source citations. Solve documentation sprawl by indexing your internal wikis, SharePoint repositories, and file storage while keeping your business IP strictly within your network boundaries.</p>
+              <h2 style="margin-bottom: 0.5rem;">Internal Knowledge Copilot Pilot</h2>
+              <p style="font-size: 1.1rem; font-weight: 500; color: var(--text-primary); margin-bottom: 1.5rem;">Outcome: Find internal answers in seconds with traceable citations and zero hallucination risk.</p>
               
-              <h4 style="margin-top: 2rem; margin-bottom: 0.5rem;">Target Audience</h4>
-              <p style="font-size: 0.95rem; margin-bottom: 1.5rem;">Mid-market teams using Microsoft 365 and Azure-heavy environments, facing high search friction across multiple shared drives and SharePoint instances.</p>
-
-              <h4 style="margin-bottom: 0.5rem;">Timeline & Investment</h4>
-              <p style="font-weight: 600; color: var(--accent); margin-bottom: 2rem;">4 Weeks &mdash; Fixed Scope Execution</p>
+              <p><strong>Problem:</strong> Operational guidelines, runbooks, and product documentations are scattered across SharePoint, Confluence, and teams drives, costing developers hours of lookup latency.</p>
+              <p><strong>Best-Fit Client:</strong> M365 and Azure-heavy mid-market teams with extensive unstructured text files.</p>
+              
+              <div class="packaging-metadata">
+                <div class="packaging-metadata-item"><strong>Typical Timeline:</strong> 4 Weeks (Fixed Scope Execution)</div>
+                <div class="packaging-metadata-item"><strong>Technical Environment:</strong> Azure OpenAI, Azure AI Search, SharePoint APIs, Python</div>
+                <div class="packaging-metadata-item"><strong>Expected Outcome:</strong> 75% reduction in lookup times with 100% citation verification</div>
+              </div>
               
               <div class="hero-ctas" style="justify-content: flex-start;">
-                <a href="/contact.html?service=copilot" class="btn btn-primary">Book a discovery call</a>
+                <a href="/contact.html?service=copilot" class="btn btn-primary">See if this engagement fits your team</a>
               </div>
             </div>
             
@@ -70,6 +72,26 @@
                     <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Track queries, response times, model accuracy, and token expenditures.</p>
                   </div>
                 </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Inline Fit / Non-Fit Checklists -->
+          <div class="fit-box-grid">
+            <div class="fit-box ideal">
+              <h5>Ideal Fit If</h5>
+              <ul>
+                <li>You use Microsoft 365, SharePoint, or Azure extensively.</li>
+                <li>Your documentation is text-based (docs, markdown, readable PDFs).</li>
+                <li>You require 100% citation grounding and strict tenant data containment.</li>
+              </ul>
+            </div>
+            <div class="fit-box bad">
+              <h5>Bad Fit If</h5>
+              <ul>
+                <li>You want to build public customer support chatbots.</li>
+                <li>Your documentation consists of handwritten notes or low-resolution image scans.</li>
+                <li>You only need a high-level strategic recommendation without code delivery.</li>
               </ul>
             </div>
           </div>
@@ -116,19 +138,41 @@
 
             <div>
               <span class="offer-badge" style="background-color: var(--border); color: var(--text-primary);">Risk & Security</span>
-              <h2 style="margin-bottom: 1rem;">Copilot Governance & Hardening</h2>
-              <p style="font-size: 1.1rem; font-weight: 500; color: var(--text-primary);">Outcome: Wrap your AI deployments with controls for access, usage, rate limits, privacy, and compliance.</p>
-              <p>Audit, secure, and harden AI tools with controls for access, usage, rate limits, privacy, and compliance. We audit existing configurations, insert cost-containment proxy layers, and construct custom vulnerability test suites before you roll out tools to the broader team.</p>
+              <h2 style="margin-bottom: 0.5rem;">Copilot Governance &amp; Hardening</h2>
+              <p style="font-size: 1.1rem; font-weight: 500; color: var(--text-primary); margin-bottom: 1.5rem;">Outcome: Wrap your AI deployments with controls for access, usage, rate limits, privacy, and compliance.</p>
               
-              <h4 style="margin-top: 2rem; margin-bottom: 0.5rem;">Target Audience</h4>
-              <p style="font-size: 0.95rem; margin-bottom: 1.5rem;">Compliance officers and engineering directors in Microsoft 365 and Azure-heavy environments hesitant to roll out AI tools due to data leakage or runaway API costs.</p>
-
-              <h4 style="margin-bottom: 0.5rem;">Timeline & Investment</h4>
-              <p style="font-weight: 600; color: var(--accent); margin-bottom: 2rem;">2 Weeks &mdash; Fixed Scope Audit & Setup</p>
+              <p><strong>Problem:</strong> Active AI deployments lack strict cost boundaries, rate-limiting rules, or prompt-injection defense walls.</p>
+              <p><strong>Best-Fit Client:</strong> Security-conscious compliance and engineering directors rolling out LLM tooling.</p>
+              
+              <div class="packaging-metadata">
+                <div class="packaging-metadata-item"><strong>Typical Timeline:</strong> 2 Weeks (Fixed Scope Audit &amp; Setup)</div>
+                <div class="packaging-metadata-item"><strong>Technical Environment:</strong> Azure API Management, OpenAI API, Python, Docker</div>
+                <div class="packaging-metadata-item"><strong>Expected Outcome:</strong> Audited AI setups with hard cost containment caps and low vulnerability profile</div>
+              </div>
               
               <div class="hero-ctas" style="justify-content: flex-start;">
-                <a href="/contact.html?service=governance" class="btn btn-primary">Book a discovery call</a>
+                <a href="/contact.html?service=governance" class="btn btn-primary">See if this engagement fits your team</a>
               </div>
+            </div>
+          </div>
+
+          <!-- Inline Fit / Non-Fit Checklists -->
+          <div class="fit-box-grid">
+            <div class="fit-box ideal">
+              <h5>Ideal Fit If</h5>
+              <ul>
+                <li>You have active AI pilots and need cost-caching proxy firewalls.</li>
+                <li>You require security hardening against prompt injections and data leaks.</li>
+                <li>You want automated compliance test suites built before rolling out to teams.</li>
+              </ul>
+            </div>
+            <div class="fit-box bad">
+              <h5>Bad Fit If</h5>
+              <ul>
+                <li>You only need high-level security policy slides without proxy/code hardening.</li>
+                <li>Your team is not actively running or planning LLM integrations.</li>
+                <li>You do not have administrative access to your AI environment.</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -140,18 +184,20 @@
           <div class="grid grid-2" style="gap: 4rem;">
             <div>
               <span class="offer-badge" style="background-color: var(--border); color: var(--text-primary);">Developer Velocity</span>
-              <h2 style="margin-bottom: 1rem;">AI DevOps & PR Review Automation</h2>
-              <p style="font-size: 1.1rem; font-weight: 500; color: var(--text-primary);">Outcome: Reduce engineering review latency with custom AI-assisted pull request and workflow automation for Azure DevOps and GitHub.</p>
-              <p>Reduce engineering review latency with custom AI-assisted pull request and workflow automation for Azure DevOps and GitHub. Integrate specialized, secure AI agents directly into your GitHub or Azure DevOps pipelines to catch linting issues, styling inconsistencies, structural security risks, and logic gaps within minutes of PR submission, freeing up senior developers.</p>
+              <h2 style="margin-bottom: 0.5rem;">AI DevOps &amp; PR Review Automation</h2>
+              <p style="font-size: 1.1rem; font-weight: 500; color: var(--text-primary); margin-bottom: 1.5rem;">Outcome: Reduce engineering review latency with custom AI-assisted pull request and workflow automation for Azure DevOps and GitHub.</p>
               
-              <h4 style="margin-top: 2rem; margin-bottom: 0.5rem;">Target Audience</h4>
-              <p style="font-size: 0.95rem; margin-bottom: 1.5rem;">Engineering teams with high pull request volume in Microsoft 365 and Azure-heavy environments looking to automate code reviews.</p>
-
-              <h4 style="margin-bottom: 0.5rem;">Timeline & Investment</h4>
-              <p style="font-weight: 600; color: var(--accent); margin-bottom: 2rem;">3 Weeks &mdash; Fixed Scope Custom Integration</p>
+              <p><strong>Problem:</strong> Senior developers lose several hours weekly to routine syntax, style, linting, and basic security reviews on pull requests.</p>
+              <p><strong>Best-Fit Client:</strong> High-volume engineering teams looking to accelerate pull request turnaround cycles.</p>
+              
+              <div class="packaging-metadata">
+                <div class="packaging-metadata-item"><strong>Typical Timeline:</strong> 3 Weeks (Fixed Scope Custom Integration)</div>
+                <div class="packaging-metadata-item"><strong>Technical Environment:</strong> GitHub Actions, Azure DevOps, Node.js/Python, LLM APIs</div>
+                <div class="packaging-metadata-item"><strong>Expected Outcome:</strong> 40% reduction in average pull request turnaround times with automated security detection</div>
+              </div>
               
               <div class="hero-ctas" style="justify-content: flex-start;">
-                <a href="/contact.html?service=devops" class="btn btn-primary">Book a discovery call</a>
+                <a href="/contact.html?service=devops" class="btn btn-primary">See if this engagement fits your team</a>
               </div>
             </div>
             
@@ -186,6 +232,26 @@
                     <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Automatically compiles PR histories into clean, auditable changelogs on merge.</p>
                   </div>
                 </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Inline Fit / Non-Fit Checklists -->
+          <div class="fit-box-grid">
+            <div class="fit-box ideal">
+              <h5>Ideal Fit If</h5>
+              <ul>
+                <li>Your team uses GitHub or Azure DevOps pipelines for code delivery.</li>
+                <li>You want code reviews automated directly inline within pull requests.</li>
+                <li>You have clear, documented architectural guidelines and styling conventions.</li>
+              </ul>
+            </div>
+            <div class="fit-box bad">
+              <h5>Bad Fit If</h5>
+              <ul>
+                <li>Your repositories run on legacy VCS systems (SVN or TFVC).</li>
+                <li>You lack standard CI/CD workflow tooling.</li>
+                <li>You need AI to merge code autonomously without human approval gates.</li>
               </ul>
             </div>
           </div>

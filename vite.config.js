@@ -8,6 +8,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         services: resolve(__dirname, 'services.html'),
         caseStudies: resolve(__dirname, 'case-studies.html'),
+        caseStudyKnowledgeCopilot: resolve(__dirname, 'case-study-knowledge-copilot.html'),
         about: resolve(__dirname, 'about.html'),
         contact: resolve(__dirname, 'contact.html'),
       },

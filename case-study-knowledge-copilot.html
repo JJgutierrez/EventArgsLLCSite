@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Legacy Knowledge Copilot Case Study | EventArgs LLC</title>
+    <meta name="description" content="Read how EventArgs LLC built a secure, source-grounded RAG internal knowledge copilot for technical documentation sprawl, reducing lookup times by 75%." />
+  </head>
+  <body>
+    <div id="app">
+      <!-- 1. Case Study Hero -->
+      <section class="case-study-hero">
+        <div class="container case-study-header">
+          <a href="/case-studies.html" class="back-link" style="color: var(--accent); margin-bottom: 1.5rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+            <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/></svg>
+            Back to Case Studies
+          </a>
+          <div class="case-study-meta">
+            <span class="offer-badge" style="margin-bottom: 0;">Case Study</span>
+            <span>&bull;</span>
+            <span>4-Week Delivery</span>
+            <span>&bull;</span>
+            <span>Internal Knowledge Systems</span>
+          </div>
+          <h1 style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.2; margin-top: 1rem; margin-bottom: 0.75rem;">Legacy Knowledge Copilot</h1>
+          <p style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 0; line-height: 1.6; max-width: 750px;">Eliminating internal documentation sprawl across SharePoint and network shares with secure, source-grounded hybrid retrieval.</p>
+        </div>
+      </section>
+
+      <!-- 2. Case Study Content -->
+      <div class="case-study-body">
+        
+        <!-- Situation -->
+        <section class="case-study-section">
+          <h2>The Situation</h2>
+          <p>For mid-market engineering and operations teams, critical knowledge is rarely located in a single, well-structured directory. In this engagement, the client’s operational guidelines, server modernization runbooks, and software API documentation were scattered across three SharePoint sites, a Confluence instance, and isolated local network folders.</p>
+          <p>As a result, engineers spent an average of 45 minutes finding accurate technical procedures during active systems outages. In addition, onboarding new technical staff took up to six weeks because of knowledge discovery friction.</p>
+        </section>
+
+        <!-- Constraints -->
+        <section class="case-study-section">
+          <h2>The Constraints</h2>
+          <p>The client's security officers and data stewards established three non-negotiable boundaries before any code was written:</p>
+          <ul>
+            <li><strong>Strict Tenant Containment:</strong> Proprietary designs, codebase notes, and operational logs could not leave the client's Azure boundary or be exposed to public model training loops.</li>
+            <li><strong>Zero-Hallucination Guardrails:</strong> The AI system must only respond using information retrieved from verified source text. If a query could not be answered from the document chunks, the system had to state <em>"I do not know based on the available documentation."</em></li>
+            <li><strong>Access-Level Security:</strong> Search results and generated answers had to enforce SharePoint security groups, ensuring a user could never retrieve information they did not have explicit permissions to view in the source systems.</li>
+          </ul>
+        </section>
+
+        <!-- Approach -->
+        <section class="case-study-section">
+          <h2>The Approach</h2>
+          <p>We bypassed standard character-count text splitting—which frequently breaks code blocks and tables—to deploy a custom, semantic, layout-aware parser in Python. The custom parser groups paragraphs based on document heading structures, preserving parent headers and hierarchical outlines as metadata for every chunk.</p>
+          <p>For retrieval, we configured a hybrid search pipeline combining dense vector embeddings (using Azure OpenAI's <code>text-embedding-3-large</code>) with BM25 keyword matching. To prevent model hallucination, we enforced a strict retrieval similarity threshold and structured the system prompt to require inline citation anchors (e.g., <code>[DocumentName.pdf, Page 12]</code>) for every factual claim in the response.</p>
+        </section>
+
+        <!-- Architecture -->
+        <section class="case-study-section">
+          <h2>Architecture & Technical Design</h2>
+          <p>Below is the system architecture showing how documents are securely ingested and how user queries are processed and verified within the client's Azure network boundary.</p>
+          
+          <div class="architecture-block">
+            <svg viewBox="0 0 800 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="display: block;">
+              <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                  <path d="M 0 1.5 L 8 5 L 0 8.5 z" fill="var(--text-secondary)" />
+                </marker>
+              </defs>
+              
+              <!-- Ingestion Pipeline Subgraph -->
+              <rect x="15" y="45" width="360" height="410" rx="12" fill="var(--bg-card)" stroke="var(--border)" stroke-width="1.5" />
+              <text x="35" y="75" font-family="var(--font-heading)" font-weight="700" font-size="15" fill="var(--text-primary)">1. Document Ingestion Pipeline</text>
+              
+              <!-- SharePoint Box -->
+              <rect x="40" y="105" width="310" height="50" rx="6" fill="var(--bg-secondary)" stroke="var(--border)" />
+              <text x="60" y="135" font-family="var(--font-body)" font-weight="600" font-size="13" fill="var(--text-primary)">SharePoint / Azure Files</text>
+              
+              <!-- Ingest & Parse Box -->
+              <rect x="40" y="185" width="310" height="50" rx="6" fill="var(--bg-secondary)" stroke="var(--border)" />
+              <text x="60" y="215" font-family="var(--font-body)" font-weight="600" font-size="13" fill="var(--text-primary)">Azure Functions (Python Layout Parsing)</text>
+              
+              <!-- Semantic Chunking Box -->
+              <rect x="40" y="265" width="310" height="50" rx="6" fill="var(--bg-secondary)" stroke="var(--border)" />
+              <text x="60" y="295" font-family="var(--font-body)" font-weight="600" font-size="13" fill="var(--text-primary)">Semantic Embeddings (text-embedding-3-large)</text>
+              
+              <!-- Azure AI Search Box -->
+              <rect x="40" y="345" width="310" height="80" rx="6" fill="var(--bg-secondary)" stroke="var(--accent)" stroke-width="1.5" />
+              <text x="60" y="380" font-family="var(--font-heading)" font-weight="700" font-size="14" fill="var(--accent)">Azure AI Search Index</text>
+              <text x="60" y="405" font-family="var(--font-body)" font-size="12" fill="var(--text-secondary)">Vector & Keyword Search (Tenant Bound)</text>
+
+              <!-- Query Pipeline Subgraph -->
+              <rect x="425" y="45" width="360" height="410" rx="12" fill="var(--bg-card)" stroke="var(--border)" stroke-width="1.5" />
+              <text x="445" y="75" font-family="var(--font-heading)" font-weight="700" font-size="15" fill="var(--text-primary)">2. Query & Generation Pipeline</text>
+              
+              <!-- User Box -->
+              <rect x="450" y="105" width="310" height="50" rx="6" fill="var(--bg-secondary)" stroke="var(--border)" />
+              <text x="470" y="135" font-family="var(--font-body)" font-weight="600" font-size="13" fill="var(--text-primary)">User Query via Web UI</text>
+              
+              <!-- API Gateway Box -->
+              <rect x="450" y="185" width="310" height="50" rx="6" fill="var(--bg-secondary)" stroke="var(--border)" />
+              <text x="470" y="215" font-family="var(--font-body)" font-weight="600" font-size="13" fill="var(--text-primary)">FastAPI Gateway (Azure AD Auth Check)</text>
+              
+              <!-- Prompt Compile Box -->
+              <rect x="450" y="265" width="310" height="50" rx="6" fill="var(--bg-secondary)" stroke="var(--border)" />
+              <text x="470" y="295" font-family="var(--font-body)" font-weight="600" font-size="13" fill="var(--text-primary)">Prompt Compiler (Strict Citation Rules)</text>
+              
+              <!-- LLM Box -->
+              <rect x="450" y="345" width="310" height="80" rx="6" fill="var(--bg-secondary)" stroke="var(--accent)" stroke-width="1.5" />
+              <text x="470" y="380" font-family="var(--font-heading)" font-weight="700" font-size="14" fill="var(--accent)">Azure OpenAI GPT-4o</text>
+              <text x="470" y="405" font-family="var(--font-body)" font-size="12" fill="var(--text-secondary)">Isolated LLM instance - Zero training exposure</text>
+
+              <!-- Connectors -->
+              <path d="M 195 155 L 195 185" stroke="var(--text-secondary)" stroke-width="1.5" marker-end="url(#arrow)" />
+              <path d="M 195 235 L 195 265" stroke="var(--text-secondary)" stroke-width="1.5" marker-end="url(#arrow)" />
+              <path d="M 195 315 L 195 345" stroke="var(--text-secondary)" stroke-width="1.5" marker-end="url(#arrow)" />
+              
+              <path d="M 605 155 L 605 185" stroke="var(--text-secondary)" stroke-width="1.5" marker-end="url(#arrow)" />
+              <path d="M 605 235 L 605 265" stroke="var(--text-secondary)" stroke-width="1.5" marker-end="url(#arrow)" />
+              <path d="M 605 315 L 605 345" stroke="var(--text-secondary)" stroke-width="1.5" marker-end="url(#arrow)" />
+              
+              <!-- Cross Connectors -->
+              <path d="M 450 210 Q 375 210 350 360" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#arrow)" />
+              <path d="M 350 385 Q 400 385 450 290" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#arrow)" />
+            </svg>
+          </div>
+          
+          <p>This layout ensures that no unauthenticated user can access restricted documentation, and every single LLM call is tracked for cost, latency, and token footprint.</p>
+        </section>
+
+        <!-- Delivery Model -->
+        <section class="case-study-section">
+          <h2>Delivery Model</h2>
+          <p>We executed this project in a <strong>4-week fixed-scope sprint</strong>. We worked directly as senior partners, with daily check-ins on Slack and weekly iterations demonstrating working code directly in the client's Azure staging environment. Because we bypass administrative layers and junior engineers, we moved from blueprint draft to a fully functional pilot in 20 engineering days.</p>
+        </section>
+
+        <!-- Results -->
+        <section class="case-study-section">
+          <h2>The Results</h2>
+          <ul>
+            <li><strong>75% Retrieval Speed Increase:</strong> Average information discovery times fell from 45 minutes to under 10 seconds.</li>
+            <li><strong>100% Citation Coverage:</strong> Response filters intercept answers lacking clear source page links, preventing any hallucinated output from reaching the team.</li>
+            <li><strong>Zero Boundary Leaks:</strong> All search queries, embeddings, and chat histories remain strictly contained within the client’s Azure subscription.</li>
+          </ul>
+        </section>
+
+        <!-- Lessons Learned -->
+        <section class="case-study-section" style="margin-bottom: 0;">
+          <h2>Lessons Learned</h2>
+          <p><strong>Ingestion is 90% of RAG:</strong> Standard recursive text splitting degrades the usability of tables and code blocks. Layout-aware chunking (e.g. keeping table rows linked to table headers) is essential for retrieval correctness.</p>
+          <p><strong>System prompts aren't enough:</strong> Enforcing strict retrieval distance ceilings (relevance thresholds) is the only way to reliably force the model to output <em>"I do not know"</em> instead of generating convincing hallucinations when documentation is missing.</p>
+        </section>
+      </div>
+
+      <!-- 3. CTA Block -->
+      <section class="section" style="text-align: center; border-top: 1px solid var(--border); background-color: var(--bg-secondary);">
+        <div class="container">
+          <div style="max-width: 600px; margin: 0 auto;">
+            <h2>Discuss a similar implementation.</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--text-secondary);">Find out how a secure, citation-first knowledge copilot can fit into your Microsoft 365 or Azure environment.</p>
+            <a href="/contact.html?service=copilot" class="btn btn-primary" style="padding: 1rem 2rem;">Discuss a similar implementation</a>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
