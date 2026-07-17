@@ -29,40 +29,86 @@
   <body>
     <div id="app">
       <section class="section" style="padding-top: 5rem; padding-bottom: 4rem;">
-        <div class="container" style="max-width: 800px;">
+        <div class="container" style="max-width: 900px;">
           <h1 style="font-size: 3rem; margin-bottom: 1.5rem;">Senior-Led. Engineer-Driven.</h1>
-          <p style="font-size: 1.25rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 2rem;">EventArgs LLC was founded on a simple principle: organizations deploying AI do not need expensive slide decks or high-level strategic frameworks. They need senior practitioners who write production-grade code, secure data pipelines, and connect internal databases to working software.</p>
+          <p style="font-size: 1.25rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 0;">EventArgs LLC was founded on a simple principle: organizations deploying AI do not need expensive slide decks or high-level strategic frameworks. They need senior practitioners who write production-grade code, secure data pipelines, and connect internal databases to working software.</p>
         </div>
       </section>
 
-      <!-- Biography Section -->
+      <!-- Founder Profile Section -->
       <section class="section" style="border-top: 1px solid var(--border); background-color: var(--bg-card); border-bottom: 1px solid var(--border);">
-        <div class="container" style="max-width: 800px;">
-          <h2 style="margin-bottom: 1.5rem;">The Senior Practitioner Model</h2>
-          <p>We are a boutique engineering consultancy. Unlike traditional agencies, we do not employ account managers, sales representatives, or junior developers. When you hire EventArgs, you collaborate and build directly with the senior engineers writing your codebase.</p>
-          <p>With over a decade of hands-on experience building enterprise systems across regulated and operationally complex environments, we founded EventArgs to help teams ship internal AI copilots that are reliable, source-grounded, and safe to operate in production. Having spent years designing enterprise cloud architectures, CI/CD pipelines, and microservices, we saw a massive gap in the AI landscape. Most agencies build generic wrapper tools that hallucinate, leak data, or run up unpredictable API bills. We focus exclusively on <strong>internal knowledge copilots</strong> and <strong>strict AI engineering governance</strong>. We ensure your data remains securely contained within your network, your costs are strictly capped, and your answers are verified by traceable citations.</p>
-          
-          <h3 style="margin-top: 3rem; margin-bottom: 1.25rem;">Our Core Stack & Expertise</h3>
-          <p>We specialize in modernizing legacy information environments and deploying secure agentic pipelines within enterprise boundaries, particularly for Microsoft 365 and Azure-heavy environments.</p>
-          <div class="grid grid-2" style="gap: 1.5rem;">
-            <div class="card" style="padding: 1.5rem; border-radius: var(--radius-sm);">
-              <h4 style="margin-bottom: 0.5rem; color: var(--accent);">Retrieval & Agentic Systems</h4>
-              <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Enterprise RAG pipelines, vector databases (Azure AI Search, Pinecone), LangChain/LangGraph orchestration, and custom Model Context Protocol (MCP) integrations.</p>
+        <div class="container" style="max-width: 900px;">
+          <div class="founder-grid" style="display: grid; grid-template-columns: 280px 1fr; gap: 4rem; align-items: start;">
+
+            <!-- Left: Photo + Identity card -->
+            <div style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+              <div style="
+                width: 240px;
+                height: 240px;
+                border-radius: 50%;
+                overflow: hidden;
+                border: 3px solid var(--accent);
+                box-shadow: 0 0 0 6px var(--bg-secondary), 0 8px 32px rgba(0,0,0,0.4);
+                margin-bottom: 1.5rem;
+                flex-shrink: 0;
+              ">
+                <img
+                  src="/founder.jpg"
+                  alt="Juan J. Gutierrez — Founder & Senior AI Engineer, EventArgs LLC"
+                  style="width: 100%; height: 100%; object-fit: cover; object-position: center top;"
+                />
+              </div>
+              <h2 style="font-size: 1.2rem; margin-bottom: 0.25rem; color: var(--text-primary);">Juan J. Gutierrez</h2>
+              <p style="font-size: 0.9rem; color: var(--accent); font-weight: 600; margin-bottom: 0.75rem; letter-spacing: 0.03em; text-transform: uppercase;">Founder &amp; Senior AI Engineer</p>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem;">EventArgs LLC</p>
+              <a
+                href="https://www.linkedin.com/in/jjgues"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-secondary"
+                style="font-size: 0.85rem; padding: 0.5rem 1.25rem; display: inline-flex; align-items: center; gap: 0.5rem;"
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                LinkedIn
+              </a>
             </div>
-            <div class="card" style="padding: 1.5rem; border-radius: var(--radius-sm);">
-              <h4 style="margin-bottom: 0.5rem; color: var(--accent);">Cloud, DevOps & .NET Modernization</h4>
-              <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Microsoft 365 and SharePoint APIs, Azure Cloud Architecture, .NET legacy systems, automated pipelines (GitHub Actions, Azure Pipelines), and Docker containerization.</p>
+
+            <!-- Right: Biography -->
+            <div>
+              <h2 style="margin-bottom: 1.5rem;">The Senior Practitioner Model</h2>
+              <p style="margin-bottom: 1.25rem;">We are a boutique engineering consultancy. Unlike traditional agencies, we do not employ account managers, sales representatives, or junior developers. When you hire EventArgs, you collaborate and build directly with the senior engineers writing your codebase.</p>
+              <p style="margin-bottom: 2rem;">With over a decade of hands-on experience building enterprise systems across regulated and operationally complex environments, we founded EventArgs to help teams ship internal AI copilots that are reliable, source-grounded, and safe to operate in production. Having spent years designing enterprise cloud architectures, CI/CD pipelines, and microservices, we saw a massive gap in the AI landscape. Most agencies build generic wrapper tools that hallucinate, leak data, or run up unpredictable API bills. We focus exclusively on <strong>internal knowledge copilots</strong> and <strong>strict AI engineering governance</strong>. We ensure your data remains securely contained within your network, your costs are strictly capped, and your answers are verified by traceable citations.</p>
+
+              <h3 style="margin-top: 0; margin-bottom: 1.25rem;">Core Stack &amp; Expertise</h3>
+              <p style="margin-bottom: 1.5rem;">We specialize in modernizing legacy information environments and deploying secure agentic pipelines within enterprise boundaries, particularly for Microsoft 365 and Azure-heavy environments.</p>
+              <div class="grid grid-2" style="gap: 1.5rem;">
+                <div class="card" style="padding: 1.5rem; border-radius: var(--radius-sm);">
+                  <h4 style="margin-bottom: 0.5rem; color: var(--accent);">Retrieval &amp; Agentic Systems</h4>
+                  <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Enterprise RAG pipelines, vector databases (Azure AI Search, Pinecone), LangChain/LangGraph orchestration, and custom Model Context Protocol (MCP) integrations.</p>
+                </div>
+                <div class="card" style="padding: 1.5rem; border-radius: var(--radius-sm);">
+                  <h4 style="margin-bottom: 0.5rem; color: var(--accent);">Cloud, DevOps &amp; .NET Modernization</h4>
+                  <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Microsoft 365 and SharePoint APIs, Azure Cloud Architecture, .NET legacy systems, automated pipelines (GitHub Actions, Azure Pipelines), and Docker containerization.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+      <!-- Responsive stacking for mobile -->
+      <style>
+        @media (max-width: 720px) {
+          .founder-grid { grid-template-columns: 1fr !important; }
+        }
+      </style>
 
       <!-- CTAs -->
       <section class="section" style="text-align: center;">
         <div class="container">
           <h2>Start with a technical feasibility call.</h2>
           <p style="font-size: 1.1rem; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;">Discuss your environment, constraints, and pilot fit directly with a senior engineer.</p>
-          <a href="/contact.html" class="btn btn-primary" style="padding: 1rem 2rem;">Book a discovery call</a>
+          <a href="/contact.html" class="btn btn-primary" style="padding: 1rem 2rem;">Book a Technical Feasibility Call</a>
         </div>
       </section>
     </div>
