@@ -1071,7 +1071,176 @@ footer a:hover {
   }
 }
 
+/* Optimization Roadmap Styles */
 
+/* Metrics Bar */
+.metrics-bar {
+  background-color: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+  padding: 2rem 0;
+}
 
+.metrics-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
 
+.metric-item {
+  text-align: center;
+  flex: 1 1 250px;
+}
 
+.metric-number {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+  line-height: 1.1;
+}
+
+.metric-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Differentiation/Comparison Grid */
+.diff-grid-section {
+  padding: 5rem 0;
+  background-color: var(--bg-card);
+  border-bottom: 1px solid var(--border);
+}
+
+.diff-table-container {
+  overflow-x: auto;
+  margin-top: 2rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background-color: var(--bg-card);
+}
+
+.diff-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.diff-table th, .diff-table td {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.diff-table th {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.diff-table th:last-child, .diff-table td:last-child {
+  background-color: var(--accent-light);
+  font-weight: 500;
+}
+
+.diff-table td:last-child {
+  color: var(--accent-hover);
+  border-left: 1px solid var(--border);
+}
+
+.diff-table tr:last-child th, .diff-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Service Architecture Flow */
+.service-arch-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+.arch-node {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.5rem 0.75rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.arch-node.highlight {
+  border-color: var(--accent);
+  background-color: var(--accent-light);
+  color: var(--accent);
+}
+
+.arch-arrow {
+  color: var(--text-secondary);
+  font-weight: bold;
+}
+
+/* About Page Bad Fit Block */
+.bad-fit-card {
+  margin-top: 3rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-top: 4px solid hsl(0, 60%, 45%);
+  border-radius: var(--radius-md);
+  padding: 2.5rem;
+}
+
+.bad-fit-card h3 {
+  color: hsl(0, 60%, 45%);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bad-fit-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+.bad-fit-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.bad-fit-list li::before {
+  content: "✗";
+  position: absolute;
+  left: 0;
+  color: hsl(0, 60%, 45%);
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .service-arch-flow {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .arch-arrow {
+    transform: rotate(90deg);
+    margin: 0.25rem 0;
+  }
+}

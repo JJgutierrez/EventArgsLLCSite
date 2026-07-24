@@ -18,7 +18,8 @@ export function initLayout() {
           <li><a href="/services.html" data-link="services">Services</a></li>
           <li><a href="/case-studies.html" data-link="case-studies">Case Studies</a></li>
           <li><a href="/about.html" data-link="about">About</a></li>
-          <li><a href="/contact.html" class="btn btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.9rem;" data-link="contact">Book a Feasibility Call</a></li>
+          <li><a href="/qualify" class="btn btn-secondary" style="padding: 0.5rem 1.25rem; font-size: 0.9rem; margin-right: 0.5rem;" data-link="qualify">Find your AI fit</a></li>
+          <li><a href="/contact.html" class="btn btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.9rem;" data-link="contact">Book Architecture Review</a></li>
         </ul>
       </nav>
     </div>
@@ -49,7 +50,8 @@ export function initLayout() {
           <ul>
             <li><a href="/about.html">About</a></li>
             <li><a href="/case-studies.html">Case Studies</a></li>
-            <li><a href="/contact.html">Book a Feasibility Call</a></li>
+            <li><a href="/qualify">Find your AI fit</a></li>
+            <li><a href="/contact.html">Book Architecture Review</a></li>
           </ul>
         </div>
       </div>

@@ -1,0 +1,13 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/qualify",
+      "destination": "https://eventargs-qualification-bot.vercel.app/qualify"
+    },
+    {
+      "source": "/qualify/:match*",
+      "destination": "https://eventargs-qualification-bot.vercel.app/qualify/:match*"
+    }
+  ]
+}

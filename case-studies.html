@@ -47,11 +47,6 @@
               <p style="font-size: 1.05rem; font-weight: 500; color: var(--text-primary);">Eliminating documentation sprawl with strict source-grounded retrieval.</p>
               <p>In mid-market organizations, critical operational information is often scattered across SharePoint, Confluence, and network drives. We built an internal knowledge copilot that indexes unstructured documentation and enforces strict source citations, preventing model hallucinations.</p>
               
-              <h4 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Outcomes</h4>
-              <ul class="checklist" style="margin-bottom: 2rem;">
-                <li>Reduced internal search time by 75% for technical documentation.</li>
-                <li>Ensured 100% citation coverage, guaranteeing no hallucinated answers are presented.</li>
-              </ul>
               <div class="hero-ctas" style="justify-content: flex-start; margin-top: 2rem;">
                 <a href="/case-study-knowledge-copilot.html" class="btn btn-primary">Read Flagship Case Study &rarr;</a>
               </div>
@@ -60,16 +55,22 @@
               <h3 style="margin-bottom: 1.25rem;">Technical Profile</h3>
               <ul class="spec-list" style="gap: 1.25rem;">
                 <li>
-                  <strong>Problem:</strong> Documentation sprawl across SharePoint, Confluence, and file shares in Microsoft 365 and Azure-heavy environments.
+                  <strong>Client Environment:</strong> Mid-market organization using Microsoft 365, SharePoint, and Azure cloud resources.
                 </li>
                 <li>
-                  <strong>Solution:</strong> An internal knowledge copilot built with Python ingestion pipelines and strict citation-first retrieval grounding.
+                  <strong>Business Problem:</strong> Staff lost an average of 45 minutes finding accurate procedures during outages due to documentation sprawl.
                 </li>
                 <li>
-                  <strong>Why It Matters:</strong> Grounded answers with traceable citations, zero hallucination risk, and 75% faster search times.
+                  <strong>Constraints &amp; Governance:</strong> Strict tenant data containment and zero hallucination tolerance with 100% citation coverage.
                 </li>
                 <li>
-                  <strong>Tech Stack:</strong> LangChain, Azure AI Search, Python, Vector DB.
+                  <strong>Solution Architecture:</strong> Semantic layout-aware document parser paired with hybrid vector and keyword search.
+                </li>
+                <li>
+                  <strong>Quantified Outcome:</strong> 75% reduction in internal lookup times with verified inline citations.
+                </li>
+                <li>
+                  <strong>Technical Stack:</strong> Azure OpenAI (GPT-4o), Azure AI Search, LangChain, Python, Vector DB.
                 </li>
               </ul>
             </div>
@@ -85,16 +86,22 @@
               <h3 style="margin-bottom: 1.25rem;">Technical Profile</h3>
               <ul class="spec-list" style="gap: 1.25rem;">
                 <li>
-                  <strong>Problem:</strong> AI agents lacking secure, standardized access to repository logs, commits, and deployment pipelines.
+                  <strong>Client Environment:</strong> Software engineering department with active LLM developer tooling and repository flows.
                 </li>
                 <li>
-                  <strong>Solution:</strong> A custom Model Context Protocol server exposing secure stats, workflow tools, and repository inspection APIs.
+                  <strong>Business Problem:</strong> AI assistants lacked secure, standardized access to repository logs, commits, and deployment metadata.
                 </li>
                 <li>
-                  <strong>Why It Matters:</strong> Better engineering visibility, strict credential containment, and direct senior-led deployment of custom developer tools.
+                  <strong>Constraints &amp; Governance:</strong> Strict credential containment and fine-grained tool boundaries.
                 </li>
                 <li>
-                  <strong>Tech Stack:</strong> Node.js, TypeScript, GitHub API, Model Context Protocol (MCP).
+                  <strong>Solution Architecture:</strong> Custom Node.js Model Context Protocol server exposing secure stats, workflow tools, and inspections.
+                </li>
+                <li>
+                  <strong>Quantified Outcome:</strong> Standardized 20+ repository tools, reducing engineering setup and custom bot integration times.
+                </li>
+                <li>
+                  <strong>Technical Stack:</strong> Node.js, TypeScript, GitHub API, Model Context Protocol (MCP).
                 </li>
               </ul>
             </div>
@@ -103,12 +110,6 @@
               <h2 style="margin-bottom: 1rem;">GitHub Engineering MCP Server</h2>
               <p style="font-size: 1.05rem; font-weight: 500; color: var(--text-primary);">Standardizing tool interfaces for AI agents in repository automation.</p>
               <p>To enable LLM agents to act autonomously on developer tasks, they need reliable tool boundaries. We designed and built a custom MCP server that allows AI agents to securely query workflow logs, inspect commits, and analyze open pull requests.</p>
-              
-              <h4 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Outcomes</h4>
-              <ul class="checklist" style="margin-bottom: 1.5rem;">
-                <li>Created 20+ specialized Git and GitHub API tools accessible to MCP-compliant AI assistants.</li>
-                <li>Accelerated custom engineering bot development and integration times.</li>
-              </ul>
             </div>
           </div>
         </div>
@@ -123,27 +124,27 @@
               <h2 style="margin-bottom: 1rem;">Multi-Agent Engineering Orchestrator</h2>
               <p style="font-size: 1.05rem; font-weight: 500; color: var(--text-primary);">Routing developer workflows across specialized AI agents.</p>
               <p>Single-prompt LLMs fail on complex, multi-stage engineering tasks. We built an orchestrator that coordinates specialized, stateful agent routines (reviewing code, triaging bug reports, writing release notes) using LangGraph and state machine routing.</p>
-              
-              <h4 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Outcomes</h4>
-              <ul class="checklist" style="margin-bottom: 1.5rem;">
-                <li>Automated 60% of repetitive task triage and issue-labeling steps.</li>
-                <li>Kept human developers in the loop for final approvals, maintaining strict governance.</li>
-              </ul>
             </div>
             <div class="spec-grid" style="background-color: var(--bg-secondary);">
               <h3 style="margin-bottom: 1.25rem;">Technical Profile</h3>
               <ul class="spec-list" style="gap: 1.25rem;">
                 <li>
-                  <strong>Problem:</strong> Engineering workflow bottlenecks and task failures due to context window limits and state loss in single-agent LLM systems.
+                  <strong>Client Environment:</strong> Mid-market software development organization with high ticket and issue volumes.
                 </li>
                 <li>
-                  <strong>Solution:</strong> Stateful graph-based orchestration routing tasks to focused sub-agents with strict, governed tool permissions.
+                  <strong>Business Problem:</strong> Engineering bottlenecks and task failures due to context limits and state loss in single-agent pipelines.
                 </li>
                 <li>
-                  <strong>Why It Matters:</strong> Safer pipeline automation, reduced manual review burden, and traceable task routing.
+                  <strong>Constraints &amp; Governance:</strong> Human-in-the-loop validation checkpoints for all automated state changes.
                 </li>
                 <li>
-                  <strong>Tech Stack:</strong> LangGraph, Python, FastAPI, Docker.
+                  <strong>Solution Architecture:</strong> Stateful graph-based orchestration routing tasks to focused sub-agents with strict boundaries.
+                </li>
+                <li>
+                  <strong>Quantified Outcome:</strong> Automated 60% of repetitive task triage and issue-labeling processes.
+                </li>
+                <li>
+                  <strong>Technical Stack:</strong> LangGraph, Python, FastAPI, Docker.
                 </li>
               </ul>
             </div>
@@ -159,16 +160,22 @@
               <h3 style="margin-bottom: 1.25rem;">Technical Profile</h3>
               <ul class="spec-list" style="gap: 1.25rem;">
                 <li>
-                  <strong>Problem:</strong> Code review latency causing pipeline bottlenecks and delaying merges by up to 48 hours for basic style checks.
+                  <strong>Client Environment:</strong> Enterprise development team with intensive continuous integration workflows.
                 </li>
                 <li>
-                  <strong>Solution:</strong> An automated review bot triggered by Azure DevOps webhooks using serverless functions and Claude review routing.
+                  <strong>Business Problem:</strong> Code review latency causing deployment bottlenecks and delaying merges by up to 48 hours for basic style checks.
                 </li>
                 <li>
-                  <strong>Why It Matters:</strong> Faster PR turnaround times, caught security vulnerabilities (like hardcoded keys), and reduced manual review burden for senior developers.
+                  <strong>Constraints &amp; Governance:</strong> Catch architectural violations and hardcoded credentials securely before code merges.
                 </li>
                 <li>
-                  <strong>Tech Stack:</strong> Claude API, Azure DevOps Services, Node.js, serverless functions.
+                  <strong>Solution Architecture:</strong> Serverless integration hooks triggered on PR creation, routing code diffs to LLM review pipelines.
+                </li>
+                <li>
+                  <strong>Quantified Outcome:</strong> Reduced average PR turnaround time by 40% while identifying security flaws pre-deployment.
+                </li>
+                <li>
+                  <strong>Technical Stack:</strong> Claude API, Azure DevOps Services, Node.js, serverless functions.
                 </li>
               </ul>
             </div>
@@ -177,12 +184,6 @@
               <h2 style="margin-bottom: 1rem;">Azure DevOps + Claude PR Reviewer</h2>
               <p style="font-size: 1.05rem; font-weight: 500; color: var(--text-primary);">Automated feedback cycles directly in the pull request interface.</p>
               <p>Senior engineers spend too much time reviewing basic linting errors, file paths, and simple security anti-patterns. We integrated Claude reviews directly into Azure DevOps PRs. The bot reviews the diff within 2 minutes of creation, highlighting concerns inline.</p>
-              
-              <h4 style="margin-top: 1.5rem; margin-bottom: 0.5rem;">Outcomes</h4>
-              <ul class="checklist" style="margin-bottom: 1.5rem;">
-                <li>Reduced average PR turnaround time by 40%.</li>
-                <li>Caught 15 common security flaws and architectural violations prior to deployment.</li>
-              </ul>
             </div>
           </div>
         </div>

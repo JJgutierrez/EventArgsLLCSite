@@ -53,60 +53,89 @@
             </p>
           </div>
         </div>
-      </section>
-
-      <!-- Offer 1: Knowledge Copilot -->
+            <!-- Offer 1: Knowledge Copilot -->
       <section id="copilot" class="section" style="border-top: 1px solid var(--border); background-color: var(--bg-card);">
         <div class="container">
           <div class="grid grid-2" style="gap: 4rem;">
             <div>
               <span class="offer-badge">Primary Offer</span>
               <h2 style="margin-bottom: 0.5rem;">Internal Knowledge Copilot Pilot</h2>
-              <p style="font-size: 1.1rem; font-weight: 500; color: var(--text-primary); margin-bottom: 1.5rem;">Outcome: Find internal answers in seconds with traceable citations and zero hallucination risk.</p>
               
-              <p><strong>Problem:</strong> Operational guidelines, runbooks, and product documentations are scattered across SharePoint, Confluence, and teams drives, costing developers hours of lookup latency.</p>
-              <p><strong>Best-Fit Client:</strong> M365 and Azure-heavy mid-market teams with extensive unstructured text files.</p>
+              <!-- 2. Outcome Statement -->
+              <p style="font-size: 1.15rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1.5rem;">
+                Deliver a secure internal copilot that returns citation-grounded answers instead of unverifiable summaries.
+              </p>
               
+              <!-- 1. Problem & Buyer Context -->
+              <p><strong>Audience:</strong> Teams buried in SharePoint, Microsoft 365, file shares, and fragmented operational knowledge.</p>
+              <p><strong>Problem:</strong> Operational guidelines, runbooks, and product documentations are scattered across SharePoint, Confluence, and team drives, costing developers hours of search lookup latency.</p>
+              
+              <!-- 3. Scope & Delivery Window -->
               <div class="packaging-metadata">
-                <div class="packaging-metadata-item"><strong>Typical Timeline:</strong> 4 Weeks (Fixed Scope Execution)</div>
-                <div class="packaging-metadata-item"><strong>Technical Environment:</strong> Azure OpenAI, Azure AI Search, SharePoint APIs, Python</div>
-                <div class="packaging-metadata-item"><strong>Expected Outcome:</strong> 75% reduction in lookup times with 100% citation verification</div>
+                <div class="packaging-metadata-item"><strong>Scope &amp; Timeline:</strong> Fixed 4-week pilot execution.</div>
+                <div class="packaging-metadata-item"><strong>Technical Environment:</strong> Azure OpenAI, Azure AI Search, SharePoint APIs, Python.</div>
+                <div class="packaging-metadata-item"><strong>Expected Outcome:</strong> 75% reduction in lookup times with 100% citation verification.</div>
+              </div>
+
+              <!-- 4. Technical Architecture Flow -->
+              <div class="service-arch-flow">
+                <span class="arch-node">SharePoint / M365</span>
+                <span class="arch-arrow">&rarr;</span>
+                <span class="arch-node">Azure AI Search</span>
+                <span class="arch-arrow">&rarr;</span>
+                <span class="arch-node">Azure OpenAI</span>
+                <span class="arch-arrow">&rarr;</span>
+                <span class="arch-node highlight">Grounded Copilot</span>
+              </div>
+
+              <!-- 6. Pricing Anchor -->
+              <div style="margin: 1.5rem 0; font-size: 1.2rem; font-weight: 700; color: var(--text-primary);">
+                Pricing: <span style="color: var(--accent);">Starting at $30,000</span>
               </div>
               
+              <!-- 7. CTA -->
               <div class="hero-ctas" style="justify-content: flex-start;">
-                <a href="/contact.html?service=copilot" class="btn btn-primary">See if this engagement fits your team</a>
+                <a href="/contact.html?service=copilot" class="btn btn-primary">Start Copilot Pilot</a>
               </div>
             </div>
             
+            <!-- 5. Deliverables -->
             <div class="spec-grid">
               <h3 style="margin-bottom: 1.5rem;">What We Deliver</h3>
               <ul class="spec-list">
                 <li class="spec-item">
                   <span class="spec-item-num">1</span>
                   <div class="spec-item-content">
-                    <h4>SharePoint and Azure file sync</h4>
-                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Automated ingestion pipeline parsing PDF, markdown, and Word documents safely.</p>
+                    <h4>Source-ingestion and retrieval configuration</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Automated ingestion pipeline parsing PDF, markdown, and Word documents safely from SharePoint &amp; Azure files.</p>
                   </div>
                 </li>
                 <li class="spec-item">
                   <span class="spec-item-num">2</span>
                   <div class="spec-item-content">
-                    <h4>Citation-first retrieval and answer grounding</h4>
-                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Strict retrieval-augmented generation matching model answers to verified source text blocks.</p>
+                    <h4>Secure answer orchestration</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Data routing pipelines with user authentication checks to ensure access isolation.</p>
                   </div>
                 </li>
                 <li class="spec-item">
                   <span class="spec-item-num">3</span>
                   <div class="spec-item-content">
-                    <h4>4-week production-ready pilot rollout</h4>
-                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Clean, responsive interface for search, grounded chat, and citation verification.</p>
+                    <h4>Citation-grounded response patterns</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Strict retrieval distance limits and system instructions mapping source citations to every statement.</p>
                   </div>
                 </li>
                 <li class="spec-item">
                   <span class="spec-item-num">4</span>
                   <div class="spec-item-content">
-                    <h4>Observability Dashboard</h4>
-                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Track queries, response times, model accuracy, and token expenditures.</p>
+                    <h4>Production deployment scripts and handoff</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Infrastructure-as-code scripts and clean staged deployment files for your Azure cloud.</p>
+                  </div>
+                </li>
+                <li class="spec-item">
+                  <span class="spec-item-num">5</span>
+                  <div class="spec-item-content">
+                    <h4>Admin guidance for post-pilot operation</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Handoff notes, observability guidelines, and post-pilot administrative controls.</p>
                   </div>
                 </li>
               </ul>
@@ -133,69 +162,87 @@
             </div>
           </div>
         </div>
-      </section>
-
-      <!-- Offer 2: Governance -->
+            <!-- Offer 2: Governance -->
       <section id="governance" class="section" style="border-top: 1px solid var(--border); background-color: var(--bg-secondary);">
         <div class="container">
           <div class="grid grid-2" style="gap: 4rem;">
+            <div>
+              <span class="offer-badge" style="background-color: var(--border); color: var(--text-primary);">Risk & Security</span>
+              <h2 style="margin-bottom: 0.5rem;">Copilot Governance &amp; Hardening</h2>
+              
+              <!-- 2. Outcome Statement -->
+              <p style="font-size: 1.15rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1.5rem;">
+                Reduce enterprise risk before broadening internal AI use.
+              </p>
+              
+              <!-- 1. Problem & Buyer Context -->
+              <p><strong>Audience:</strong> Security, compliance, and IT stakeholders responsible for internal AI safety.</p>
+              <p><strong>Problem:</strong> Active AI deployments lack strict cost boundaries, rate-limiting rules, or prompt-injection defense walls.</p>
+              
+              <!-- 3. Scope & Delivery Window -->
+              <div class="packaging-metadata" style="background-color: var(--bg-card);">
+                <div class="packaging-metadata-item"><strong>Scope &amp; Timeline:</strong> Standalone assessment or immediate post-pilot hardening (2 weeks).</div>
+                <div class="packaging-metadata-item"><strong>Technical Environment:</strong> Azure API Management, OpenAI API, Python, Docker.</div>
+                <div class="packaging-metadata-item"><strong>Expected Outcome:</strong> Audited AI setups with hard cost containment caps and low vulnerability profile.</div>
+              </div>
+
+              <!-- 6. Pricing Anchor -->
+              <div style="margin: 1.5rem 0; font-size: 1.2rem; font-weight: 700; color: var(--text-primary);">
+                Pricing: <span style="color: var(--accent);">Starting at $10,000</span>
+              </div>
+              
+              <!-- 7. CTA -->
+              <div class="hero-ctas" style="justify-content: flex-start;">
+                <a href="/contact.html?service=governance" class="btn btn-primary">Review Governance Scope</a>
+              </div>
+            </div>
+            
+            <!-- 5. Deliverables -->
             <div class="spec-grid" style="background-color: var(--bg-card);">
               <h3 style="margin-bottom: 1.5rem;">What We Deliver</h3>
               <ul class="spec-list">
                 <li class="spec-item">
                   <span class="spec-item-num">1</span>
                   <div class="spec-item-content">
-                    <h4>Privacy and compliance review</h4>
-                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Verifying that proprietary business data remains isolated and is not leaked to public models.</p>
+                    <h4>Prompt injection defense</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Input validation layers and adversarial prompt screening to prevent system bypasses.</p>
                   </div>
                 </li>
                 <li class="spec-item">
                   <span class="spec-item-num">2</span>
                   <div class="spec-item-content">
-                    <h4>Budget and rate-limit guardrails</h4>
-                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Deploying rate limits, semantic caching, and hard billing alerts to avoid API runaways.</p>
+                    <h4>Access boundary review</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Validating user permission boundaries to prevent data leaks across authorization groups.</p>
                   </div>
                 </li>
                 <li class="spec-item">
                   <span class="spec-item-num">3</span>
                   <div class="spec-item-content">
-                    <h4>2-week hardening engagement</h4>
-                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Vulnerability testing against prompt injection attacks, system bypasses, and data extractions.</p>
+                    <h4>PII masking strategy</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Adding preprocessing filters to redact sensitive, identifiable records before sending to LLM hosts.</p>
                   </div>
                 </li>
                 <li class="spec-item">
                   <span class="spec-item-num">4</span>
                   <div class="spec-item-content">
-                    <h4>Evaluation Suite</h4>
-                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Automated test suites to verify model compliance and answer quality under load.</p>
+                    <h4>Rate-limit and spend controls</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Deploying token-bucket rate limits, semantic caching, and hard cost alert boundaries.</p>
+                  </div>
+                </li>
+                <li class="spec-item">
+                  <span class="spec-item-num">5</span>
+                  <div class="spec-item-content">
+                    <h4>Auditability and response verification</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Setting up automated testing suites to log model outputs and verify regulatory compliance.</p>
                   </div>
                 </li>
               </ul>
-            </div>
-
-            <div>
-              <span class="offer-badge" style="background-color: var(--border); color: var(--text-primary);">Risk & Security</span>
-              <h2 style="margin-bottom: 0.5rem;">Copilot Governance &amp; Hardening</h2>
-              <p style="font-size: 1.1rem; font-weight: 500; color: var(--text-primary); margin-bottom: 1.5rem;">Outcome: Wrap your AI deployments with controls for access, usage, rate limits, privacy, and compliance.</p>
-              
-              <p><strong>Problem:</strong> Active AI deployments lack strict cost boundaries, rate-limiting rules, or prompt-injection defense walls.</p>
-              <p><strong>Best-Fit Client:</strong> Security-conscious compliance and engineering directors rolling out LLM tooling.</p>
-              
-              <div class="packaging-metadata">
-                <div class="packaging-metadata-item"><strong>Typical Timeline:</strong> 2 Weeks (Fixed Scope Audit &amp; Setup)</div>
-                <div class="packaging-metadata-item"><strong>Technical Environment:</strong> Azure API Management, OpenAI API, Python, Docker</div>
-                <div class="packaging-metadata-item"><strong>Expected Outcome:</strong> Audited AI setups with hard cost containment caps and low vulnerability profile</div>
-              </div>
-              
-              <div class="hero-ctas" style="justify-content: flex-start;">
-                <a href="/contact.html?service=governance" class="btn btn-primary">See if this engagement fits your team</a>
-              </div>
             </div>
           </div>
 
           <!-- Inline Fit / Non-Fit Checklists -->
           <div class="fit-box-grid">
-            <div class="fit-box ideal">
+            <div class="fit-box ideal" style="background-color: var(--bg-card);">
               <h5>Ideal Fit If</h5>
               <ul>
                 <li>You have active AI pilots and need cost-caching proxy firewalls.</li>
@@ -203,7 +250,7 @@
                 <li>You want automated compliance test suites built before rolling out to teams.</li>
               </ul>
             </div>
-            <div class="fit-box bad">
+            <div class="fit-box bad" style="background-color: var(--bg-card);">
               <h5>Bad Fit If</h5>
               <ul>
                 <li>You only need high-level security policy slides without proxy/code hardening.</li>
@@ -222,51 +269,71 @@
             <div>
               <span class="offer-badge" style="background-color: var(--border); color: var(--text-primary);">Developer Velocity</span>
               <h2 style="margin-bottom: 0.5rem;">AI DevOps &amp; PR Review Automation</h2>
-              <p style="font-size: 1.1rem; font-weight: 500; color: var(--text-primary); margin-bottom: 1.5rem;">Outcome: Reduce engineering review latency with custom AI-assisted pull request and workflow automation for Azure DevOps and GitHub.</p>
               
-              <p><strong>Problem:</strong> Senior developers lose several hours weekly to routine syntax, style, linting, and basic security reviews on pull requests.</p>
-              <p><strong>Best-Fit Client:</strong> High-volume engineering teams looking to accelerate pull request turnaround cycles.</p>
+              <!-- 2. Outcome Statement -->
+              <p style="font-size: 1.15rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1.5rem;">
+                Reduce repetitive review effort and accelerate release flow with controlled AI-assisted workflows.
+              </p>
               
+              <!-- 1. Problem & Buyer Context -->
+              <p><strong>Audience:</strong> Engineering managers and platform teams with review bottlenecks.</p>
+              <p><strong>Problem:</strong> Senior developers lose several hours weekly to routine syntax, style, linting, and basic security reviews on pull requests, causing pipeline latency.</p>
+              
+              <!-- 3. Scope & Delivery Window -->
               <div class="packaging-metadata">
-                <div class="packaging-metadata-item"><strong>Typical Timeline:</strong> 3 Weeks (Fixed Scope Custom Integration)</div>
-                <div class="packaging-metadata-item"><strong>Technical Environment:</strong> GitHub Actions, Azure DevOps, Node.js/Python, LLM APIs</div>
-                <div class="packaging-metadata-item"><strong>Expected Outcome:</strong> 40% reduction in average pull request turnaround times with automated security detection</div>
+                <div class="packaging-metadata-item"><strong>Scope &amp; Timeline:</strong> Fixed 3-week custom workflow integration.</div>
+                <div class="packaging-metadata-item"><strong>Technical Environment:</strong> GitHub Actions, Azure DevOps, Node.js/Python, LLM APIs.</div>
+                <div class="packaging-metadata-item"><strong>Expected Outcome:</strong> 40% reduction in average pull request turnaround times with automated security detection.</div>
+              </div>
+
+              <!-- 6. Pricing Anchor -->
+              <div style="margin: 1.5rem 0; font-size: 1.2rem; font-weight: 700; color: var(--text-primary);">
+                Pricing: <span style="color: var(--accent);">Starting at $15,000</span>
               </div>
               
+              <!-- 7. CTA -->
               <div class="hero-ctas" style="justify-content: flex-start;">
-                <a href="/contact.html?service=devops" class="btn btn-primary">See if this engagement fits your team</a>
+                <a href="/contact.html?service=devops" class="btn btn-primary">Explore Workflow Automation</a>
               </div>
             </div>
             
+            <!-- 5. Deliverables -->
             <div class="spec-grid">
               <h3 style="margin-bottom: 1.5rem;">What We Deliver</h3>
               <ul class="spec-list">
                 <li class="spec-item">
                   <span class="spec-item-num">1</span>
                   <div class="spec-item-content">
-                    <h4>Automated pull request review</h4>
-                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Automated serverless functions triggered on pull request creation and updates.</p>
+                    <h4>Pull request classification</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Automated assessment of change size, complexity, and risk level on PR creation.</p>
                   </div>
                 </li>
                 <li class="spec-item">
                   <span class="spec-item-num">2</span>
                   <div class="spec-item-content">
-                    <h4>Security and quality review bots</h4>
-                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Tailoring review agents to check for your specific architectural and styling constraints.</p>
+                    <h4>Review assist and triage routing</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Routing complex diffs to specific subject matter experts while automating style checks.</p>
                   </div>
                 </li>
                 <li class="spec-item">
                   <span class="spec-item-num">3</span>
                   <div class="spec-item-content">
-                    <h4>3-week custom workflow integration</h4>
-                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Agents comment directly inline in Azure DevOps or GitHub with specific file/line contexts.</p>
+                    <h4>Release-note generation</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Compiling developer documentation and change summaries automatically upon code merges.</p>
                   </div>
                 </li>
                 <li class="spec-item">
                   <span class="spec-item-num">4</span>
                   <div class="spec-item-content">
-                    <h4>Release Notes Generator</h4>
-                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Automatically compiles PR histories into clean, auditable changelogs on merge.</p>
+                    <h4>GitHub and Azure DevOps integration</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Secure pipeline webhooks, serverless handlers, and inline comments inside pull request interfaces.</p>
+                  </div>
+                </li>
+                <li class="spec-item">
+                  <span class="spec-item-num">5</span>
+                  <div class="spec-item-content">
+                    <h4>Human-in-the-loop approval patterns</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 0; color: var(--text-secondary);">Setting up review boundaries so that AI suggestions require senior engineer verification.</p>
                   </div>
                 </li>
               </ul>
