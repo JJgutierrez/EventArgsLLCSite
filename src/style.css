@@ -378,20 +378,18 @@ textarea.form-control {
 
 /* Footer */
 footer {
-  background-color: var(--text-primary);
-  color: var(--text-light);
+  background-color: var(--color-ea-surface);
+  color: var(--color-ea-text);
   padding: 4rem 0 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--color-ea-border);
 }
 
 footer a {
-  color: var(--text-light);
-  opacity: 0.7;
+  color: var(--color-ea-muted);
 }
 
 footer a:hover {
-  opacity: 1;
-  color: #fff;
+  color: var(--color-ea-accent-hover);
 }
 
 .footer-grid {
@@ -421,13 +419,12 @@ footer a:hover {
 }
 
 .footer-desc {
-  color: var(--text-light);
-  opacity: 0.6;
+  color: var(--color-ea-muted);
   max-width: 320px;
 }
 
 .footer-col h4 {
-  color: #fff;
+  color: var(--color-ea-text);
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -446,14 +443,13 @@ footer a:hover {
 }
 
 .footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--color-ea-border);
   padding-top: 2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 0.85rem;
-  color: var(--text-light);
-  opacity: 0.5;
+  color: var(--color-ea-muted);
 }
 
 /* Callouts & Cases */
