@@ -256,15 +256,8 @@ nav a.active, nav a:hover {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: 2.5rem;
-  transition: all var(--transition-normal);
   display: flex;
   flex-direction: column;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-  border-color: var(--accent);
 }
 
 .card-tag {
@@ -948,15 +941,8 @@ textarea.form-control {
   font-weight: 600;
   font-size: 0.85rem;
   padding: 0.5rem 1rem;
-  border-radius: 50px;
+  border-radius: var(--radius-sm);
   box-shadow: var(--shadow-sm);
-  transition: all var(--transition-fast);
-}
-
-.credential-badge:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  transform: translateY(-1px);
 }
 
 /* Phase 4: Flagship Case Study Layout */
