@@ -204,11 +204,23 @@ nav a {
   font-weight: 500;
   font-size: 0.95rem;
   color: var(--text-primary);
-  transition: color var(--transition-fast);
+  transition: color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-nav a.active, nav a:hover {
+nav a:not(.btn):hover {
   color: var(--accent);
+}
+
+nav a:not(.btn).active {
+  color: var(--accent);
+  font-weight: 600;
+  box-shadow: inset 0 -2px 0 var(--accent);
+}
+
+nav a.btn-nav.active,
+nav a.btn-nav:hover {
+  color: #fff;
+  background: var(--color-ea-accent-hover);
 }
 
 /* Buttons */
@@ -480,6 +492,8 @@ nav a.active, nav a:hover {
   color: var(--color-ea-muted);
   line-height: 1.8;
   margin-bottom: 1.25rem;
+  text-align: justify;
+  hyphens: auto;
 }
 
 .prose-block p:last-child {
@@ -489,6 +503,33 @@ nav a.active, nav a:hover {
 .prose-block strong {
   color: var(--color-ea-text);
   font-weight: 600;
+}
+
+.prose-block--justify {
+  margin: 0 auto;
+}
+
+.section--audience {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  border-top: 1px solid var(--color-ea-border);
+}
+
+/* Long body copy: even edges on wide reading columns */
+.longform > p,
+.authority-copy > p:not(.lead),
+.engagement-copy > p:not(.engagement-outcome):not(.engagement-pricing),
+.case-row-desc,
+.case-study-section > p,
+.case-study-narrative > h2 ~ p {
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Keep short kickers left-aligned under case-study titles */
+.case-study-narrative > h2 + p {
+  text-align: left;
+  hyphens: manual;
 }
 
 .engagement-layout {
@@ -1102,6 +1143,60 @@ textarea.form-control {
   text-align: center;
 }
 
+.credentials-heading {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-ea-muted);
+  margin: 0 0 1.5rem;
+}
+
+.credentials-grid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+}
+
+.credential-chip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 3.5rem;
+  padding: 0.85rem 0.75rem;
+  border: 1px solid var(--color-ea-border);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--color-ea-bg) 70%, var(--color-ea-surface));
+  color: var(--color-ea-text);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+@media (max-width: 1100px) {
+  .credentials-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .credentials-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 420px) {
+  .credentials-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .credentials-title {
   display: block;
   font-family: var(--font-heading);
@@ -1111,13 +1206,6 @@ textarea.form-control {
   letter-spacing: 0.08em;
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
-}
-
-.credentials-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  justify-content: center;
 }
 
 .credential-badge {
@@ -1187,6 +1275,8 @@ textarea.form-control {
   line-height: 1.7;
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
+  text-align: justify;
+  hyphens: auto;
 }
 
 .case-study-section ul {
@@ -1965,30 +2055,4 @@ textarea.form-control {
   flex-shrink: 0;
 }
 
-/* Credentials Single Quiet Trust Line */
-.credentials-trust-line {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.75rem 1rem;
-  font-size: 0.88rem;
-  color: var(--text-secondary);
-  padding: 1.5rem 0;
-}
-
-.credentials-title {
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.credential-item {
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  color: var(--text-secondary);
-}
-
-.credential-sep {
-  color: var(--color-ea-border);
-}
 

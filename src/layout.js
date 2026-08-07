@@ -1,5 +1,29 @@
 import { PRIMARY_CTA_HREF, PRIMARY_CTA_LABEL } from './cta.js'
 
+function normalizePath(path) {
+  let normalized = (path || '/').split('?')[0].split('#')[0]
+  if (normalized.length > 1 && normalized.endsWith('/')) {
+    normalized = normalized.slice(0, -1)
+  }
+  if (normalized.endsWith('.html')) {
+    normalized = normalized.slice(0, -5)
+  }
+  if (normalized === '' || normalized === '/index') {
+    return '/'
+  }
+  return normalized
+}
+
+function resolveActiveLink(pathname) {
+  const current = normalizePath(pathname)
+  if (current === '/') return 'home'
+  if (current === '/services') return 'services'
+  if (current === '/case-studies' || current.startsWith('/case-study')) return 'case-studies'
+  if (current === '/about') return 'about'
+  if (current === '/contact') return 'contact'
+  return null
+}
+
 export function initLayout() {
   const app = document.getElementById('app')
   if (!app) return
@@ -12,13 +36,13 @@ export function initLayout() {
       <button class="menu-toggle" aria-label="Toggle Menu" type="button">
         <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path></svg>
       </button>
-      <nav id="nav-menu">
+      <nav id="nav-menu" aria-label="Primary">
         <ul>
           <li><a href="/" data-link="home">Home</a></li>
           <li><a href="/services.html" data-link="services">Services</a></li>
           <li><a href="/case-studies.html" data-link="case-studies">Case Studies</a></li>
           <li><a href="/about.html" data-link="about">About</a></li>
-          <li><a href="/qualify" data-link="qualify">Find your AI fit</a></li>
+          <li><a href="/" data-link="qualify" title="Qualification flow coming soon">Find your AI fit</a></li>
           <li><a href="${PRIMARY_CTA_HREF}" class="btn btn-primary btn-nav" data-link="contact">${PRIMARY_CTA_LABEL}</a></li>
         </ul>
       </nav>
@@ -48,7 +72,7 @@ export function initLayout() {
           <ul>
             <li><a href="/about.html">About</a></li>
             <li><a href="/case-studies.html">Case Studies</a></li>
-            <li><a href="/qualify">Find your AI fit</a></li>
+            <li><a href="/" title="Qualification flow coming soon">Find your AI fit</a></li>
             <li><a href="${PRIMARY_CTA_HREF}">${PRIMARY_CTA_LABEL}</a></li>
           </ul>
         </div>
@@ -61,11 +85,14 @@ export function initLayout() {
   `
   document.body.appendChild(footer)
 
-  const currentPath = window.location.pathname
-  header.querySelectorAll('nav a').forEach((link) => {
-    const href = link.getAttribute('href')
-    if (href === currentPath || (currentPath === '/' && href === '/') || (href !== '/' && currentPath.endsWith(href))) {
+  const activeLink = resolveActiveLink(window.location.pathname)
+  header.querySelectorAll('nav a[data-link]').forEach((link) => {
+    const key = link.getAttribute('data-link')
+    // Qualify temporarily points home; never steal the Home active state.
+    if (key === 'qualify') return
+    if (key === activeLink) {
       link.classList.add('active')
+      link.setAttribute('aria-current', 'page')
     }
   })
 
