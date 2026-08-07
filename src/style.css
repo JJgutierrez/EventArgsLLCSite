@@ -367,6 +367,22 @@ nav a.active, nav a:hover {
   justify-content: center;
 }
 
+.services-intro {
+  max-width: 700px;
+}
+
+.services-intro .lead {
+  margin: 0 0 2rem;
+}
+
+.service-engagement .grid {
+  align-items: start;
+}
+
+.service-engagement .spec-grid {
+  box-shadow: none;
+}
+
 /* Section Header */
 .section-header {
   text-align: center;

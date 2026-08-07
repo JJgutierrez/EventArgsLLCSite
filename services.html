@@ -33,18 +33,23 @@
 
 <body>
   <div id="app">
-    <section class="section" style="padding-top: 5rem; padding-bottom: 3rem;">
+    <section class="section section--accent">
       <div class="container">
-        <div style="max-width: 700px; margin-bottom: 4rem;">
-          <h1 style="font-size: 3rem; margin-bottom: 1rem;">Fixed-Scope AI Engineering Offers</h1>
-          <p style="font-size: 1.2rem; color: var(--text-secondary);">Fixed-scope, senior-delivered engagements with
+        <div class="services-intro">
+          <span class="brand-mark">EventArgs engagements</span>
+          <h1>Fixed-Scope AI Engineering Offers</h1>
+          <p class="lead">Fixed-scope, senior-delivered engagements with
             clear timelines, concrete deliverables, and no open-ended consulting bloat.</p>
+          <div class="hero-ctas">
+            <a href="/contact.html" class="btn btn-primary">Schedule a technical feasibility call</a>
+            <a href="#copilot" class="btn btn-secondary">Explore the engagements</a>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Keyword-aligned intro: Task 5.2 -->
-    <section class="section" style="padding-top: 2rem; padding-bottom: 2.5rem; border-top: 1px solid var(--border);">
+    <section class="section section--subtle">
       <div class="container">
         <div style="max-width: 820px;">
           <h2 style="font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-primary);">Internal AI Copilots for
@@ -69,9 +74,10 @@
           </p>
         </div>
       </div>
-      <!-- Offer 1: Knowledge Copilot -->
-      <section id="copilot" class="section"
-        style="border-top: 1px solid var(--border); background-color: var(--bg-card);">
+    </section>
+
+    <!-- Offer 1: Knowledge Copilot -->
+    <section id="copilot" class="section service-engagement">
         <div class="container">
           <div class="grid grid-2" style="gap: 4rem;">
             <div>
@@ -120,7 +126,7 @@
 
               <!-- 7. CTA -->
               <div class="hero-ctas" style="justify-content: flex-start;">
-                <a href="/contact.html?service=copilot" class="btn btn-primary">Schedule a technical feasibility call</a>
+                <a href="/contact.html?service=copilot" class="btn btn-primary">Discuss this engagement</a>
               </div>
             </div>
 
@@ -192,14 +198,14 @@
             </div>
           </div>
         </div>
-        <!-- Offer 2: Governance -->
-        <section id="governance" class="section"
-          style="border-top: 1px solid var(--border); background-color: var(--bg-secondary);">
+    </section>
+
+    <!-- Offer 2: Governance -->
+    <section id="governance" class="section section--subtle service-engagement">
           <div class="container">
             <div class="grid grid-2" style="gap: 4rem;">
               <div>
-                <span class="offer-badge" style="background-color: var(--border); color: var(--text-primary);">Risk &
-                  Security</span>
+                <span class="offer-badge">Risk &amp; Security</span>
                 <h2 style="margin-bottom: 0.5rem;">Copilot Governance &amp; Hardening</h2>
 
                 <!-- 2. Outcome Statement -->
@@ -214,7 +220,7 @@
                   prompt-injection defense walls.</p>
 
                 <!-- 3. Scope & Delivery Window -->
-                <div class="packaging-metadata" style="background-color: var(--bg-card);">
+                <div class="packaging-metadata">
                   <div class="packaging-metadata-item"><strong>Scope &amp; Timeline:</strong> Standalone assessment or
                     immediate post-pilot hardening (2 weeks).</div>
                   <div class="packaging-metadata-item"><strong>Technical Environment:</strong> Azure API Management,
@@ -230,12 +236,12 @@
 
                 <!-- 7. CTA -->
                 <div class="hero-ctas" style="justify-content: flex-start;">
-                  <a href="/contact.html?service=governance" class="btn btn-primary">Review Governance Scope</a>
+                  <a href="/contact.html?service=governance" class="btn btn-primary">Discuss this engagement</a>
                 </div>
               </div>
 
               <!-- 5. Deliverables -->
-              <div class="spec-grid" style="background-color: var(--bg-card);">
+              <div class="spec-grid">
                 <h3 style="margin-bottom: 1.5rem;">What We Deliver</h3>
                 <ul class="spec-list">
                   <li class="spec-item">
@@ -284,7 +290,7 @@
 
             <!-- Inline Fit / Non-Fit Checklists -->
             <div class="fit-box-grid">
-              <div class="fit-box ideal" style="background-color: var(--bg-card);">
+              <div class="fit-box ideal">
                 <h5>Ideal Fit If</h5>
                 <ul>
                   <li>You have active AI pilots and need cost-caching proxy firewalls.</li>
@@ -292,7 +298,7 @@
                   <li>You want automated compliance test suites built before rolling out to teams.</li>
                 </ul>
               </div>
-              <div class="fit-box bad" style="background-color: var(--bg-card);">
+              <div class="fit-box bad">
                 <h5>Bad Fit If</h5>
                 <ul>
                   <li>You only need high-level security policy slides without proxy/code hardening.</li>
@@ -302,16 +308,14 @@
               </div>
             </div>
           </div>
-        </section>
+    </section>
 
-        <!-- Offer 3: AI DevOps -->
-        <section id="devops" class="section"
-          style="border-top: 1px solid var(--border); background-color: var(--bg-card); border-bottom: 1px solid var(--border);">
+    <!-- Offer 3: AI DevOps -->
+    <section id="devops" class="section service-engagement">
           <div class="container">
             <div class="grid grid-2" style="gap: 4rem;">
               <div>
-                <span class="offer-badge" style="background-color: var(--border); color: var(--text-primary);">Developer
-                  Velocity</span>
+                <span class="offer-badge">Developer Velocity</span>
                 <h2 style="margin-bottom: 0.5rem;">AI DevOps &amp; PR Review Automation</h2>
 
                 <!-- 2. Outcome Statement -->
@@ -341,7 +345,7 @@
 
                 <!-- 7. CTA -->
                 <div class="hero-ctas" style="justify-content: flex-start;">
-                  <a href="/contact.html?service=devops" class="btn btn-primary">Explore Workflow Automation</a>
+                  <a href="/contact.html?service=devops" class="btn btn-primary">Discuss this engagement</a>
                 </div>
               </div>
 
@@ -415,15 +419,15 @@
           </div>
         </section>
 
-        <!-- Qualification Checklist -->
-        <section class="section">
+    <!-- Qualification Checklist -->
+    <section class="section section--subtle">
           <div class="container">
             <div class="section-header" style="margin-bottom: 3rem;">
               <h2>Is EventArgs LLC a Good Fit?</h2>
               <p>We work best with companies that match specific architectural and business profiles.</p>
             </div>
             <div class="grid grid-2" style="gap: 3rem;">
-              <div class="card fit-card" style="padding: 2.5rem;">
+              <div class="card" style="padding: 2.5rem;">
                 <h3
                   style="color: var(--success); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
                   <svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
@@ -439,7 +443,7 @@
                   <li>You require strict data privacy, isolated model hosting, and traceable citations.</li>
                 </ul>
               </div>
-              <div class="card unfit-card" style="padding: 2.5rem;">
+              <div class="card" style="padding: 2.5rem;">
                 <h3
                   style="color: hsl(0, 60%, 45%); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
                   <svg width="22" height="22" fill="currentColor" viewBox="0 0 16 16">
@@ -460,7 +464,15 @@
               </div>
             </div>
           </div>
-        </section>
+    </section>
+
+    <section class="section section--accent">
+      <div class="container cta-band">
+        <h2>Ready to define the right engagement?</h2>
+        <p>Start with a technical feasibility call to align the problem, constraints, and a fixed delivery scope.</p>
+        <a href="/contact.html" class="btn btn-primary">Schedule a technical feasibility call</a>
+      </div>
+    </section>
   </div>
   <script type="module" src="/src/main.js"></script>
 </body>
