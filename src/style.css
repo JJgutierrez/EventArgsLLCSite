@@ -1,41 +1,57 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
 
-:root {
-  /* Color Palette */
-  --bg-primary: hsl(210, 20%, 98%);
-  --bg-secondary: hsl(220, 20%, 95%);
-  --bg-card: hsl(0, 0%, 100%);
-  
-  --text-primary: hsl(220, 25%, 12%);
-  --text-secondary: hsl(220, 15%, 42%);
-  --text-light: hsl(220, 12%, 95%);
-  
-  --accent: hsl(197, 85%, 32%); /* Muted teal/blue */
-  --accent-light: hsl(197, 85%, 94%);
-  --accent-hover: hsl(197, 90%, 25%);
-  
-  --border: hsl(220, 15%, 88%);
-  --border-focus: hsl(197, 85%, 60%);
-  
-  --success: hsl(150, 60%, 35%);
-  
-  /* Typography */
-  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  
-  /* Layout */
-  --max-width: 1100px;
+@theme {
+  --color-ea-bg: #0B1220;
+  --color-ea-surface: #121A2B;
+  --color-ea-border: #243049;
+  --color-ea-accent: #2563eb;
+  --color-ea-accent-hover: #3B82F6;
+  --color-ea-text: #F1F5F9;
+  --color-ea-muted: #94A3B8;
+  --color-ea-success: #22c55e;
+  --color-ea-warning: #f59e0b;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   --radius-sm: 6px;
   --radius-md: 12px;
-  --radius-lg: 20px;
-  
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.06);
-  --shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.08);
-  
-  /* Transitions */
+  --max-width-content: 1120px;
+}
+
+:root {
+  --bg-primary: var(--color-ea-bg);
+  --bg-secondary: var(--color-ea-surface);
+  --bg-card: var(--color-ea-surface);
+  --text-primary: var(--color-ea-text);
+  --text-secondary: var(--color-ea-muted);
+  --text-light: var(--color-ea-text);
+  --accent: var(--color-ea-accent);
+  --accent-light: color-mix(in srgb, var(--color-ea-accent) 16%, transparent);
+  --accent-hover: var(--color-ea-accent-hover);
+  --border: var(--color-ea-border);
+  --border-focus: var(--color-ea-accent);
+  --success: var(--color-ea-success);
+  --font-heading: var(--font-sans);
+  --font-body: var(--font-sans);
+  --max-width: var(--max-width-content);
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 0 rgba(255, 255, 255, 0.03);
+  --shadow-md: 0 12px 40px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.45);
   --transition-fast: 0.15s ease;
   --transition-normal: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.dark,
+html {
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
 }
 
 /* Reset */
@@ -571,12 +587,12 @@ footer a:hover {
 }
 
 .success-badge {
-  background-color: hsl(150, 60%, 94%);
+  background-color: color-mix(in srgb, var(--success) 16%, var(--bg-card));
   color: var(--success);
 }
 
 .danger-badge {
-  background-color: hsl(0, 60%, 94%);
+  background-color: color-mix(in srgb, #ef4444 16%, var(--bg-card));
   color: hsl(0, 60%, 45%);
 }
 
@@ -913,12 +929,12 @@ footer a:hover {
 
 .fit-box.ideal {
   border-left: 4px solid var(--success);
-  background-color: hsl(150, 60%, 98%);
+  background-color: color-mix(in srgb, var(--success) 8%, var(--bg-card));
 }
 
 .fit-box.bad {
   border-left: 4px solid hsl(0, 60%, 45%);
-  background-color: hsl(0, 60%, 98%);
+  background-color: color-mix(in srgb, #ef4444 8%, var(--bg-card));
 }
 
 .fit-box h5 {
