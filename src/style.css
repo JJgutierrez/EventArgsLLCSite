@@ -665,7 +665,7 @@ textarea.form-control {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
-  .process-grid {
+  .process-grid:not(.process-stepper) {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
@@ -727,7 +727,7 @@ textarea.form-control {
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
-  .process-grid {
+  .process-grid:not(.process-stepper) {
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
@@ -1481,20 +1481,26 @@ textarea.form-control {
   .arch-flow {
     grid-template-columns: 1fr;
   }
+
+  .process-stepper.process-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .process-stepper .process-step,
+  .process-stepper .process-step:first-child,
+  .process-stepper .process-step:last-child {
+    border: 1px solid var(--color-ea-border);
+    border-radius: var(--radius-md);
+  }
+
+  .process-stepper .step-num::after {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
   .compare-grid {
     grid-template-columns: 1fr;
-  }
-
-  .process-stepper {
-    gap: 0.75rem;
-  }
-
-  .process-stepper .process-step,
-  .process-stepper .process-step:last-child {
-    border: 1px solid var(--color-ea-border);
-    border-radius: var(--radius-md);
   }
 }
