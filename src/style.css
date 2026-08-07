@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -12,6 +12,7 @@
   --color-ea-success: #22c55e;
   --color-ea-warning: #f59e0b;
   --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
   --radius-sm: 6px;
   --radius-md: 12px;
   --max-width-content: 1120px;
@@ -283,10 +284,27 @@ nav a.active, nav a:hover {
 
 /* Hero Section */
 .hero {
-  padding: 8rem 0 6rem;
+  --site-header-height: 4.6rem;
+  --metrics-band-height: 9.7rem;
+  padding: 4.5rem 0 3.5rem;
   text-align: center;
   position: relative;
   overflow: hidden;
+}
+
+/* Desktop: keep first viewport to hero + metrics only */
+@media (min-width: 1024px) {
+  .hero {
+    min-height: calc(100svh - var(--site-header-height) - var(--metrics-band-height));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 0 2.5rem;
+  }
+
+  .hero-inner {
+    width: 100%;
+  }
 }
 
 .hero--atmosphere {
@@ -337,6 +355,46 @@ nav a.active, nav a:hover {
   }
 }
 
+.hero-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin: 0 auto 1.5rem;
+  text-align: left;
+}
+
+.hero-brand-mark {
+  flex-shrink: 0;
+  border-radius: 10px;
+}
+
+.hero-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.hero-brand-name {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 2.4vw, 1.85rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--color-ea-text);
+}
+
+.hero-brand-name span {
+  color: var(--color-ea-accent);
+  margin-left: 0.2rem;
+}
+
+.hero-brand-tag {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-ea-muted);
+  letter-spacing: 0.01em;
+}
+
 .brand-mark {
   display: block;
   font-weight: 600;
@@ -358,22 +416,150 @@ nav a.active, nav a:hover {
   display: flex;
   gap: 1rem;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
-.services-intro {
-  max-width: 700px;
+@media (max-width: 640px) {
+  .hero-ctas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-ctas .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-brand {
+    max-width: 100%;
+  }
+}
+
+.services-hero {
+  padding: 5rem 0 4rem;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.services-hero .services-intro {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+}
+
+.services-hero .hero-brand {
+  margin: 0 0 1.5rem;
+}
+
+.services-hero h1 {
+  margin-bottom: 1rem;
 }
 
 .services-intro .lead {
   margin: 0 0 2rem;
+  font-size: 1.15rem;
+  color: var(--color-ea-muted);
+  max-width: 640px;
 }
 
-.service-engagement .grid {
+.services-hero .hero-ctas {
+  justify-content: flex-start;
+}
+
+.prose-block {
+  max-width: 820px;
+}
+
+.prose-block h2 {
+  font-size: clamp(1.4rem, 2.5vw, 1.75rem);
+  margin-bottom: 1.25rem;
+}
+
+.prose-block p {
+  color: var(--color-ea-muted);
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+}
+
+.prose-block p:last-child {
+  margin-bottom: 0;
+}
+
+.prose-block strong {
+  color: var(--color-ea-text);
+  font-weight: 600;
+}
+
+.engagement-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 4rem;
   align-items: start;
+}
+
+.engagement-copy h2 {
+  margin-bottom: 0.75rem;
+}
+
+.engagement-outcome {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-ea-text);
+  margin-bottom: 1.5rem;
+  line-height: 1.45;
+}
+
+.engagement-pricing {
+  margin: 1.5rem 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-ea-text);
+}
+
+.engagement-price {
+  color: var(--color-ea-accent);
+}
+
+.engagement-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .service-engagement .spec-grid {
   box-shadow: none;
+}
+
+.service-engagement .spec-grid h3 {
+  margin-bottom: 1.5rem;
+}
+
+.spec-item-content p {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+  color: var(--color-ea-muted);
+}
+
+.qualification-grid {
+  margin-top: 0;
+}
+
+.qualification-grid .fit-box {
+  padding: 2rem;
+}
+
+.qualification-grid .fit-box ul li {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .engagement-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
 }
 
 /* Section Header */
@@ -436,7 +622,7 @@ nav a.active, nav a:hover {
 .form-control:focus {
   outline: none;
   border-color: var(--border-focus);
-  box-shadow: 0 0 0 3px rgba(15, 118, 140, 0.15);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
 }
 
 textarea.form-control {
@@ -1282,12 +1468,13 @@ textarea.form-control {
 }
 
 .metric-number {
-  font-family: "IBM Plex Sans", var(--font-heading);
+  font-family: var(--font-mono);
   font-size: clamp(2.25rem, 4vw, 3rem);
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-ea-text);
   margin-bottom: 0.25rem;
   line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 .metric-label {
@@ -1616,3 +1803,192 @@ textarea.form-control {
     grid-template-columns: 1fr;
   }
 }
+
+/* Architecture System Diagram */
+.arch-diagram-wrapper {
+  position: relative;
+  margin-top: 2rem;
+  padding: 1.5rem 0;
+}
+
+.arch-diagram-svg {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: auto;
+  transform: translateY(-50%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.arch-nodes-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.arch-node-card {
+  background: var(--color-ea-surface);
+  border: 1px solid var(--color-ea-border);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 1rem;
+  text-align: left;
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.arch-node-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.arch-node-num {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.arch-node-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.arch-node-sub {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 900px) {
+  .arch-diagram-svg {
+    display: none;
+  }
+  .arch-nodes-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Borderless Structured Rows (Thin Below-Fold Chrome) */
+.fit-rows-wrapper,
+.case-rows-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--color-ea-border);
+  border-bottom: 1px solid var(--color-ea-border);
+}
+
+.fit-row,
+.case-row {
+  padding: 1.75rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-ea-border) 60%, transparent);
+}
+
+.fit-row:last-child,
+.case-row:last-child {
+  border-bottom: none;
+}
+
+.fit-row-header,
+.case-row-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.fit-row-header h3,
+.case-row-meta h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0;
+}
+
+.fit-row-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+.fit-row p,
+.case-row-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 0;
+  max-width: 800px;
+}
+
+.case-row {
+  display: grid;
+  grid-template-columns: 280px 1fr 140px;
+  align-items: center;
+  gap: 2rem;
+}
+
+.case-row-link {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--accent);
+  text-align: right;
+}
+
+@media (max-width: 850px) {
+  .case-row {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  .case-row-link {
+    text-align: left;
+  }
+}
+
+/* Delivery Principles SVG Icon styling */
+.principles-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  flex-shrink: 0;
+}
+
+/* Credentials Single Quiet Trust Line */
+.credentials-trust-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  padding: 1.5rem 0;
+}
+
+.credentials-title {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.credential-item {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.credential-sep {
+  color: var(--color-ea-border);
+}
+

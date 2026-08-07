@@ -37,7 +37,19 @@
     <!-- 1. Hero Section -->
     <section class="hero hero--atmosphere">
       <div class="container hero-inner" data-motion="hero">
-        <p class="brand-mark">EventArgs LLC</p>
+        <div class="hero-brand" aria-label="EventArgs LLC">
+          <svg class="hero-brand-mark" width="44" height="44" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+            <rect width="48" height="48" rx="10" fill="#0B1220"/>
+            <rect width="46" height="46" x="1" y="1" rx="9" stroke="#243049" stroke-width="2"/>
+            <path stroke="#2563eb" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 16L9 24l6 8"/>
+            <path stroke="#2563eb" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M33 16l6 8-6 8"/>
+            <circle cx="24" cy="24" r="4" fill="#3B82F6"/>
+          </svg>
+          <div class="hero-brand-text">
+            <span class="hero-brand-name">EventArgs<span>LLC</span></span>
+            <span class="hero-brand-tag">Senior-led AI engineering</span>
+          </div>
+        </div>
         <h1>Enterprise AI Engineering for Microsoft Ecosystems.</h1>
         <p class="lead">Production-grade RAG, governance, and workflow automation built on Azure and Microsoft 365.
           Fixed-scope, senior-led delivery.</p>
@@ -253,45 +265,83 @@
       </div>
     </section>
 
+    <!-- Interactive Architecture Diagram Section -->
     <section class="section section--subtle reveal" id="architecture">
       <div class="container">
         <div class="section-header">
           <h2>Architecture that stays grounded</h2>
           <p>A production path from Microsoft content stores to citation-backed answers.</p>
         </div>
-        <ol class="arch-flow">
-          <li class="arch-node">Docs & SharePoint</li>
-          <li class="arch-node">Ingestion & Chunking</li>
-          <li class="arch-node">Hybrid Vector Search</li>
-          <li class="arch-node">Policy & Guardrails</li>
-          <li class="arch-node">Copilot UI with citations</li>
-        </ol>
+        <div class="arch-diagram-wrapper">
+          <svg class="arch-diagram-svg" viewBox="0 0 1000 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Connecting lines -->
+            <path d="M180 80H220M380 80H420M580 80H620M780 80H820" stroke="#2563eb" stroke-width="2" stroke-dasharray="4 4"/>
+            <!-- Direction arrows -->
+            <polygon points="218,76 226,80 218,84" fill="#2563eb"/>
+            <polygon points="418,76 426,80 418,84" fill="#2563eb"/>
+            <polygon points="618,76 626,80 618,84" fill="#2563eb"/>
+            <polygon points="818,76 826,80 818,84" fill="#2563eb"/>
+          </svg>
+          <div class="arch-nodes-grid">
+            <div class="arch-node-card">
+              <span class="arch-node-num">01</span>
+              <div class="arch-node-title">Docs & SharePoint</div>
+              <div class="arch-node-sub">Source Tenant Storage</div>
+            </div>
+            <div class="arch-node-card">
+              <span class="arch-node-num">02</span>
+              <div class="arch-node-title">Ingestion & Chunking</div>
+              <div class="arch-node-sub">Pipeline Automation</div>
+            </div>
+            <div class="arch-node-card">
+              <span class="arch-node-num">03</span>
+              <div class="arch-node-title">Hybrid Vector Search</div>
+              <div class="arch-node-sub">Azure AI Search / RAG</div>
+            </div>
+            <div class="arch-node-card">
+              <span class="arch-node-num">04</span>
+              <div class="arch-node-title">Policy & Guardrails</div>
+              <div class="arch-node-sub">Security & Anti-Hallucination</div>
+            </div>
+            <div class="arch-node-card">
+              <span class="arch-node-num">05</span>
+              <div class="arch-node-title">Copilot UI with citations</div>
+              <div class="arch-node-sub">Traceable Page Citations</div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- 4. Who This Is For Section -->
-    <section class="section section--subtle reveal">
+    <section class="section reveal">
       <div class="container">
         <div class="section-header">
           <h2>Designed for Microsoft 365 and Azure-Heavy Teams</h2>
           <p>We work with mid-market teams that need better internal search, safer AI rollout, and less engineering
             workflow drag.</p>
         </div>
-        <div class="grid grid-3">
-          <div class="card fit-card" style="padding: 2rem;">
-            <h3 style="margin-bottom: 0.5rem;">Documentation Sprawl</h3>
-            <p style="font-size: 0.95rem; margin-bottom: 0; color: var(--text-secondary);">Your key files are scattered
-              across SharePoint, Confluence, and team channels, making answers slow to find.</p>
+        <div class="fit-rows-wrapper">
+          <div class="fit-row">
+            <div class="fit-row-header">
+              <h3>Documentation Sprawl</h3>
+              <span class="fit-row-tag">Search Drag</span>
+            </div>
+            <p>Your key files are scattered across SharePoint, Confluence, and team channels, making answers slow to find.</p>
           </div>
-          <div class="card fit-card" style="padding: 2rem;">
-            <h3 style="margin-bottom: 0.5rem;">AI Rollout Risks</h3>
-            <p style="font-size: 0.95rem; margin-bottom: 0; color: var(--text-secondary);">You want to deploy LLM-based
-              tools without exposing private data, runaway costs, or unreliable outputs.</p>
+          <div class="fit-row">
+            <div class="fit-row-header">
+              <h3>AI Rollout Risks</h3>
+              <span class="fit-row-tag">Governance</span>
+            </div>
+            <p>You want to deploy LLM-based tools without exposing private data, runaway costs, or unreliable outputs.</p>
           </div>
-          <div class="card fit-card" style="padding: 2rem;">
-            <h3 style="margin-bottom: 0.5rem;">Workflow Latency</h3>
-            <p style="font-size: 0.95rem; margin-bottom: 0; color: var(--text-secondary);">Senior engineers lose time to
-              repetitive code review, triage work, and manual handoffs across delivery workflows.</p>
+          <div class="fit-row">
+            <div class="fit-row-header">
+              <h3>Workflow Latency</h3>
+              <span class="fit-row-tag">Engineering Drag</span>
+            </div>
+            <p>Senior engineers lose time to repetitive code review, triage work, and manual handoffs across delivery workflows.</p>
           </div>
         </div>
       </div>
@@ -342,37 +392,25 @@
           <h2>Real Deployments. Verified Results.</h2>
           <p>We build production-ready systems, not hypothetical prototypes. Here is a look at recent work.</p>
         </div>
-        <div class="grid grid-2">
-          <div class="card" style="padding: 2rem;">
-            <span class="card-tag">Case Study</span>
-            <h3 style="margin-bottom: 0.5rem;">Legacy Knowledge Copilot</h3>
-            <p style="font-size: 0.95rem; margin-bottom: 1.5rem; color: var(--text-secondary);">Unstructured operational
-              documentation was scattered across SharePoint and network folders, making search slow. We built a grounded
-              RAG copilot that indexes documentation and enforces traceable citations. This reduced search times by 75%
-              while ensuring answer verifiability.</p>
-            <a href="/case-study-knowledge-copilot.html"
-              style="font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.25rem; margin-top: auto;">
-              Read Case Study
-              <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                  d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
-              </svg>
+        <div class="case-rows-wrapper">
+          <div class="case-row">
+            <div class="case-row-meta">
+              <span class="card-tag">Case Study</span>
+              <h3>Legacy Knowledge Copilot</h3>
+            </div>
+            <p class="case-row-desc">Unstructured operational documentation was scattered across SharePoint and network folders, making search slow. We built a grounded RAG copilot that indexes documentation and enforces traceable citations. This reduced search times by 75% while ensuring answer verifiability.</p>
+            <a href="/case-study-knowledge-copilot.html" class="case-row-link">
+              Read Case Study &rarr;
             </a>
           </div>
-          <div class="card" style="padding: 2rem;">
-            <span class="card-tag">Case Study</span>
-            <h3 style="margin-bottom: 0.5rem;">Multi-Agent Engineering Orchestrator</h3>
-            <p style="font-size: 0.95rem; margin-bottom: 1.5rem; color: var(--text-secondary);">Single-prompt AI agents
-              failed on complex workflows due to context limits and state loss. We built a LangGraph-based orchestrator
-              that coordinates specialized, stateful sub-agents. This automated 60% of repetitive task triage while
-              keeping developers in control.</p>
-            <a href="/case-studies.html#multi-agent-orchestrator"
-              style="font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.25rem; margin-top: auto;">
-              Read Case Study
-              <svg width="12" height="12" fill="currentColor" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                  d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z" />
-              </svg>
+          <div class="case-row">
+            <div class="case-row-meta">
+              <span class="card-tag">Case Study</span>
+              <h3>Multi-Agent Engineering Orchestrator</h3>
+            </div>
+            <p class="case-row-desc">Single-prompt AI agents failed on complex workflows due to context limits and state loss. We built a LangGraph-based orchestrator that coordinates specialized, stateful sub-agents. This automated 60% of repetitive task triage while keeping developers in control.</p>
+            <a href="/case-studies.html#multi-agent-orchestrator" class="case-row-link">
+              Read Case Study &rarr;
             </a>
           </div>
         </div>
@@ -414,7 +452,7 @@
       </div>
     </section>
 
-    <!-- Testimonials & Delivery Principles Section (Task 4.2) -->
+    <!-- Testimonials & Delivery Principles Section -->
     <section class="testimonial-section reveal">
       <div class="container">
         <div class="testimonial-grid">
@@ -431,7 +469,11 @@
             <h3>Our Delivery Principles</h3>
             <ul class="principles-list">
               <li class="principles-item">
-                <div class="principles-icon">⚡</div>
+                <div class="principles-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                  </svg>
+                </div>
                 <div class="principles-content">
                   <h4>No Junior Hand-offs</h4>
                   <p>You work 100% directly with senior engineers who code your systems, preventing communications gaps
@@ -439,7 +481,11 @@
                 </div>
               </li>
               <li class="principles-item">
-                <div class="principles-icon">⚡</div>
+                <div class="principles-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                  </svg>
+                </div>
                 <div class="principles-content">
                   <h4>Zero Hallucination Tolerance</h4>
                   <p>We enforce strict retrieval distance ceilings and map page-level citations for every single answer
@@ -447,7 +493,11 @@
                 </div>
               </li>
               <li class="principles-item">
-                <div class="principles-icon">⚡</div>
+                <div class="principles-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                  </svg>
+                </div>
                 <div class="principles-content">
                   <h4>Strict Boundary Isolation</h4>
                   <p>We build within your existing tenant security rules. Your embeddings, documents, and chat history
@@ -460,16 +510,20 @@
       </div>
     </section>
 
-    <!-- Credentials Section (Task 1.2) -->
+    <!-- Credentials Section -->
     <div class="credentials-strip reveal">
       <div class="container">
-        <span class="credentials-title">Core Competencies & Credentials</span>
-        <div class="credentials-grid">
-          <span class="credential-badge">Microsoft AI Fundamentals</span>
-          <span class="credential-badge">Azure & Microsoft 365 Integration</span>
-          <span class="credential-badge">RAG & Vector Search</span>
-          <span class="credential-badge">Model Context Protocol (MCP) Tooling</span>
-          <span class="credential-badge">CI/CD AI DevOps Pipelines</span>
+        <div class="credentials-trust-line">
+          <span class="credentials-title">Core Competencies &amp; Credentials:</span>
+          <span class="credential-item">Microsoft AI Fundamentals</span>
+          <span class="credential-sep">&bull;</span>
+          <span class="credential-item">Azure &amp; M365 Integration</span>
+          <span class="credential-sep">&bull;</span>
+          <span class="credential-item">RAG &amp; Vector Search</span>
+          <span class="credential-sep">&bull;</span>
+          <span class="credential-item">Model Context Protocol (MCP)</span>
+          <span class="credential-sep">&bull;</span>
+          <span class="credential-item">CI/CD AI DevOps</span>
         </div>
       </div>
     </div>
