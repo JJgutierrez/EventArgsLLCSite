@@ -747,7 +747,7 @@ textarea.form-control {
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
-  border-radius: 50px;
+  border-radius: var(--radius-sm);
   margin-bottom: 1rem;
 }
 
