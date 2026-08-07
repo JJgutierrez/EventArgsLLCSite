@@ -28,32 +28,33 @@
   </head>
   <body>
     <div id="app">
-      <section class="section" style="padding-top: 5rem; padding-bottom: 3rem;">
+      <section class="section contact-hero">
         <div class="container">
-          <h1 style="font-size: 3rem; margin-bottom: 1rem;">Book a Discovery Call</h1>
-          <p style="font-size: 1.2rem; color: var(--text-secondary); max-width: 800px;">Discuss your environment, constraints, and pilot fit directly with a senior engineer, or share your project details below.</p>
+          <p class="brand-mark">EventArgs LLC</p>
+          <h1>Schedule a technical feasibility call</h1>
+          <p class="lead">Map your environment, constraints, and pilot fit with a senior engineer. Prefer to start in writing? Share the details below.</p>
         </div>
       </section>
 
       <!-- Contact Form & Calendly Layout -->
-      <section class="section" style="border-top: 1px solid var(--border); background-color: var(--bg-secondary); border-bottom: 1px solid var(--border);">
+      <section class="section section--subtle contact-section">
         <div class="container">
-          <div class="grid grid-2" style="gap: 4rem; align-items: start;">
+          <div class="grid grid-2 contact-grid">
             
             <!-- Booking Column (Primary) -->
-            <div class="card fit-card" style="padding: 2.5rem; background-color: var(--bg-card); box-shadow: var(--shadow-md); border-top: 4px solid var(--success); border-radius: var(--radius-md); display: flex; flex-direction: column; justify-content: space-between; min-height: 520px;">
+            <div class="contact-panel contact-panel--booking">
               <div>
-                <h3 style="margin-bottom: 1rem; color: var(--accent);">Start with a technical feasibility call.</h3>
-                <p style="font-size: 0.95rem; margin-bottom: 1.5rem; color: var(--text-secondary);">Discuss your environment, constraints, and pilot fit directly with a senior engineer. Select a time below to connect with a senior practitioner.</p>
+                <h2>Start with a technical feasibility call.</h2>
+                <p>Discuss your environment, constraints, and pilot fit directly with a senior practitioner.</p>
                 
-                <div style="background-color: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 2rem; text-align: center; margin-bottom: 2rem;">
-                  <h4 style="margin-bottom: 0.25rem; color: var(--text-primary);">Technical Discovery Call</h4>
-                  <p style="font-size: 0.85rem; margin-bottom: 1.5rem; color: var(--text-secondary);">30 mins &bull; Video/Voice Call</p>
-                  <a id="book-call-btn" href="https://calendly.com/gutierrez014642" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%; justify-content: center;">Schedule a technical feasibility call</a>
+                <div class="booking-slot">
+                  <h3>Technical feasibility call</h3>
+                  <p>30 minutes &bull; Video or voice</p>
+                  <a id="book-call-btn" href="https://calendly.com/gutierrez014642" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Schedule a technical feasibility call</a>
                 </div>
               </div>
               
-              <ul class="checklist" style="font-size: 0.85rem;">
+              <ul class="checklist">
                 <li>No sales representatives; talk directly to senior builders</li>
                 <li>Audit compliance, security boundaries, and data containment</li>
                 <li>Receive initial scoping details and ballpark timelines</li>
@@ -61,9 +62,9 @@
             </div>
 
             <!-- Form Column -->
-            <div class="card" style="padding: 2.5rem; background-color: var(--bg-card); box-shadow: var(--shadow-md); border-top: 4px solid var(--accent); border-radius: var(--radius-md);">
-              <h3 style="margin-bottom: 1.5rem; color: var(--text-primary);">Share Project Details</h3>
-              <form id="intake-form" action="/api/contact" method="POST">
+            <div class="contact-panel contact-panel--form">
+              <h2>Share project details</h2>
+              <form id="contact-form" action="/api/contact" method="POST">
                 <!-- Honeypot spam protection -->
                 <div style="display: none;" aria-hidden="true">
                   <label for="honeypot">Do not fill this out if you are human:</label>
@@ -148,8 +149,9 @@
                   <textarea id="message" name="message" class="form-control" placeholder="Describe the specific workflow, knowledge sprawl, or AI rollout challenge you want help solving..." required></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-secondary" style="width: 100%; justify-content: center; margin-top: 1rem;">Send Project Details</button>
+                <button type="submit" class="btn btn-primary contact-submit">Send project details</button>
               </form>
+              <p class="contact-trust">Senior-led Microsoft 365 and Azure delivery. Your details stay within the EventArgs engagement process.</p>
             </div>
 
           </div>
@@ -210,7 +212,7 @@
       });
 
       // Production-grade form submit handler
-      const form = document.getElementById('intake-form');
+      const form = document.getElementById('contact-form');
       if (form) {
         const formContainer = form.parentElement;
         form.addEventListener('submit', async (e) => {
@@ -251,15 +253,15 @@
 
             // Success UI transition
             formContainer.innerHTML = `
-              <div class="card success-card" style="padding: 2.5rem; background-color: var(--bg-card); border: 1px solid var(--success); border-radius: var(--radius-sm); text-align: center; animation: fadeIn 0.4s ease-out;">
-                <div style="color: var(--success); margin-bottom: 1.5rem;">
+              <div class="contact-status contact-status--success">
+                <div class="contact-status__icon">
                   <svg width="48" height="48" fill="currentColor" viewBox="0 0 16 16" style="display: inline-block;">
                     <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                   </svg>
                 </div>
-                <h3 style="margin-bottom: 1rem; color: var(--text-primary);">Details Sent Successfully</h3>
-                <p style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1.5rem;">Thanks — your message was sent. I’ll get back to you soon.</p>
-                <button onclick="window.location.reload();" class="btn btn-secondary" style="margin: 0 auto; display: inline-flex;">Send Another Message</button>
+                <h3>Details sent successfully</h3>
+                <p>Thanks — your message was sent. I’ll get back to you soon.</p>
+                <button onclick="window.location.reload();" class="btn btn-secondary">Send another message</button>
               </div>
             `;
           } catch (err) {
@@ -271,14 +273,7 @@
 
             // Create error alert banner
             const errorDiv = document.createElement('div');
-            errorDiv.className = 'error-message';
-            errorDiv.style.backgroundColor = 'rgba(239, 68, 68, 0.1)';
-            errorDiv.style.border = '1px solid #ef4444';
-            errorDiv.style.color = '#ef4444';
-            errorDiv.style.borderRadius = 'var(--radius-sm)';
-            errorDiv.style.padding = '1rem';
-            errorDiv.style.marginTop = '1rem';
-            errorDiv.style.fontSize = '0.9rem';
+            errorDiv.className = 'error-message contact-status contact-status--warning';
             errorDiv.innerText = err.message || 'Sorry, something went wrong sending your message. Please try again.';
             
             form.appendChild(errorDiv);
