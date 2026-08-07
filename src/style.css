@@ -146,7 +146,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: rgba(248, 249, 250, 0.8);
+  background-color: color-mix(in srgb, var(--color-ea-bg) 82%, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
@@ -154,7 +154,7 @@ header {
 }
 
 header.scrolled {
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: color-mix(in srgb, var(--color-ea-surface) 94%, transparent);
   box-shadow: var(--shadow-sm);
 }
 
