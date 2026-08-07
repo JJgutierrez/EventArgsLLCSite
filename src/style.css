@@ -840,6 +840,15 @@ textarea.form-control {
 }
 
 @media (max-width: 576px) {
+  .hero-ctas {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hero-ctas .btn {
+    width: 100%;
+  }
+
   .trust-grid {
     grid-template-columns: 1fr;
     gap: 1.25rem;
