@@ -119,13 +119,26 @@ a:hover {
 /* Layout Utilities */
 .container {
   width: 100%;
-  max-width: var(--max-width);
+  max-width: var(--max-width-content);
   margin: 0 auto;
   padding: 0 1.5rem;
 }
 
 .section {
-  padding: 6rem 0;
+  padding: clamp(3rem, 6vw, 6rem) 0;
+  background: var(--color-ea-bg);
+}
+
+.section--subtle {
+  background: var(--color-ea-surface);
+  border-top: 1px solid var(--color-ea-border);
+  border-bottom: 1px solid var(--color-ea-border);
+}
+
+.section--accent {
+  background:
+    radial-gradient(1200px 400px at 50% -10%, color-mix(in srgb, var(--color-ea-accent) 18%, transparent), transparent 70%),
+    var(--color-ea-bg);
 }
 
 .grid {
@@ -142,19 +155,19 @@ a:hover {
 }
 
 /* Header & Navigation */
-header {
+.site-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background-color: color-mix(in srgb, var(--color-ea-bg) 82%, transparent);
+  background: color-mix(in srgb, var(--color-ea-bg) 88%, transparent);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--color-ea-border);
   transition: background-color var(--transition-normal);
 }
 
-header.scrolled {
-  background-color: color-mix(in srgb, var(--color-ea-surface) 94%, transparent);
+.site-header.scrolled {
+  background: color-mix(in srgb, var(--color-ea-surface) 96%, transparent);
   box-shadow: var(--shadow-sm);
 }
 
@@ -202,38 +215,39 @@ nav a.active, nav a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--font-body);
+  gap: 0.5rem;
+  padding: 0.85rem 1.35rem;
+  border-radius: var(--radius-sm);
   font-weight: 600;
   font-size: 0.95rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: var(--radius-sm);
-  transition: all var(--transition-fast);
-  cursor: pointer;
-  gap: 0.5rem;
   border: 1px solid transparent;
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast), color var(--transition-fast);
+}
+
+.btn:active {
+  transform: translateY(1px);
 }
 
 .btn-primary {
-  background-color: var(--accent);
+  background: var(--color-ea-accent);
   color: #fff;
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-hover);
+  background: var(--color-ea-accent-hover);
   color: #fff;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(15, 118, 140, 0.2);
 }
 
 .btn-secondary {
-  background-color: transparent;
-  border: 1px solid var(--border);
-  color: var(--text-primary);
+  background: transparent;
+  color: var(--color-ea-text);
+  border-color: var(--color-ea-border);
 }
 
 .btn-secondary:hover {
-  border-color: var(--text-primary);
-  background-color: var(--bg-secondary);
+  border-color: color-mix(in srgb, var(--color-ea-accent) 55%, var(--color-ea-border));
+  color: #fff;
 }
 
 /* Cards (Editorial / Technical Style) */
@@ -280,6 +294,49 @@ nav a.active, nav a:hover {
   text-align: center;
   position: relative;
   overflow: hidden;
+}
+
+.hero--atmosphere {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(900px 480px at 70% -10%, color-mix(in srgb, var(--color-ea-accent) 22%, transparent), transparent 60%),
+    linear-gradient(180deg, #0E1729 0%, var(--color-ea-bg) 70%);
+}
+
+.hero--atmosphere::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--color-ea-border) 55%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--color-ea-border) 55%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,.55), transparent 75%);
+  pointer-events: none;
+  opacity: 0.35;
+}
+
+[data-motion="hero"],
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-motion="hero"].is-visible,
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-motion="hero"],
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 .hero-tag {
@@ -377,18 +434,18 @@ textarea.form-control {
 }
 
 /* Footer */
-footer {
-  background-color: var(--color-ea-surface);
+.site-footer {
+  background: var(--color-ea-surface);
   color: var(--color-ea-text);
   padding: 4rem 0 2rem;
   border-top: 1px solid var(--color-ea-border);
 }
 
-footer a {
+.site-footer a {
   color: var(--color-ea-muted);
 }
 
-footer a:hover {
+.site-footer a:hover {
   color: var(--color-ea-accent-hover);
 }
 

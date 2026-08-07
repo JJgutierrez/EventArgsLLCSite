@@ -17,3 +17,9 @@ test('Wave 1 pages include primary CTA label', () => {
     assert.match(html, /Schedule a technical feasibility call/)
   }
 })
+
+test('layout.js nav CTA uses PRIMARY_CTA_LABEL', async () => {
+  const layout = readFileSync(new URL('../src/layout.js', import.meta.url), 'utf8')
+  assert.match(layout, /PRIMARY_CTA_LABEL/)
+  assert.match(layout, /PRIMARY_CTA_HREF/)
+})
