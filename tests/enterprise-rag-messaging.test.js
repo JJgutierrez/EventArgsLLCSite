@@ -61,9 +61,24 @@ test('in-scope pages no longer use Legacy Knowledge Copilot / Retrieval labels',
   }
 })
 
-test('in-scope case study surfaces do not present Azure AI Search as retrieval core', () => {
-  const listing = read('case-studies.html')
-  const detail = read('case-study-knowledge-copilot.html')
-  assert.doesNotMatch(listing, /Azure AI Search/)
-  assert.doesNotMatch(detail, /Azure AI Search/)
+test('site surfaces do not present Azure AI Search as retrieval core', () => {
+  for (const page of [
+    'index.html',
+    'services.html',
+    'about.html',
+    'case-studies.html',
+    'case-study-knowledge-copilot.html',
+  ]) {
+    assert.doesNotMatch(read(page), /Azure AI Search/)
+  }
+})
+
+test('homepage and services align on FastAPI / PostgreSQL/pgvector RAG story', () => {
+  const home = read('index.html')
+  const services = read('services.html')
+  assert.match(home, /FastAPI/)
+  assert.match(home, /PostgreSQL\/pgvector|pgvector/)
+  assert.match(services, /FastAPI/)
+  assert.match(services, /PostgreSQL\/pgvector|pgvector/)
+  assert.match(read('about.html'), /PostgreSQL\/pgvector|pgvector/)
 })
