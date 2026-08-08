@@ -38,14 +38,14 @@
       </section>
 
       <!-- Case Study 1 -->
-      <section id="legacy-knowledge-copilot" class="section" style="border-top: 1px solid var(--border); background-color: var(--bg-card);">
+      <section id="enterprise-rag-knowledge-copilot" class="section" style="border-top: 1px solid var(--border); background-color: var(--bg-card);">
         <div class="container">
           <div class="grid grid-2" style="gap: 4rem;">
             <div class="case-study-narrative">
               <span class="card-tag">Case Study</span>
-              <h2 style="margin-bottom: 1rem;">Legacy Knowledge Copilot</h2>
-              <p style="font-size: 1.05rem; font-weight: 500; color: var(--text-primary);">Eliminating documentation sprawl with strict source-grounded retrieval.</p>
-              <p>In mid-market organizations, critical operational information is often scattered across SharePoint, Confluence, and network drives. We built an internal knowledge copilot that indexes unstructured documentation and enforces strict source citations, preventing model hallucinations.</p>
+              <h2 style="margin-bottom: 1rem;">Enterprise RAG Knowledge Copilot (Backend Architecture)</h2>
+              <p style="font-size: 1.05rem; font-weight: 500; color: var(--text-primary);">Production-grade retrieval-augmented generation pipeline with hybrid search, strict source grounding, and enterprise guardrails.</p>
+              <p>For engineering and operations teams struggling with documentation sprawl across SharePoint, Confluence, and internal repositories, we engineer production-ready RAG systems. This solution implements a robust FastAPI and PostgreSQL/pgvector backend featuring Reciprocal Rank Fusion (RRF), semantic query routing, JWT/RBAC security, prompt-injection guardrails, and an automated LLM-judge evaluation workflow via LangSmith to guarantee zero-hallucination source citation.</p>
               
               <div class="hero-ctas" style="justify-content: flex-start; margin-top: 2rem;">
                 <a href="/case-study-knowledge-copilot.html" class="btn btn-primary">Read Flagship Case Study &rarr;</a>
@@ -55,22 +55,22 @@
               <h3 style="margin-bottom: 1.25rem;">Technical Profile</h3>
               <ul class="spec-list" style="gap: 1.25rem;">
                 <li>
-                  <strong>Client Environment:</strong> Mid-market organization using Microsoft 365, SharePoint, and Azure cloud resources.
+                  <strong>Client Environment:</strong> Engineering and operations teams with documentation across SharePoint, Confluence, and internal repositories.
                 </li>
                 <li>
                   <strong>Business Problem:</strong> Staff lost an average of 45 minutes finding accurate procedures during outages due to documentation sprawl.
                 </li>
                 <li>
-                  <strong>Constraints &amp; Governance:</strong> Strict tenant data containment and zero hallucination tolerance with 100% citation coverage.
+                  <strong>Constraints &amp; Governance:</strong> JWT/RBAC access control, prompt-injection guardrails, and zero hallucination tolerance with 100% citation coverage.
                 </li>
                 <li>
-                  <strong>Solution Architecture:</strong> Semantic layout-aware document parser paired with hybrid vector and keyword search.
+                  <strong>Solution Architecture:</strong> FastAPI retrieval service with hybrid vector + keyword search, Reciprocal Rank Fusion (RRF), and semantic query routing.
                 </li>
                 <li>
                   <strong>Quantified Outcome:</strong> 75% reduction in internal lookup times with verified inline citations.
                 </li>
                 <li>
-                  <strong>Technical Stack:</strong> Azure OpenAI (GPT-4o), Azure AI Search, LangChain, Python, Vector DB.
+                  <strong>Technical Stack:</strong> FastAPI, PostgreSQL/pgvector, LangChain, LangSmith (LLM-judge eval), Python, JWT/RBAC.
                 </li>
               </ul>
             </div>
