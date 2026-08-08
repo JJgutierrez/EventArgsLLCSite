@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary SEO -->
-    <title>Internal Knowledge Copilot Case Study — RAG for Enterprise Docs | EventArgs LLC</title>
-    <meta name="description" content="How EventArgs LLC built a source-grounded internal RAG copilot that reduced developer documentation lookup time by 75%. Full architecture, delivery model, and lessons learned." />
+    <title>Enterprise RAG Knowledge Copilot — Backend Architecture Case Study | EventArgs LLC</title>
+    <meta name="description" content="How EventArgs LLC engineered a FastAPI and PostgreSQL/pgvector RAG pipeline with hybrid search, RRF, JWT/RBAC guardrails, and LangSmith evaluation — cutting documentation lookup time by 75%." />
     <link rel="canonical" href="https://www.eventargs.llc/case-study-knowledge-copilot.html" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="article" />
     <meta property="og:url" content="https://www.eventargs.llc/case-study-knowledge-copilot.html" />
-    <meta property="og:title" content="Internal Knowledge Copilot Case Study — RAG for Enterprise Docs | EventArgs LLC" />
-    <meta property="og:description" content="How EventArgs LLC built a source-grounded internal RAG copilot that reduced developer documentation lookup time by 75%. Full architecture, delivery model, and lessons learned." />
+    <meta property="og:title" content="Enterprise RAG Knowledge Copilot — Backend Architecture Case Study | EventArgs LLC" />
+    <meta property="og:description" content="How EventArgs LLC engineered a FastAPI and PostgreSQL/pgvector RAG pipeline with hybrid search, RRF, JWT/RBAC guardrails, and LangSmith evaluation — cutting documentation lookup time by 75%." />
     <meta property="og:image" content="https://www.eventargs.llc/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -22,8 +22,8 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Internal Knowledge Copilot Case Study — RAG for Enterprise Docs | EventArgs LLC" />
-    <meta name="twitter:description" content="How EventArgs LLC built a source-grounded internal RAG copilot that reduced developer documentation lookup time by 75%. Full architecture, delivery model, and lessons learned." />
+    <meta name="twitter:title" content="Enterprise RAG Knowledge Copilot — Backend Architecture Case Study | EventArgs LLC" />
+    <meta name="twitter:description" content="How EventArgs LLC engineered a FastAPI and PostgreSQL/pgvector RAG pipeline with hybrid search, RRF, JWT/RBAC guardrails, and LangSmith evaluation — cutting documentation lookup time by 75%." />
     <meta name="twitter:image" content="https://www.eventargs.llc/og-image.png" />
   </head>
   <body>
@@ -40,10 +40,10 @@
             <span>&bull;</span>
             <span>4-Week Delivery</span>
             <span>&bull;</span>
-            <span>Internal Knowledge Systems</span>
+            <span>Enterprise RAG / Backend</span>
           </div>
-          <h1 style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.2; margin-top: 1rem; margin-bottom: 0.75rem;">Legacy Knowledge Copilot</h1>
-          <p style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 0; line-height: 1.6; max-width: 750px;">Eliminating internal documentation sprawl across SharePoint and network shares with secure, source-grounded hybrid retrieval.</p>
+          <h1 style="font-size: clamp(2rem, 5vw, 3rem); line-height: 1.2; margin-top: 1rem; margin-bottom: 0.75rem;">Enterprise RAG Knowledge Copilot (Backend Architecture)</h1>
+          <p style="font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 0; line-height: 1.6; max-width: 750px;">Production-grade retrieval-augmented generation pipeline with hybrid search, strict source grounding, and enterprise guardrails.</p>
         </div>
       </section>
 
@@ -53,32 +53,33 @@
         <!-- Situation -->
         <section class="case-study-section">
           <h2>The Situation</h2>
-          <p>For mid-market engineering and operations teams, critical knowledge is rarely located in a single, well-structured directory. In this engagement, the client’s operational guidelines, server modernization runbooks, and software API documentation were scattered across three SharePoint sites, a Confluence instance, and isolated local network folders.</p>
+          <p>For engineering and operations teams, critical knowledge is rarely located in a single, well-structured directory. In this engagement, operational guidelines, server modernization runbooks, and software API documentation were scattered across SharePoint sites, a Confluence instance, and internal repositories.</p>
           <p>As a result, engineers spent an average of 45 minutes finding accurate technical procedures during active systems outages. In addition, onboarding new technical staff took up to six weeks because of knowledge discovery friction.</p>
         </section>
 
         <!-- Constraints -->
         <section class="case-study-section">
           <h2>The Constraints</h2>
-          <p>The client's security officers and data stewards established three non-negotiable boundaries before any code was written:</p>
+          <p>Security and platform owners established non-negotiable boundaries before any code was written:</p>
           <ul>
-            <li><strong>Strict Tenant Containment:</strong> Proprietary designs, codebase notes, and operational logs could not leave the client's Azure boundary or be exposed to public model training loops.</li>
-            <li><strong>Zero-Hallucination Guardrails:</strong> The AI system must only respond using information retrieved from verified source text. If a query could not be answered from the document chunks, the system had to state <em>"I do not know based on the available documentation."</em></li>
-            <li><strong>Access-Level Security:</strong> Search results and generated answers had to enforce SharePoint security groups, ensuring a user could never retrieve information they did not have explicit permissions to view in the source systems.</li>
+            <li><strong>JWT/RBAC Access Control:</strong> Every query path authenticated and authorized so users could only retrieve documentation they were permitted to see.</li>
+            <li><strong>Prompt-Injection Guardrails:</strong> Untrusted user input could not override system instructions, exfiltrate secrets, or bypass retrieval policy.</li>
+            <li><strong>Zero-Hallucination Guardrails:</strong> The system must only respond using verified retrieved source text. If a query could not be answered from document chunks, it had to state <em>"I do not know based on the available documentation."</em></li>
+            <li><strong>100% Citation Coverage:</strong> Every factual claim required an inline source citation before the answer could reach the user.</li>
           </ul>
         </section>
 
         <!-- Approach -->
         <section class="case-study-section">
           <h2>The Approach</h2>
-          <p>We bypassed standard character-count text splitting—which frequently breaks code blocks and tables—to deploy a custom, semantic, layout-aware parser in Python. The custom parser groups paragraphs based on document heading structures, preserving parent headers and hierarchical outlines as metadata for every chunk.</p>
-          <p>For retrieval, we configured a hybrid search pipeline combining dense vector embeddings (using Azure OpenAI's <code>text-embedding-3-large</code>) with BM25 keyword matching. To prevent model hallucination, we enforced a strict retrieval similarity threshold and structured the system prompt to require inline citation anchors (e.g., <code>[DocumentName.pdf, Page 12]</code>) for every factual claim in the response.</p>
+          <p>We deployed a layout-aware ingestion path in Python that preserves heading hierarchy, tables, and code blocks as structured chunk metadata — avoiding brittle character-count splits that destroy retrieval quality.</p>
+          <p>For retrieval, we built a FastAPI service backed by PostgreSQL/pgvector hybrid vector and keyword search, fused with Reciprocal Rank Fusion (RRF) and semantic query routing. Generation was citation-bound, with prompt-injection defenses at the gateway. An automated LangSmith LLM-judge evaluation workflow scored answer faithfulness and citation coverage so regressions could not ship unnoticed.</p>
         </section>
 
         <!-- Architecture -->
         <section class="case-study-section">
           <h2>Architecture & Technical Design</h2>
-          <p>Below is the system architecture showing how documents are securely ingested and how user queries are processed and verified within the client's Azure network boundary.</p>
+          <p>Below is the system architecture showing how documents are ingested into PostgreSQL/pgvector and how authenticated queries flow through FastAPI retrieval, guardrails, citation-bound generation, and LangSmith LLM-judge evaluation.</p>
           
           <div class="architecture-block">
             <svg viewBox="0 0 800 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="display: block;">
@@ -94,20 +95,20 @@
               
               <!-- SharePoint Box -->
               <rect x="40" y="105" width="310" height="50" rx="6" fill="var(--bg-secondary)" stroke="var(--border)" />
-              <text x="60" y="135" font-family="var(--font-body)" font-weight="600" font-size="13" fill="var(--text-primary)">SharePoint / Azure Files</text>
+              <text x="60" y="135" font-family="var(--font-body)" font-weight="600" font-size="13" fill="var(--text-primary)">SharePoint / Confluence / Repos</text>
               
               <!-- Ingest & Parse Box -->
               <rect x="40" y="185" width="310" height="50" rx="6" fill="var(--bg-secondary)" stroke="var(--border)" />
-              <text x="60" y="215" font-family="var(--font-body)" font-weight="600" font-size="13" fill="var(--text-primary)">Azure Functions (Python Layout Parsing)</text>
+              <text x="60" y="215" font-family="var(--font-body)" font-weight="600" font-size="13" fill="var(--text-primary)">Ingest Worker (layout-aware parsing)</text>
               
               <!-- Semantic Chunking Box -->
               <rect x="40" y="265" width="310" height="50" rx="6" fill="var(--bg-secondary)" stroke="var(--border)" />
-              <text x="60" y="295" font-family="var(--font-body)" font-weight="600" font-size="13" fill="var(--text-primary)">Semantic Embeddings (text-embedding-3-large)</text>
+              <text x="60" y="295" font-family="var(--font-body)" font-weight="600" font-size="13" fill="var(--text-primary)">Embeddings + Chunk Metadata</text>
               
-              <!-- Azure AI Search Box -->
+              <!-- PostgreSQL/pgvector Index Box -->
               <rect x="40" y="345" width="310" height="80" rx="6" fill="var(--bg-secondary)" stroke="var(--accent)" stroke-width="1.5" />
-              <text x="60" y="380" font-family="var(--font-heading)" font-weight="700" font-size="14" fill="var(--accent)">Azure AI Search Index</text>
-              <text x="60" y="405" font-family="var(--font-body)" font-size="12" fill="var(--text-secondary)">Vector & Keyword Search (Tenant Bound)</text>
+              <text x="60" y="380" font-family="var(--font-heading)" font-weight="700" font-size="14" fill="var(--accent)">PostgreSQL/pgvector Index</text>
+              <text x="60" y="405" font-family="var(--font-body)" font-size="12" fill="var(--text-secondary)">Hybrid Vector + Keyword (RRF)</text>
 
               <!-- Query Pipeline Subgraph -->
               <rect x="425" y="45" width="360" height="410" rx="12" fill="var(--bg-card)" stroke="var(--border)" stroke-width="1.5" />
@@ -115,20 +116,20 @@
               
               <!-- User Box -->
               <rect x="450" y="105" width="310" height="50" rx="6" fill="var(--bg-secondary)" stroke="var(--border)" />
-              <text x="470" y="135" font-family="var(--font-body)" font-weight="600" font-size="13" fill="var(--text-primary)">User Query via Web UI</text>
+              <text x="470" y="135" font-family="var(--font-body)" font-weight="600" font-size="13" fill="var(--text-primary)">User Query via Client / API</text>
               
               <!-- API Gateway Box -->
               <rect x="450" y="185" width="310" height="50" rx="6" fill="var(--bg-secondary)" stroke="var(--border)" />
-              <text x="470" y="215" font-family="var(--font-body)" font-weight="600" font-size="13" fill="var(--text-primary)">FastAPI Gateway (Azure AD Auth Check)</text>
+              <text x="470" y="215" font-family="var(--font-body)" font-weight="600" font-size="13" fill="var(--text-primary)">FastAPI Gateway (JWT/RBAC)</text>
               
               <!-- Prompt Compile Box -->
               <rect x="450" y="265" width="310" height="50" rx="6" fill="var(--bg-secondary)" stroke="var(--border)" />
-              <text x="470" y="295" font-family="var(--font-body)" font-weight="600" font-size="13" fill="var(--text-primary)">Prompt Compiler (Strict Citation Rules)</text>
+              <text x="470" y="295" font-family="var(--font-body)" font-weight="600" font-size="13" fill="var(--text-primary)">Query Router + Guardrails + Prompt Compiler</text>
               
               <!-- LLM Box -->
               <rect x="450" y="345" width="310" height="80" rx="6" fill="var(--bg-secondary)" stroke="var(--accent)" stroke-width="1.5" />
-              <text x="470" y="380" font-family="var(--font-heading)" font-weight="700" font-size="14" fill="var(--accent)">Azure OpenAI GPT-4o</text>
-              <text x="470" y="405" font-family="var(--font-body)" font-size="12" fill="var(--text-secondary)">Isolated LLM instance - Zero training exposure</text>
+              <text x="470" y="380" font-family="var(--font-heading)" font-weight="700" font-size="14" fill="var(--accent)">LLM Generation (citation-bound)</text>
+              <text x="470" y="405" font-family="var(--font-body)" font-size="12" fill="var(--text-secondary)">Citation-bound answers + LangSmith eval</text>
 
               <!-- Connectors -->
               <path d="M 195 155 L 195 185" stroke="var(--text-secondary)" stroke-width="1.5" marker-end="url(#arrow)" />
@@ -145,13 +146,13 @@
             </svg>
           </div>
           
-          <p>This layout ensures that no unauthenticated user can access restricted documentation, and every single LLM call is tracked for cost, latency, and token footprint.</p>
+          <p>This layout keeps retrieval and generation behind JWT/RBAC controls, fuses hybrid candidates with RRF, and uses LangSmith LLM-judge evaluation to verify citation coverage, faithfulness, and regression risk before changes reach production.</p>
         </section>
 
         <!-- Delivery Model -->
         <section class="case-study-section">
           <h2>Delivery Model</h2>
-          <p>We executed this project in a <strong>4-week fixed-scope sprint</strong>. We worked directly as senior partners, with daily check-ins on Slack and weekly iterations demonstrating working code directly in the client's Azure staging environment. Because we bypass administrative layers and junior engineers, we moved from blueprint draft to a fully functional pilot in 20 engineering days.</p>
+          <p>We executed this project in a <strong>4-week fixed-scope sprint</strong>. We worked directly as senior partners, with daily check-ins on Slack and weekly iterations demonstrating working code in the client's staging environment. Because we bypass administrative layers and junior engineers, we moved from blueprint draft to a fully functional pilot in 20 engineering days.</p>
         </section>
 
         <!-- Results -->
@@ -159,8 +160,8 @@
           <h2>The Results</h2>
           <ul>
             <li><strong>75% Retrieval Speed Increase:</strong> Average information discovery times fell from 45 minutes to under 10 seconds.</li>
-            <li><strong>100% Citation Coverage:</strong> Response filters intercept answers lacking clear source page links, preventing any hallucinated output from reaching the team.</li>
-            <li><strong>Zero Boundary Leaks:</strong> All search queries, embeddings, and chat histories remain strictly contained within the client’s Azure subscription.</li>
+            <li><strong>100% Citation Coverage:</strong> Response filters intercept answers lacking clear source links, preventing hallucinated output from reaching the team.</li>
+            <li><strong>Controlled Access Boundary:</strong> Queries, embeddings, and chat histories remain inside the approved deployment boundary with JWT/RBAC enforcement on every request.</li>
           </ul>
         </section>
 
@@ -168,7 +169,7 @@
         <section class="case-study-section" style="margin-bottom: 0;">
           <h2>Lessons Learned</h2>
           <p><strong>Ingestion is 90% of RAG:</strong> Standard recursive text splitting degrades the usability of tables and code blocks. Layout-aware chunking (e.g. keeping table rows linked to table headers) is essential for retrieval correctness.</p>
-          <p><strong>System prompts aren't enough:</strong> Enforcing strict retrieval distance ceilings (relevance thresholds) is the only way to reliably force the model to output <em>"I do not know"</em> instead of generating convincing hallucinations when documentation is missing.</p>
+          <p><strong>System prompts aren't enough:</strong> Hybrid retrieval with RRF, relevance thresholds, prompt-injection defenses, and automated LLM-judge evaluation are what reliably force <em>"I do not know"</em> instead of convincing hallucinations when documentation is missing.</p>
         </section>
       </div>
 
@@ -177,7 +178,7 @@
         <div class="container">
           <div style="max-width: 600px; margin: 0 auto;">
             <h2>Discuss a similar implementation.</h2>
-            <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--text-secondary);">Find out how a secure, citation-first knowledge copilot can fit into your Microsoft 365 or Azure environment.</p>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--text-secondary);">Find out how a secure, citation-first Enterprise RAG knowledge copilot can fit into your SharePoint, Confluence, or internal repository environment.</p>
             <a href="/contact.html?service=copilot" class="btn btn-primary" style="padding: 1rem 2rem;">Discuss a similar implementation</a>
           </div>
         </div>
