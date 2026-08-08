@@ -82,3 +82,13 @@ test('homepage and services align on FastAPI / PostgreSQL/pgvector RAG story', (
   assert.match(services, /PostgreSQL\/pgvector|pgvector/)
   assert.match(read('about.html'), /PostgreSQL\/pgvector|pgvector/)
 })
+
+test('primary offer is named Enterprise RAG Knowledge Copilot Pilot', () => {
+  const offer = 'Enterprise RAG Knowledge Copilot Pilot'
+  assert.ok(read('services.html').includes(offer))
+  assert.ok(read('index.html').includes(offer))
+  assert.ok(read('contact.html').includes(offer))
+  assert.doesNotMatch(read('services.html'), /Internal Knowledge Copilot Pilot/)
+  assert.doesNotMatch(read('index.html'), /Internal Knowledge Copilot Pilot/)
+  assert.doesNotMatch(read('contact.html'), /Internal Knowledge Copilot Pilot/)
+})
