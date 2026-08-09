@@ -62,7 +62,7 @@ export function initLayout() {
         <div class="footer-col">
           <h4>Services</h4>
           <ul>
-            <li><a href="/services.html#copilot">Knowledge Copilots</a></li>
+            <li><a href="/services.html#copilot">Enterprise RAG Copilots</a></li>
             <li><a href="/services.html#governance">AI Governance</a></li>
             <li><a href="/services.html#devops">AI DevOps</a></li>
           </ul>

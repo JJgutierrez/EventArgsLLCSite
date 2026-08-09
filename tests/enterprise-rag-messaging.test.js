@@ -92,3 +92,9 @@ test('primary offer is named Enterprise RAG Knowledge Copilot Pilot', () => {
   assert.doesNotMatch(read('index.html'), /Internal Knowledge Copilot Pilot/)
   assert.doesNotMatch(read('contact.html'), /Internal Knowledge Copilot Pilot/)
 })
+
+test('footer services link uses Enterprise RAG Copilots label', () => {
+  const layout = read('src/layout.js')
+  assert.match(layout, /Enterprise RAG Copilots/)
+  assert.doesNotMatch(layout, />Knowledge Copilots</)
+})
