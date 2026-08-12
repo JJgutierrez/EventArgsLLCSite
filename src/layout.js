@@ -64,7 +64,7 @@ export function initLayout() {
           <ul>
             <li><a href="/services.html#copilot">Enterprise RAG Copilots</a></li>
             <li><a href="/services.html#governance">AI Governance</a></li>
-            <li><a href="/services.html#devops">AI DevOps</a></li>
+            <li><a href="/services.html#devops">AI Workflow &amp; DevOps</a></li>
           </ul>
         </div>
         <div class="footer-col">
