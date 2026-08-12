@@ -20,6 +20,25 @@ test('homepage hero H1 and SEO use locked RAG-inclusive headline', () => {
   assert.ok(source.includes(`<h1>${H1_HTML}</h1>`))
   assert.ok(source.includes(`<title>${SEO_TITLE_HTML}</title>`))
   assert.ok(source.includes(META_DESC))
+  assert.ok(source.includes(`property="og:title" content="${SEO_TITLE_HTML}"`))
+  assert.match(
+    source,
+    new RegExp(
+      `property="og:description"[\\s\\S]*?content="${META_DESC.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`,
+    ),
+  )
+  assert.match(
+    source,
+    new RegExp(
+      `name="twitter:title"[\\s\\S]*?content="${SEO_TITLE_HTML.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`,
+    ),
+  )
+  assert.match(
+    source,
+    new RegExp(
+      `name="twitter:description"[\\s\\S]*?content="${META_DESC.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}"`,
+    ),
+  )
   assert.match(source, /Secure Internal RAG AI Copilots/)
   assert.doesNotMatch(source, /<h1>Enterprise AI Engineering for Microsoft Ecosystems\.<\/h1>/)
 })
@@ -73,6 +92,20 @@ test('services, contact, and footer cascade Offer 3 rename', () => {
   assert.doesNotMatch(services, /AI DevOps &amp; PR Review Automation/)
   assert.doesNotMatch(contact, /AI DevOps &amp; PR Review Automation/)
   assert.doesNotMatch(layout, />AI DevOps</)
+})
+
+test('services page meta descriptions use AI workflow DevOps framing', () => {
+  const source = read('services.html')
+  const descriptions = [
+    source.match(/name="description"\s*\n?\s*content="([^"]*)"/)?.[1],
+    source.match(/property="og:description"\s*\n?\s*content="([^"]*)"/)?.[1],
+    source.match(/name="twitter:description"\s*\n?\s*content="([^"]*)"/)?.[1],
+  ]
+  for (const desc of descriptions) {
+    assert.ok(desc, 'expected meta description')
+    assert.match(desc, /AI workflow/i)
+    assert.doesNotMatch(desc, /AI DevOps automation/)
+  }
 })
 
 test('about page reinforces pure-play backend boundary', () => {
