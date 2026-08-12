@@ -51,7 +51,7 @@ test('homepage offers keep Offer 1 name and rename Offer 3', () => {
   assert.ok(source.includes('SharePoint and Azure file sync'))
   assert.ok(source.includes('Citation-first retrieval and answer grounding'))
   assert.ok(source.includes('4-week production-ready pilot rollout'))
-  assert.ok(source.includes('access control boundaries'))
+  assert.ok(source.includes('Access control boundaries'))
   assert.ok(source.includes('Custom model context protocol (MCP) tooling'))
   assert.ok(source.includes('3-week custom workflow integration'))
   assert.doesNotMatch(source, /AI DevOps &amp; PR Review Automation|AI DevOps & PR Review Automation/)
