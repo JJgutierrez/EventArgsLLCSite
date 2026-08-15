@@ -18,6 +18,7 @@ function resolveActiveLink(pathname) {
   const current = normalizePath(pathname)
   if (current === '/') return 'home'
   if (current === '/services') return 'services'
+  if (current === '/engineering-insights' || current.startsWith('/engineering-insights')) return 'engineering-insights'
   if (current === '/case-studies' || current.startsWith('/case-study')) return 'case-studies'
   if (current === '/about') return 'about'
   if (current === '/contact') return 'contact'
@@ -40,6 +41,7 @@ export function initLayout() {
         <ul>
           <li><a href="/" data-link="home">Home</a></li>
           <li><a href="/services.html" data-link="services">Services</a></li>
+          <li><a href="/engineering-insights.html" data-link="engineering-insights">Engineering Insights</a></li>
           <li><a href="/case-studies.html" data-link="case-studies">Case Studies</a></li>
           <li><a href="/about.html" data-link="about">About</a></li>
           <li><a href="/" data-link="qualify" title="Qualification flow coming soon">Find your AI fit</a></li>
@@ -65,6 +67,7 @@ export function initLayout() {
             <li><a href="/services.html#copilot">Enterprise RAG Copilots</a></li>
             <li><a href="/services.html#governance">AI Governance</a></li>
             <li><a href="/services.html#devops">AI Workflow &amp; DevOps</a></li>
+            <li><a href="/engineering-insights.html">Engineering Insights</a></li>
           </ul>
         </div>
         <div class="footer-col">
@@ -72,6 +75,7 @@ export function initLayout() {
           <ul>
             <li><a href="/about.html">About</a></li>
             <li><a href="/case-studies.html">Case Studies</a></li>
+            <li><a href="/engineering-insights.html">Engineering Insights</a></li>
             <li><a href="/" title="Qualification flow coming soon">Find your AI fit</a></li>
             <li><a href="${PRIMARY_CTA_HREF}">${PRIMARY_CTA_LABEL}</a></li>
           </ul>

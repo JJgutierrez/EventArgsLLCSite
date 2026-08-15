@@ -9,6 +9,10 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         services: resolve(__dirname, 'services.html'),
+        engineeringInsights: resolve(__dirname, 'engineering-insights.html'),
+        articleRagM365: resolve(__dirname, 'engineering-insights/designing-citation-grounded-rag-microsoft-365.html'),
+        articleRagFailures: resolve(__dirname, 'engineering-insights/why-enterprise-rag-pilots-fail.html'),
+        articlePrReview: resolve(__dirname, 'engineering-insights/ai-assisted-pr-review-azure-devops.html'),
         caseStudies: resolve(__dirname, 'case-studies.html'),
         caseStudyKnowledgeCopilot: resolve(__dirname, 'case-study-knowledge-copilot.html'),
         about: resolve(__dirname, 'about.html'),

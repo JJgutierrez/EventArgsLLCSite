@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary SEO -->
+  <title>Why Enterprise RAG Pilots Fail After the Demo | Engineering Insights | EventArgs LLC</title>
+  <meta name="description"
+    content="An engineering inspection of chunk boundary drift, missing document metadata, evaluation gaps, and why naive vector search fails under enterprise production workloads." />
+  <link rel="canonical" href="https://www.eventargs.llc/engineering-insights/why-enterprise-rag-pilots-fail.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.eventargs.llc/engineering-insights/why-enterprise-rag-pilots-fail.html" />
+  <meta property="og:title" content="Why Enterprise RAG Pilots Fail After the Demo | Engineering Insights | EventArgs LLC" />
+  <meta property="og:description"
+    content="An engineering inspection of chunk boundary drift, missing document metadata, evaluation gaps, and why naive vector search fails under enterprise production workloads." />
+  <meta property="og:image" content="https://www.eventargs.llc/og-image.png" />
+  <meta property="og:site_name" content="EventArgs LLC" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Why Enterprise RAG Pilots Fail After the Demo | Engineering Insights" />
+  <meta name="twitter:description"
+    content="An engineering inspection of chunk boundary drift, missing document metadata, evaluation gaps, and why naive vector search fails under enterprise production workloads." />
+  <meta name="twitter:image" content="https://www.eventargs.llc/og-image.png" />
+</head>
+
+<body>
+  <div id="app">
+    <!-- Article Header Section -->
+    <section class="services-hero hero--atmosphere">
+      <div class="container" style="max-width: 860px; margin: 0 auto; text-align: left; padding-top: 4rem;">
+        <div style="margin-bottom: 1.5rem;">
+          <a href="/engineering-insights.html" style="color: var(--accent); text-decoration: none; font-size: 0.95rem; font-weight: 500;">
+            &larr; Back to Engineering Insights
+          </a>
+        </div>
+        <span class="card-tag" style="margin-bottom: 1rem; display: inline-block;">Production Risk Analysis</span>
+        <h1 style="font-size: 2.5rem; line-height: 1.25; margin-bottom: 1.25rem; color: var(--text-primary);">
+          Why Enterprise RAG Pilots Fail After the Demo
+        </h1>
+        <p style="font-size: 1.2rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 2rem;">
+          Proof-of-concept RAG demos routinely succeed because they operate on small, curated test sets. This teardown examines the four structural failure modes that emerge when transitioning to production data.
+        </p>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.9rem; color: var(--text-muted);">
+          <div><strong>Author:</strong> EventArgs LLC Engineering Practice</div>
+          <div><strong>Published:</strong> August 14, 2026</div>
+          <div><strong>Reading Time:</strong> 7 min read</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Article Body -->
+    <section class="section">
+      <div class="container" style="max-width: 860px; margin: 0 auto; line-height: 1.8; font-size: 1.05rem; color: var(--text-secondary);">
+        
+        <!-- Section 1: The Honeymoon Period -->
+        <h2 style="color: var(--text-primary); margin-top: 2rem; margin-bottom: 1rem;">1. The Demo Illusion</h2>
+        <p>
+          Building a prototype RAG assistant is deceptively simple. Using standard framework defaults—fixed 512-token sliding window chunking, cosine vector similarity, and a standard system prompt—an engineer can produce an impressive demonstration in an afternoon.
+        </p>
+        <p>
+          However, when that prototype is expanded to index thousands of active SharePoint documents, PDF technical manuals, and multi-folder repositories, accuracy quickly degrades. Users encounter missing context, out-of-date policy citations, or confident hallucinated answers.
+        </p>
+
+        <!-- Section 2: Failure Modes -->
+        <h2 style="color: var(--text-primary); margin-top: 3rem; margin-bottom: 1rem;">2. The 4 Production Failure Modes</h2>
+
+        <div style="display: flex; flex-direction: column; gap: 2rem; margin: 2rem 0;">
+          <!-- Failure Mode 1 -->
+          <div style="background: var(--bg-card); border: 1px solid var(--border); padding: 1.75rem; border-radius: 8px;">
+            <h3 style="color: var(--accent); margin-bottom: 0.5rem;">Failure Mode #1: Arbitrary Chunk Boundary Splitting</h3>
+            <p>
+              Fixed character or token splitting ignores document structure. A critical conditional clause, table row, or safety step gets truncated halfway across chunk boundaries, stripping essential context from the vector index.
+            </p>
+            <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0;">
+              <em>Engineering Fix:</em> Use layout-aware parsing (Markdown AST, PDF section headers) to preserve logical section and table integrity.
+            </p>
+          </div>
+
+          <!-- Failure Mode 2 -->
+          <div style="background: var(--bg-card); border: 1px solid var(--border); padding: 1.75rem; border-radius: 8px;">
+            <h3 style="color: var(--accent); margin-bottom: 0.5rem;">Failure Mode #2: Metadata Stripping &amp; Temporal Blindness</h3>
+            <p>
+              Raw vector indices store text without parent document metadata (creation date, version tag, target audience). When two conflicting policy documents exist (e.g., 2024 vs 2026 expense policy), vector similarity treats both chunks as equally relevant.
+            </p>
+            <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0;">
+              <em>Engineering Fix:</em> Inject document metadata (effective date, status, security group) into chunk headers during embedding indexing.
+            </p>
+          </div>
+
+          <!-- Failure Mode 3 -->
+          <div style="background: var(--bg-card); border: 1px solid var(--border); padding: 1.75rem; border-radius: 8px;">
+            <h3 style="color: var(--accent); margin-bottom: 0.5rem;">Failure Mode #3: Pure Vector Search Over-Reliance</h3>
+            <p>
+              Dense vector embeddings map semantic concepts well, but perform poorly on exact keyword lookups, SKU numbers, or code identifiers. Searching for <code>ERR_CONN_RESET</code> often returns generic networking articles instead of the specific playbook.
+            </p>
+            <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0;">
+              <em>Engineering Fix:</em> Implement Reciprocal Rank Fusion (RRF) combining vector search with full-text keyword indexing (PostgreSQL <code>tsvector</code>).
+            </p>
+          </div>
+
+          <!-- Failure Mode 4 -->
+          <div style="background: var(--bg-card); border: 1px solid var(--border); padding: 1.75rem; border-radius: 8px;">
+            <h3 style="color: var(--accent); margin-bottom: 0.5rem;">Failure Mode #4: Lack of Automated Evaluation Gates</h3>
+            <p>
+              Without a continuous evaluation dataset, team members make prompt tweaks or model adjustments based on anecdotal feedback. A fix for one query silently breaks three others.
+            </p>
+            <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0;">
+              <em>Engineering Fix:</em> Deploy automated LLM-judge evaluation pipelines (LangSmith) with ground-truth test sets to track faithfulness and citation recall on every build.
+            </p>
+          </div>
+        </div>
+
+        <!-- Section 3: Pre-Production Readiness Checklist -->
+        <h2 style="color: var(--text-primary); margin-top: 3rem; margin-bottom: 1rem;">3. Production Readiness Checklist</h2>
+        <p>
+          Before declaring a RAG system production-ready, verify these technical criteria:
+        </p>
+
+        <ul style="padding-left: 1.5rem; margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+          <li>[ ] Document parsers extract layout structure, headers, and full table cells cleanly.</li>
+          <li>[ ] Every stored vector chunk contains source document URI, last modified date, and permission tags.</li>
+          <li>[ ] Hybrid retrieval (dense vector + sparse keyword) is benchmarked against real user search logs.</li>
+          <li>[ ] Low-confidence queries trigger explicit abstention rather than ungrounded generation.</li>
+          <li>[ ] Automated evaluation suites run in CI/CD before any prompt or retrieval change is merged.</li>
+        </ul>
+
+      </div>
+    </section>
+
+    <!-- Contextual Service CTA -->
+    <section class="section section--accent reveal">
+      <div class="container cta-band">
+        <h2>Is your internal RAG pilot struggling to move into production?</h2>
+        <p>Schedule an architecture review with senior engineers to audit your retrieval performance, chunking, and governance boundaries.</p>
+        <a href="/contact.html?topic=rag-architecture-review" class="btn btn-primary">Request a RAG architecture review</a>
+      </div>
+    </section>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
