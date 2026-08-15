@@ -64,7 +64,7 @@
           <ul>
             <li><strong>JWT/RBAC Access Control:</strong> Every query path authenticated and authorized so users could only retrieve documentation they were permitted to see.</li>
             <li><strong>Prompt-Injection Guardrails:</strong> Untrusted user input could not override system instructions, exfiltrate secrets, or bypass retrieval policy.</li>
-            <li><strong>Zero-Hallucination Guardrails:</strong> The system must only respond using verified retrieved source text. If a query could not be answered from document chunks, it had to state <em>"I do not know based on the available documentation."</em></li>
+            <li><strong>Citation-First Guardrails:</strong> The system must only respond using verified retrieved source text. If a query could not be answered from document chunks, it had to state <em>"I do not know based on the available documentation."</em></li>
             <li><strong>100% Citation Coverage:</strong> Every factual claim required an inline source citation before the answer could reach the user.</li>
           </ul>
         </section>

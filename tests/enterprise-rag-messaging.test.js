@@ -8,7 +8,7 @@ const TITLE = 'Enterprise RAG Knowledge Copilot (Backend Architecture)'
 const SUBTITLE =
   'Production-grade retrieval-augmented generation pipeline with hybrid search, strict source grounding, and enterprise guardrails.'
 const OVERVIEW =
-  'For engineering and operations teams struggling with documentation sprawl across SharePoint, Confluence, and internal repositories, we engineer production-ready RAG systems. This solution implements a robust FastAPI and PostgreSQL/pgvector backend featuring Reciprocal Rank Fusion (RRF), semantic query routing, JWT/RBAC security, prompt-injection guardrails, and an automated LLM-judge evaluation workflow via LangSmith to guarantee zero-hallucination source citation.'
+  'For engineering and operations teams struggling with documentation sprawl across SharePoint, Confluence, and internal repositories, we engineer production-ready RAG systems. This solution implements a robust FastAPI and PostgreSQL/pgvector backend featuring Reciprocal Rank Fusion (RRF), semantic query routing, JWT/RBAC security, prompt-injection guardrails, and an automated LLM-judge evaluation workflow via LangSmith to enforce citation-backed source grounding.'
 
 const PAGES = [
   'index.html',

@@ -40,6 +40,24 @@ content sits on a full-bleed visual plane, not an inset media card.
 - `btn btn-primary`: primary conversion action using `ea-accent`.
 - `btn btn-secondary`: contextual secondary action.
 
+### Engineering Insights primitives (v3.0)
+
+Insights surfaces may use documented slate aliases without replacing Wave 1
+locked tokens:
+
+| Alias | Value | Role |
+|---|---|---|
+| `insight-bg` | `#090d16` | Optional insights canvas |
+| `insight-surface` | `#0f172a` | Featured card / article surface |
+| `insight-border` | `#1e293b` | Subtle card edges |
+
+- `insight-featured`: full-width featured article hero card.
+- `insight-grid`: 2-column responsive article index.
+- `insight-card`: index card with IBM Plex Mono metadata chips.
+- `insight-article`: detail layout with `max-w-3xl` reading column.
+- `insight-toc`: desktop sticky table of contents.
+- `insight-chip`: monospace topic, date, and reading-time chips.
+
 The implementation remains static Vite multi-page HTML with shared CSS and
 vanilla JavaScript. Do not introduce React or an SPA without explicit approval.
 

@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Engineering Insights — Architecture Teardowns &amp; Playbooks | EventArgs LLC</title>
+  <meta name="description"
+    content="Architecture teardowns, evaluation design, and production playbooks for enterprise Microsoft 365 and Azure environments." />
+  <link rel="canonical" href="https://www.eventargs.llc/engineering-insights.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.eventargs.llc/engineering-insights.html" />
+  <meta property="og:title" content="Engineering Insights — Architecture Teardowns &amp; Playbooks | EventArgs LLC" />
+  <meta property="og:description"
+    content="Architecture teardowns, evaluation design, and production playbooks for enterprise Microsoft 365 and Azure environments." />
+  <meta property="og:image" content="https://www.eventargs.llc/og-image.png" />
+  <meta property="og:site_name" content="EventArgs LLC" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Engineering Insights — Architecture Teardowns &amp; Playbooks | EventArgs LLC" />
+  <meta name="twitter:description"
+    content="Architecture teardowns, evaluation design, and production playbooks for enterprise Microsoft 365 and Azure environments." />
+  <meta name="twitter:image" content="https://www.eventargs.llc/og-image.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Engineering Insights",
+    "url": "https://www.eventargs.llc/engineering-insights.html",
+    "description": "Architecture teardowns, evaluation design, and production playbooks for enterprise Microsoft 365 and Azure environments.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "EventArgs LLC",
+      "url": "https://www.eventargs.llc/"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <div id="app">
+    <section class="services-hero hero--atmosphere">
+      <div class="container services-intro" data-motion="hero">
+        <h1>Engineering Insights</h1>
+        <p class="lead">Architecture teardowns, evaluation design, and production playbooks for Microsoft 365 and Azure teams shipping citation-grounded retrieval and AI DevOps review gates.</p>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="container">
+        <article class="insight-featured">
+          <div>
+            <span class="insight-chip">Featured</span>
+            <h2 class="insight-featured-title">
+              <a href="/engineering-insights/designing-citation-grounded-rag-microsoft-365.html">Designing Citation-Grounded RAG for Microsoft 365: Permissions, Retrieval, and Evidence</a>
+            </h2>
+            <p>Enterprise permissions, hybrid search, and evaluation gates in Azure environments. How to keep SharePoint ACLs intact, fuse vector and keyword ranking, and abstain when evidence is weak.</p>
+            <div class="insight-meta">
+              <span class="insight-chip">9 min read</span>
+              <span class="insight-chip">2026-08-15</span>
+              <span class="insight-chip">RAG</span>
+              <span class="insight-chip">Microsoft 365</span>
+              <span class="insight-chip">Azure</span>
+            </div>
+            <a href="/engineering-insights/designing-citation-grounded-rag-microsoft-365.html" class="btn btn-primary">Read architecture note</a>
+          </div>
+          <div class="spec-grid">
+            <h3>What this note covers</h3>
+            <ul class="spec-list">
+              <li><strong>Permissions-first ingest:</strong> Entra ID group ACLs travel with every chunk.</li>
+              <li><strong>Hybrid retrieval:</strong> pgvector plus BM25 merged with Reciprocal Rank Fusion.</li>
+              <li><strong>Evidence gates:</strong> Fail closed when top-k scores fall below threshold.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section--subtle reveal">
+      <div class="container">
+        <div class="section-header" style="text-align: left;">
+          <h2>All technical insights</h2>
+          <p>Implementation playbooks for retrieval, evaluation, and AI-assisted pull request review.</p>
+        </div>
+        <div class="insight-grid">
+          <article class="insight-card">
+            <div>
+              <div class="insight-meta">
+                <span class="insight-chip">8 min read</span>
+                <span class="insight-chip">RAG</span>
+                <span class="insight-chip">Evaluation</span>
+              </div>
+              <h3>
+                <a href="/engineering-insights/why-enterprise-rag-pilots-fail.html">Why Enterprise RAG Pilots Fail After the Demo (And How to Fix Retrieval Latency)</a>
+              </h3>
+              <p>Chunk boundary drift, missing metadata, evaluation gaps, and why toy vector search slows down under production load.</p>
+            </div>
+            <div>
+              <p class="insight-chip">2026-08-15</p>
+              <a href="/engineering-insights/why-enterprise-rag-pilots-fail.html" class="case-row-link">Read article &rarr;</a>
+            </div>
+          </article>
+          <article class="insight-card">
+            <div>
+              <div class="insight-meta">
+                <span class="insight-chip">8 min read</span>
+                <span class="insight-chip">AI DevOps</span>
+                <span class="insight-chip">PR Review</span>
+              </div>
+              <h3>
+                <a href="/engineering-insights/ai-assisted-pr-review-azure-devops.html">AI-Assisted PR Review in Azure DevOps: Approval Gates, Traceability, and Safe Adoption</a>
+              </h3>
+              <p>PR classification, advisory review comments, and human-in-the-loop approval gates that never auto-merge.</p>
+            </div>
+            <div>
+              <p class="insight-chip">2026-08-15</p>
+              <a href="/engineering-insights/ai-assisted-pr-review-azure-devops.html" class="case-row-link">Read article &rarr;</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--accent reveal">
+      <div class="container cta-band">
+        <h2>Evaluating an enterprise RAG or PR review system?</h2>
+        <p>Map data boundaries, retrieval design, and approval gates with a senior engineer.</p>
+        <a href="/contact.html?topic=rag-architecture-review" class="btn btn-primary">Request a RAG architecture review</a>
+      </div>
+    </section>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

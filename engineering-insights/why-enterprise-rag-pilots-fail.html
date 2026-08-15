@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Why Enterprise RAG Pilots Fail After the Demo | Engineering Insights | EventArgs LLC</title>
+  <meta name="description" content="Chunk drift, missing metadata, evaluation gaps, and retrieval latency after the demo." />
+  <link rel="canonical" href="https://www.eventargs.llc/engineering-insights/why-enterprise-rag-pilots-fail.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.eventargs.llc/engineering-insights/why-enterprise-rag-pilots-fail.html" />
+  <meta property="og:title" content="Why Enterprise RAG Pilots Fail After the Demo | EventArgs LLC" />
+  <meta property="og:description" content="Chunk drift, missing metadata, evaluation gaps, and retrieval latency after the demo." />
+  <meta property="og:image" content="https://www.eventargs.llc/og-image.png" />
+  <meta property="og:site_name" content="EventArgs LLC" />
+  <meta property="article:published_time" content="2026-08-15" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Why Enterprise RAG Pilots Fail After the Demo" />
+  <meta name="twitter:description" content="Chunk drift, missing metadata, evaluation gaps, and retrieval latency after the demo." />
+  <meta name="twitter:image" content="https://www.eventargs.llc/og-image.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Why Enterprise RAG Pilots Fail After the Demo (And How to Fix Retrieval Latency)",
+    "datePublished": "2026-08-15",
+    "dateModified": "2026-08-15",
+    "description": "Chunk drift, missing metadata, evaluation gaps, and retrieval latency after the demo.",
+    "author": { "@type": "Organization", "name": "EventArgs LLC" },
+    "publisher": { "@type": "Organization", "name": "EventArgs LLC", "url": "https://www.eventargs.llc/" },
+    "mainEntityOfPage": "https://www.eventargs.llc/engineering-insights/why-enterprise-rag-pilots-fail.html",
+    "keywords": ["RAG", "Evaluation", "Azure"]
+  }
+  </script>
+</head>
+
+<body>
+  <div id="app">
+    <header class="section insight-article-hero">
+      <div class="container" style="max-width: 48rem;">
+        <a class="insight-kicker" href="/engineering-insights.html">&larr; Engineering Insights</a>
+        <h1>Why Enterprise RAG Pilots Fail After the Demo (And How to Fix Retrieval Latency)</h1>
+        <p class="lead">Proof-of-concept retrieval looks strong on curated files. These are the structural failures—and the latency fixes—that appear on production Microsoft 365 corpora.</p>
+        <div class="insight-meta">
+          <span class="insight-chip">8 min read</span>
+          <span class="insight-chip">2026-08-15</span>
+          <span class="insight-chip">RAG</span>
+          <span class="insight-chip">Evaluation</span>
+          <span class="insight-chip">Azure</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="container insight-layout">
+        <aside class="insight-toc" aria-label="Table of contents">
+          <nav data-insight-toc></nav>
+        </aside>
+        <div class="insight-body">
+          <h2 id="demo-illusion">The demo illusion</h2>
+          <p>Fixed 512-token windows, cosine similarity, and a generic system prompt can produce an impressive afternoon demo. Accuracy collapses when the same defaults index thousands of live SharePoint documents, PDF manuals, and nested repositories.</p>
+
+          <h2 id="failure-modes">The four production failure modes</h2>
+          <div class="insight-panel">
+            <h3>Arbitrary chunk boundary splitting</h3>
+            <p>Token windows cut tables, conditionals, and safety steps in half. Use layout-aware parsing so section headers and full table cells stay intact.</p>
+          </div>
+          <div class="insight-panel">
+            <h3>Metadata stripping and temporal blindness</h3>
+            <p>Without effective date, version, and audience tags, a 2024 policy chunk ranks beside the 2026 replacement. Inject metadata into chunk headers at index time.</p>
+          </div>
+          <div class="insight-panel">
+            <h3>Pure vector search over-reliance</h3>
+            <p>Embeddings miss exact identifiers such as <code>ERR_CONN_RESET</code>. Fuse dense search with PostgreSQL <code>tsvector</code> using Reciprocal Rank Fusion.</p>
+          </div>
+          <div class="insight-panel">
+            <h3>Missing evaluation gates</h3>
+            <p>Anecdotal prompt edits silently break other queries. Run LLM-judge suites for faithfulness and citation recall in CI before merge.</p>
+          </div>
+
+          <h2 id="retrieval-latency">How to fix retrieval latency after the demo</h2>
+          <p>Production latency is usually a retrieval problem, not a model problem. Hybrid search over an unfiltered corpus, oversized top-k, and synchronous embedding of every query add seconds users will not wait for.</p>
+          <ul>
+            <li><strong>Pre-filter before rank:</strong> Apply Entra ID / ACL predicates and recency windows before vector search so the ANN index is not scanning unauthorized rows.</li>
+            <li><strong>Cap candidate fan-out:</strong> Retrieve a small dense set and a small sparse set, then RRF. Expanding top-k to “be safe” is the fastest way to blow p95.</li>
+            <li><strong>Cache embeddings and rerank selectively:</strong> Embed queries once per session key; reserve cross-encoders for the final 8–12 chunks, not the full recall set.</li>
+            <li><strong>Budget the path:</strong> Measure ingest-to-query p50/p95 separately from generation. If retrieval exceeds ~400ms, fix indexes and filters before changing models.</li>
+          </ul>
+          <pre><code>query
+  → ACL + recency filter
+  → dense k=20 + sparse k=20
+  → RRF merge
+  → optional rerank k=10
+  → evidence threshold
+  → generate or abstain</code></pre>
+
+          <h2 id="readiness-checklist">Production readiness checklist</h2>
+          <ul>
+            <li>Parsers keep headers and full table cells.</li>
+            <li>Every chunk stores source URI, last modified date, and permission tags.</li>
+            <li>Hybrid retrieval is benchmarked on real search logs, including latency.</li>
+            <li>Low-confidence queries abstain instead of generating.</li>
+            <li>Evaluation suites run in CI before prompt or index changes merge.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--accent reveal">
+      <div class="container cta-band">
+        <h2>Is the RAG pilot stalling in production?</h2>
+        <p>Audit retrieval performance, chunking, and governance boundaries with a senior engineer.</p>
+        <a href="/contact.html?topic=rag-architecture-review" class="btn btn-primary">Request a RAG Architecture Review</a>
+      </div>
+    </section>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

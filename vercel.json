@@ -1,5 +1,22 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/multi-agent",
+      "destination": "/services",
+      "permanent": true
+    },
+    {
+      "source": "/multi-agent-orchestrator",
+      "destination": "/engineering-insights",
+      "permanent": true
+    },
+    {
+      "source": "/case-studies/multi-agent-orchestrator",
+      "destination": "/case-studies",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/qualify",

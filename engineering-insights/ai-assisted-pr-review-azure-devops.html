@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>AI-Assisted PR Review in Azure DevOps | Engineering Insights | EventArgs LLC</title>
+  <meta name="description" content="PR classification, review assistance, and human-in-the-loop approval gates in Azure DevOps." />
+  <link rel="canonical" href="https://www.eventargs.llc/engineering-insights/ai-assisted-pr-review-azure-devops.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.eventargs.llc/engineering-insights/ai-assisted-pr-review-azure-devops.html" />
+  <meta property="og:title" content="AI-Assisted PR Review in Azure DevOps | EventArgs LLC" />
+  <meta property="og:description" content="PR classification, review assistance, and human-in-the-loop approval gates in Azure DevOps." />
+  <meta property="og:image" content="https://www.eventargs.llc/og-image.png" />
+  <meta property="og:site_name" content="EventArgs LLC" />
+  <meta property="article:published_time" content="2026-08-15" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI-Assisted PR Review in Azure DevOps" />
+  <meta name="twitter:description" content="PR classification, review assistance, and human-in-the-loop approval gates in Azure DevOps." />
+  <meta name="twitter:image" content="https://www.eventargs.llc/og-image.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "AI-Assisted PR Review in Azure DevOps: Approval Gates, Traceability, and Safe Adoption",
+    "datePublished": "2026-08-15",
+    "dateModified": "2026-08-15",
+    "description": "PR classification, review assistance, and human-in-the-loop approval gates in Azure DevOps.",
+    "author": { "@type": "Organization", "name": "EventArgs LLC" },
+    "publisher": { "@type": "Organization", "name": "EventArgs LLC", "url": "https://www.eventargs.llc/" },
+    "mainEntityOfPage": "https://www.eventargs.llc/engineering-insights/ai-assisted-pr-review-azure-devops.html",
+    "keywords": ["AI DevOps", "Azure DevOps", "PR Review"]
+  }
+  </script>
+</head>
+
+<body>
+  <div id="app">
+    <header class="section insight-article-hero">
+      <div class="container" style="max-width: 48rem;">
+        <a class="insight-kicker" href="/engineering-insights.html">&larr; Engineering Insights</a>
+        <h1>AI-Assisted PR Review in Azure DevOps: Approval Gates, Traceability, and Safe Adoption</h1>
+        <p class="lead">Connect review assistance to Azure DevOps without handing the model merge authority. Classify diffs, post advisory comments, and keep humans on the approval gate.</p>
+        <div class="insight-meta">
+          <span class="insight-chip">8 min read</span>
+          <span class="insight-chip">2026-08-15</span>
+          <span class="insight-chip">AI DevOps</span>
+          <span class="insight-chip">Azure DevOps</span>
+          <span class="insight-chip">PR Review</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="container insight-layout">
+        <aside class="insight-toc" aria-label="Table of contents">
+          <nav data-insight-toc></nav>
+        </aside>
+        <div class="insight-body">
+          <h2 id="review-latency">The problem: review latency and fatigue</h2>
+          <p>Senior developers lose time on first-pass pull request classification, style checks, and convention review across Azure DevOps Repos. Giving a model auto-approve or push access creates a worse problem: secrets, invented dependencies, or logic flaws landing on protected branches.</p>
+
+          <h2 id="design-principles">Core design principles for safe PR assistance</h2>
+          <ol>
+            <li><strong>Read-only context retrieval:</strong> Inspect diffs, commit messages, and work items. Never push to the target branch.</li>
+            <li><strong>Scoped Model Context Protocol tools:</strong> Expose only the repo introspection commands the review job needs.</li>
+            <li><strong>Advisory inline traceability:</strong> Tag comments as <code>[AI Review Assist]</code> with line number and rule rationale.</li>
+            <li><strong>Mandatory human-in-the-loop signoff:</strong> The assistant never holds a required reviewer vote. Humans complete the merge.</li>
+          </ol>
+
+          <h2 id="pipeline-architecture">Recommended pipeline architecture</h2>
+          <div class="insight-panel">
+            <h3>Azure DevOps review pipeline</h3>
+            <ul class="spec-list">
+              <li><strong>Webhook trigger:</strong> <code>git.pullrequest.created</code> and update events reach a FastAPI worker.</li>
+              <li><strong>Diff and work-item fetch:</strong> REST APIs load file diffs, linked stories, and branch policies.</li>
+              <li><strong>Classification and rule checks:</strong> The model labels risk (security, tests, API breakage) and drafts advisory notes.</li>
+              <li><strong>Comment posting:</strong> Inline threads use severity tags: Info, Warning, Action Required.</li>
+            </ul>
+          </div>
+          <pre><code>PR created
+  → classify change set
+  → review assist comments
+  → required human approver
+  → merge policy unchanged</code></pre>
+
+          <h2 id="safe-adoption">Summary and safe adoption</h2>
+          <p>AI-assisted review works as an advisory first-pass that reduces classification load. It fails when it is treated as an autonomous merger. Keep tool boundaries tight, comments traceable, and approval gates human.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--accent reveal">
+      <div class="container cta-band">
+        <h2>Want PR review automation with approval gates?</h2>
+        <p>Design classification, review assist, and human signoff for Azure DevOps or GitHub.</p>
+        <a href="/contact.html?topic=pr-review-automation" class="btn btn-primary">Evaluate PR Review Automation</a>
+      </div>
+    </section>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

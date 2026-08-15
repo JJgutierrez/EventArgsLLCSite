@@ -2042,6 +2042,237 @@ textarea.form-control {
   }
 }
 
+/* Engineering Insights */
+.insight-featured {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
+  gap: 3rem;
+  align-items: center;
+  padding: 2.5rem;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: var(--radius-md);
+}
+
+.insight-featured-title {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  line-height: 1.2;
+  margin: 0.75rem 0 1rem;
+}
+
+.insight-featured-title a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.insight-featured-title a:hover {
+  color: var(--accent-hover);
+}
+
+.insight-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.insight-chip {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text-secondary);
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent);
+  border-radius: var(--radius-sm);
+  padding: 0.2rem 0.55rem;
+}
+
+.insight-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.insight-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100%;
+  padding: 1.75rem;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: var(--radius-md);
+}
+
+.insight-card h3 {
+  font-size: 1.25rem;
+  line-height: 1.35;
+  margin: 0.75rem 0;
+}
+
+.insight-card h3 a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.insight-card h3 a:hover {
+  color: var(--accent-hover);
+}
+
+.insight-article-hero {
+  padding-top: 5rem;
+  padding-bottom: 2rem;
+}
+
+.insight-kicker {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.insight-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 48rem);
+  gap: 3rem;
+  align-items: start;
+  max-width: 72rem;
+  margin: 0 auto;
+  min-width: 0;
+}
+
+.insight-layout > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.insight-toc {
+  position: sticky;
+  top: 6rem;
+}
+
+.insight-toc-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.insight-toc-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.insight-toc-list a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.insight-toc-list a:hover,
+.insight-toc-list a:focus-visible {
+  color: var(--accent-hover);
+}
+
+.insight-body {
+  max-width: 48rem;
+  min-width: 0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  overflow-wrap: break-word;
+}
+
+.insight-body h2 {
+  color: var(--text-primary);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  scroll-margin-top: 6rem;
+}
+
+.insight-body h3 {
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.insight-body p,
+.insight-body ul,
+.insight-body ol {
+  margin-bottom: 1.15rem;
+}
+
+.insight-body ul,
+.insight-body ol {
+  padding-left: 1.35rem;
+}
+
+.insight-body code,
+.insight-body pre {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+.insight-body pre,
+.insight-table-wrap {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.insight-callout {
+  background: var(--bg-card);
+  border-left: 4px solid var(--accent);
+  padding: 1rem 1.5rem;
+  border-radius: 0 6px 6px 0;
+  margin: 1.5rem 0;
+}
+
+.insight-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  margin: 2rem 0;
+}
+
+.insight-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.insight-table th,
+.insight-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+.insight-table th {
+  color: var(--text-primary);
+}
+
+@media (max-width: 900px) {
+  .insight-featured,
+  .insight-grid,
+  .insight-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .insight-toc {
+    position: static;
+    margin-bottom: 1.5rem;
+  }
+}
+
 /* Delivery Principles SVG Icon styling */
 .principles-icon {
   display: flex;

@@ -33,7 +33,27 @@
 
   <url>
     <loc>https://www.eventargs.llc/qualify</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-08-15</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.eventargs.llc/engineering-insights.html</loc>
+    <lastmod>2026-08-15</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.eventargs.llc/engineering-insights/designing-citation-grounded-rag-microsoft-365.html</loc>
+    <lastmod>2026-08-15</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.eventargs.llc/engineering-insights/why-enterprise-rag-pilots-fail.html</loc>
+    <lastmod>2026-08-15</lastmod>
+  </url>
+
+  <url>
+    <loc>https://www.eventargs.llc/engineering-insights/ai-assisted-pr-review-azure-devops.html</loc>
+    <lastmod>2026-08-15</lastmod>
   </url>
 
 </urlset>
