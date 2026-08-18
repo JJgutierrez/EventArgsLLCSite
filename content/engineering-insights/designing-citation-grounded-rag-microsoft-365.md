@@ -6,7 +6,7 @@ date: "2026-08-15"
 updated: "2026-08-15"
 topics: ["RAG", "Microsoft 365", "Azure"]
 readingTime: "9 min read"
-featured: true
+featured: false
 cta:
   label: "Request a RAG Architecture Review"
   topic: "rag-architecture-review"

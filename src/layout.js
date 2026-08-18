@@ -19,7 +19,14 @@ function resolveActiveLink(pathname) {
   if (current === '/') return 'home'
   if (current === '/services') return 'services'
   if (current === '/case-studies' || current.startsWith('/case-study')) return 'case-studies'
-  if (current === '/engineering-insights' || current.startsWith('/engineering-insights/')) return 'insights'
+  if (
+    current === '/engineering-insights' ||
+    current.startsWith('/engineering-insights/') ||
+    current === '/articles' ||
+    current.startsWith('/articles/')
+  ) {
+    return 'insights'
+  }
   if (current === '/about') return 'about'
   if (current === '/contact') return 'contact'
   return null

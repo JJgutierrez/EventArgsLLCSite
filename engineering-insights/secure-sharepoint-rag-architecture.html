@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en" class="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Secure SharePoint RAG Architecture: ACLs, Citations, and Evaluation | EventArgs LLC</title>
+  <meta name="description"
+    content="A practical architecture for SharePoint-connected AI copilots that enforces access before retrieval, produces inspectable citations, and abstains when evidence is insufficient." />
+  <link rel="canonical" href="https://www.eventargs.llc/engineering-insights/secure-sharepoint-rag-architecture" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.eventargs.llc/engineering-insights/secure-sharepoint-rag-architecture" />
+  <meta property="og:title" content="Secure SharePoint RAG Architecture: ACLs, Citations, and Evaluation" />
+  <meta property="og:description"
+    content="A practical architecture for SharePoint-connected AI copilots that enforces access before retrieval, produces inspectable citations, and abstains when evidence is insufficient." />
+  <meta property="og:image" content="https://www.eventargs.llc/og-secure-sharepoint-rag-architecture.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="627" />
+  <meta property="og:site_name" content="EventArgs LLC" />
+  <meta property="article:published_time" content="2026-08-18" />
+  <meta property="article:modified_time" content="2026-08-18" />
+  <meta property="article:author" content="Juan J. Gutierrez" />
+  <meta property="article:section" content="Secure RAG &amp; Knowledge Copilots" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Secure SharePoint RAG Architecture: ACLs, Citations, and Evaluation" />
+  <meta name="twitter:description"
+    content="A practical architecture for SharePoint-connected AI copilots that enforces access before retrieval, produces inspectable citations, and abstains when evidence is insufficient." />
+  <meta name="twitter:image" content="https://www.eventargs.llc/og-secure-sharepoint-rag-architecture.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Secure SharePoint RAG Architecture: ACLs, Citations, and Evaluation",
+    "description": "A practical architecture for SharePoint-connected AI copilots that enforces access before retrieval, produces inspectable citations, and abstains when evidence is insufficient.",
+    "image": "https://www.eventargs.llc/og-secure-sharepoint-rag-architecture.png",
+    "datePublished": "2026-08-18",
+    "dateModified": "2026-08-18",
+    "author": {
+      "@type": "Person",
+      "name": "Juan J. Gutierrez",
+      "jobTitle": "Founder & Senior AI Engineer",
+      "url": "https://www.eventargs.llc/about.html"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "EventArgs LLC",
+      "url": "https://www.eventargs.llc/"
+    },
+    "mainEntityOfPage": "https://www.eventargs.llc/engineering-insights/secure-sharepoint-rag-architecture",
+    "keywords": ["RAG", "SharePoint", "Azure", "Microsoft 365", "Entra ID"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.eventargs.llc/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Engineering Insights",
+        "item": "https://www.eventargs.llc/engineering-insights"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Secure SharePoint RAG Architecture",
+        "item": "https://www.eventargs.llc/engineering-insights/secure-sharepoint-rag-architecture"
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <div id="app">
+    <header class="section insight-article-hero">
+      <div class="container" style="max-width: 48rem;">
+        <a class="insight-kicker" href="/engineering-insights.html">&larr; Engineering Insights</a>
+        <p class="insight-category">Secure RAG &amp; Knowledge Copilots</p>
+        <h1>Secure SharePoint RAG Architecture: ACLs, Citations, and Evaluation</h1>
+        <p class="lead">A SharePoint-connected copilot should be judged by more than whether it produces fluent answers. In production, it must retrieve only material the current user is authorized to access, show the evidence behind its answer, and decline to answer when the evidence is insufficient.</p>
+        <div class="insight-byline">
+          <span>Juan J. Gutierrez</span>
+          <span>Founder &amp; Senior AI Engineer, EventArgs LLC</span>
+        </div>
+        <div class="insight-meta">
+          <span class="insight-chip">10 min read</span>
+          <span class="insight-chip">2026-08-18</span>
+          <span class="insight-chip">RAG</span>
+          <span class="insight-chip">SharePoint</span>
+          <span class="insight-chip">Azure</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="container insight-layout">
+        <aside class="insight-toc" aria-label="Table of contents">
+          <nav data-insight-toc></nav>
+        </aside>
+        <div class="insight-body">
+          <p>That requires authorization filtering <strong>before</strong> retrieval, source lineage through the entire pipeline, and explicit grounding gates&mdash;not just a prompt telling the model to &ldquo;use the documents.&rdquo;</p>
+
+          <h2 id="who-this-is-for">Who this is for</h2>
+          <p>This guide is for Engineering Directors, Azure Platform Leads, Microsoft 365 owners, and IT or Security Architects building an internal knowledge copilot on SharePoint and Microsoft Entra ID. The design applies whether retrieval is implemented with Azure AI Search or a PostgreSQL/pgvector-based service, although the filtering and operational details differ by platform.</p>
+
+          <h2 id="failure-modes">The failure modes to design out</h2>
+
+          <h3>1. Late-binding authorization leaks</h3>
+          <p>A common proof-of-concept pattern retrieves from a shared vector index and asks an LLM or post-processing layer to decide what the user should see. That is the wrong boundary.</p>
+          <p>If unauthorized chunks enter the candidate set, they can influence the answer even if the final UI tries to hide a source link. Authorization must constrain which chunks are eligible for retrieval in the first place.</p>
+
+          <h3>2. Vector-only retrieval misses exact operational language</h3>
+          <p>Dense embeddings are useful for semantic similarity, but many enterprise questions depend on exact terms: error codes, policy identifiers, product SKUs, version strings, project names, and legal or technical phrases. A vector-only query can miss those signals.</p>
+          <p>Hybrid retrieval combines lexical search, such as BM25/full-text search, with vector retrieval so the system can handle both exact terminology and semantically related language.</p>
+
+          <h3>3. &ldquo;Answer only from context&rdquo; is not a grounding control</h3>
+          <p>A prompt can encourage the model to cite sources. It cannot establish whether the sources are sufficient, whether a material claim has evidence, or whether conflicting documents require an abstention.</p>
+          <p>The answer path needs deterministic checks outside the model: retrieval thresholds, citation coverage checks, and a clear no-evidence response.</p>
+
+          <h2 id="recommended-architecture">Recommended architecture</h2>
+          <pre class="insight-diagram" tabindex="0"><code>                         INDEXING PATH
+
+SharePoint document libraries
+  -&gt; Microsoft Graph delta query
+  -&gt; content extraction and normalization
+  -&gt; chunking and stable source identifiers
+  -&gt; resolve effective read-access metadata
+  -&gt; write chunks, vectors, text fields, source links, and ACL metadata
+  -&gt; Azure AI Search or PostgreSQL/pgvector
+
+                         QUERY PATH
+
+User
+  -&gt; Microsoft Entra ID sign-in
+  -&gt; application/API validates the user token
+  -&gt; verified user ID and effective group IDs
+  -&gt; server-side pre-retrieval authorization filter
+  -&gt; hybrid retrieval: BM25/full-text + vector search
+  -&gt; RRF fusion
+  -&gt; semantic ranker or cross-encoder reranking
+  -&gt; citation/evidence validation
+  -&gt; grounded answer with source links
+     OR deterministic abstention</code></pre>
+
+          <h3>Keep the index current with delta queries</h3>
+          <p>Do not recrawl an entire SharePoint library for every sync cycle. Microsoft Graph delta query is designed to identify new, updated, and deleted resources since the last checkpoint. For a document-library ingestion flow, start with <code>GET /drives/{drive-id}/root/delta</code>, follow every <code>@odata.nextLink</code> until Graph stops returning one, and persist the returned <code>@odata.deltaLink</code> after that cycle&rsquo;s changes have been applied to local state. Later cycles start from that durable delta link. <a href="https://learn.microsoft.com/en-us/graph/api/driveitem-delta?view=graph-rest-1.0">Microsoft Graph documents</a> that deleted <code>driveItem</code> objects are returned with a <code>deleted</code> facet and should be removed from local state.</p>
+          <p>A practical ingestion record should retain the source tenant, site, drive, item ID, source URL, content version, and a stable chunk ID. When a deletion arrives, remove or tombstone every chunk for that document. Make writes idempotent. Honor <code>Retry-After</code> on HTTP 429 responses; if Graph omits that header, fall back to exponential backoff. Add a periodic reconciliation job. Delta tracking is a change-detection mechanism; it does not remove the need for operational monitoring and recovery. If a stored token is no longer valid, Graph can return <code>HTTP 410 Gone</code> and require a fresh enumeration&mdash;treat that as a first-class recovery path, not an unexpected error.</p>
+          <pre class="insight-diagram" tabindex="0"><code>Graph delta page
+  -&gt; changed or new file: extract -&gt; chunk -&gt; tag ACLs -&gt; upsert index
+  -&gt; deleted file: locate document chunks -&gt; delete or tombstone index entries
+  -&gt; nextLink present: continue
+  -&gt; deltaLink present: commit checkpoint after successful processing</code></pre>
+          <p>Permissions, app models, and tenant policy still vary. Select least-privileged Graph permissions and validate behavior against the target SharePoint topology rather than assuming one connector configuration fits every tenant.</p>
+
+          <h3>Bind access controls to every retrievable chunk</h3>
+          <p>Every chunk that can be retrieved must carry the authorization metadata needed to determine whether the active user can access it. Use immutable Microsoft Entra object IDs and security-group object IDs&mdash;not names or email strings.</p>
+          <p>A simplified chunk record might include:</p>
+          <pre class="insight-code" tabindex="0"><code>{
+  "chunk_id": "tenant:drive:item:version:chunk",
+  "source_url": "https://tenant.sharepoint.com/sites/...",
+  "content_version": "etag-or-version",
+  "acl_user_ids": ["entra-user-object-id"],
+  "acl_group_ids": ["entra-security-group-object-id"],
+  "visibility_scope": "restricted"
+}</code></pre>
+          <p>The exact field names are not important. The control is: security metadata must be filterable in the retrieval layer, present at the same granularity as the returned content, and updated when the source document&rsquo;s effective access changes.</p>
+          <p>For Azure AI Search, this usually means filterable security fields and a server-generated OData filter. For PostgreSQL/pgvector, it means applying authorization predicates in SQL at or before vector candidate selection, then validating query plans under production-like data volumes.</p>
+
+          <h3>Use Entra identity claims to filter before retrieval</h3>
+          <p>The application should validate the user&rsquo;s Entra token server-side, normalize the user&rsquo;s object ID and effective group IDs, then construct the index filter before retrieval executes. Do not let a browser provide its own claimed roles or group IDs as a security input.</p>
+          <p>The OAuth 2.0 On-Behalf-Of flow is useful when a middle-tier API needs to call a downstream protected API with delegated user context. It describes a web API calling another web API on behalf of a signed-in user; it does not replace the need to enforce authorization in your own retrieval system. <a href="https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow">Microsoft Entra On-Behalf-Of flow documentation</a></p>
+          <p>Conceptually, the retrieval request should look like this:</p>
+          <pre class="insight-diagram" tabindex="0"><code>Authorized when:
+  document is tenant-visible
+  OR current user object ID is in acl_user_ids
+  OR an effective user group ID is in acl_group_ids</code></pre>
+          <p>For users with large or complex group memberships, plan explicitly for group-claim overage, nested groups, filter-size limits, permission freshness, and a defensible fallback strategy. Those details are not edge cases in enterprise tenants; they are part of the authorization design.</p>
+
+          <h3>Combine lexical and vector retrieval, then rerank</h3>
+          <p>A secure candidate set still needs useful ranking. Run lexical and vector retrieval within the authorization boundary, then combine their ranked lists with Reciprocal Rank Fusion (RRF).</p>
+          <p class="insight-formula" role="img" aria-label="Reciprocal Rank Fusion score for a document equals the sum over ranked lists of one divided by k plus the document rank in that list.">
+            <span class="insight-formula-eq">RRF(d) = &Sigma;<sub>q &isin; Q</sub> 1 / (k + rank<sub>q</sub>(d))</span>
+          </p>
+          <p>Where <code>Q</code> is the set of ranked retrieval lists, <code>rank<sub>q</sub>(d)</code> is the one-based rank of document <code>d</code> in a list, and <code>k</code> is a rank-smoothing constant. Azure AI Search documents the same idea as <code>1/(rank + k)</code> with a service-controlled <code>k</code>. This formula explains the concept; it does not fully specify Azure&rsquo;s managed implementation.</p>
+          <p>Azure AI Search uses RRF when multiple queries execute in parallel, including hybrid search. Its semantic ranker runs after the initial fusion/retrieval stage as an L2 reranker and reports a separate <code>@search.rerankerScore</code>. A self-hosted cross-encoder is a separate implementation option, not the same component. <a href="https://learn.microsoft.com/en-us/azure/search/hybrid-search-ranking">Azure AI Search hybrid-search ranking documentation</a></p>
+          <pre class="insight-diagram" tabindex="0"><code>User query within ACL filter
+  -&gt; lexical retrieval for exact terms
+  -&gt; vector retrieval for semantic matches
+  -&gt; RRF fusion
+  -&gt; bounded authorized candidate set
+  -&gt; semantic ranker or cross-encoder reranker
+  -&gt; evidence selection</code></pre>
+          <p>This sequence helps preserve exact-match recall without giving up semantic retrieval. It also ensures the reranker and generator see only candidates that have already passed the access-control boundary.</p>
+
+          <h3>Require evidence before generating an answer</h3>
+          <p>Treat citation grounding as a system behavior, not a model preference. Before returning an answer, check that the retrieval stage found sufficient authorized evidence and that material claims map to citations.</p>
+          <p>A simple policy is:</p>
+          <pre class="insight-diagram" tabindex="0"><code>If no authorized chunk meets the retrieval threshold:
+  return: "I could not find authorized source material that supports an answer."
+
+If a material claim has no supporting source:
+  regenerate only with explicit evidence, or abstain.
+
+If authoritative sources conflict:
+  cite the conflict, ask for clarification, or abstain.
+
+Otherwise:
+  return the answer with inspectable source links.</code></pre>
+          <p>The thresholds are implementation and domain specific. They should be chosen through an evaluation set, not invented once in a prompt. The goal is not to claim that a copilot never makes a mistake. The goal is to make unsupported answers a measurable failure condition and to reduce the system&rsquo;s willingness to fabricate certainty.</p>
+
+          <h2 id="naive-vs-enterprise">Naive proof of concept vs. enterprise grounded RAG</h2>
+          <div class="insight-table-wrap">
+            <table class="insight-table">
+              <thead>
+                <tr>
+                  <th>Area</th>
+                  <th>Naive PoC RAG</th>
+                  <th>Enterprise grounded RAG</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Access control</td>
+                  <td>Shared index; filtering happens after retrieval or in the prompt</td>
+                  <td>Verified identity produces a server-side filter before retrieval</td>
+                </tr>
+                <tr>
+                  <td>Content freshness</td>
+                  <td>Full crawls or manual refreshes</td>
+                  <td>Delta checkpoints, idempotent upserts, deletion handling, and reconciliation</td>
+                </tr>
+                <tr>
+                  <td>Retrieval</td>
+                  <td>Vector-only similarity</td>
+                  <td>Authorized hybrid retrieval, RRF fusion, and reranking</td>
+                </tr>
+                <tr>
+                  <td>Citations</td>
+                  <td>Optional links appended by the model</td>
+                  <td>Source lineage and citation coverage required for material claims</td>
+                </tr>
+                <tr>
+                  <td>No-evidence behavior</td>
+                  <td>Model attempts an answer</td>
+                  <td>Explicit threshold-based abstention or clarification path</td>
+                </tr>
+                <tr>
+                  <td>Quality assurance</td>
+                  <td>Demo examples</td>
+                  <td>Evaluation harness with retrieval, citation, authorization, and abstention tests</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2 id="production-checklist">Production checklist</h2>
+          <p>Before releasing an internal SharePoint copilot, verify these four controls:</p>
+          <ol>
+            <li><strong>Delta sync and lifecycle handling</strong> &mdash; The ingestion service persists delta checkpoints after a successful cycle, handles deletions via the <code>deleted</code> facet, retries throttled calls using <code>Retry-After</code>, and can reconcile after failure or a <code>410 Gone</code> token reset.</li>
+            <li><strong>Chunk-level authorization metadata</strong> &mdash; Every retrievable chunk has current, filterable ACL metadata derived from the source system&rsquo;s effective permissions.</li>
+            <li><strong>Pre-retrieval security enforcement</strong> &mdash; The server constructs the filter from verified identity data before lexical or vector candidates are selected.</li>
+            <li><strong>Evaluation and boundary testing</strong> &mdash; The release gate includes authorized/unauthorized retrieval tests, citation-support checks, stale-content cases, exact-term queries, and no-evidence abstention tests.</li>
+          </ol>
+
+          <h2 id="implementation-note">Implementation note</h2>
+          <p>Do not assume there is a universal latency cost for authorization filtering. Its impact depends on index structure, cardinality, group membership, filter construction, query type, and data volume. Measure it with the production-like workload and treat it as a retrieval performance requirement.</p>
+          <p>The more important design point is architectural: a late LLM-based &ldquo;permission check&rdquo; happens after sensitive content may already have entered the model context. Pre-retrieval filtering prevents that exposure path rather than trying to clean it up afterward.</p>
+
+          <h2 id="related-reading">Related reading</h2>
+          <ul class="insight-related">
+            <li><a href="/engineering-insights/designing-citation-grounded-rag-microsoft-365.html">Designing Citation-Grounded RAG for Microsoft 365: Permissions, Retrieval, and Evidence</a></li>
+            <li><a href="/engineering-insights/why-enterprise-rag-pilots-fail.html">Why Enterprise RAG Pilots Fail After the Demo (And How to Fix Retrieval Latency)</a></li>
+            <li><a href="/services/rag-knowledge-copilot-pilot">RAG Knowledge Copilot Pilot</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--accent reveal">
+      <div class="container cta-band">
+        <h2>Validate the architecture with a fixed-scope pilot</h2>
+        <p>Need to validate a secure internal knowledge copilot before broad rollout? EventArgs delivers a fixed-scope, four-week RAG Knowledge Copilot Pilot focused on authorized retrieval, source citations, and measurable evaluation criteria.</p>
+        <a href="/services/rag-knowledge-copilot-pilot" class="btn btn-primary">Scope a 4-week RAG Knowledge Copilot Pilot</a>
+      </div>
+    </section>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

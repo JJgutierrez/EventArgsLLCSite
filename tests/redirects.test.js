@@ -14,3 +14,15 @@ test('retired multi-agent paths permanently redirect', () => {
   assert.equal(bySource['/case-studies/multi-agent-orchestrator']?.destination, '/case-studies')
   assert.equal(bySource['/case-studies/multi-agent-orchestrator']?.permanent, true)
 })
+
+test('article and pilot aliases redirect to live routes', () => {
+  const redirects = vercel.redirects || []
+  const bySource = Object.fromEntries(redirects.map((rule) => [rule.source, rule]))
+  assert.equal(
+    bySource['/articles/secure-sharepoint-rag-architecture']?.destination,
+    '/engineering-insights/secure-sharepoint-rag-architecture',
+  )
+  assert.equal(bySource['/articles/secure-sharepoint-rag-architecture']?.permanent, true)
+  assert.equal(bySource['/services/rag-knowledge-copilot-pilot']?.destination, '/services#copilot')
+  assert.equal(bySource['/services/rag-knowledge-copilot-pilot']?.permanent, true)
+})

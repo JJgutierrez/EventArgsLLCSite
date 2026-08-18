@@ -15,6 +15,16 @@
       "source": "/case-studies/multi-agent-orchestrator",
       "destination": "/case-studies",
       "permanent": true
+    },
+    {
+      "source": "/articles/secure-sharepoint-rag-architecture",
+      "destination": "/engineering-insights/secure-sharepoint-rag-architecture",
+      "permanent": true
+    },
+    {
+      "source": "/services/rag-knowledge-copilot-pilot",
+      "destination": "/services#copilot",
+      "permanent": true
     }
   ],
   "rewrites": [

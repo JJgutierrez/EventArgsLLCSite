@@ -14,6 +14,7 @@ export default defineConfig({
         about: resolve(__dirname, 'about.html'),
         contact: resolve(__dirname, 'contact.html'),
         engineeringInsights: resolve(__dirname, 'engineering-insights.html'),
+        insightSharePointRag: resolve(__dirname, 'engineering-insights/secure-sharepoint-rag-architecture.html'),
         insightRag: resolve(__dirname, 'engineering-insights/designing-citation-grounded-rag-microsoft-365.html'),
         insightPilots: resolve(__dirname, 'engineering-insights/why-enterprise-rag-pilots-fail.html'),
         insightPrReview: resolve(__dirname, 'engineering-insights/ai-assisted-pr-review-azure-devops.html'),

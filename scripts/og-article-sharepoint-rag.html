@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>EventArgs OG — Secure SharePoint RAG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 1200px;
+      height: 627px;
+      overflow: hidden;
+      font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+      color: #F1F5F9;
+      background:
+        radial-gradient(900px 520px at 78% -8%, rgba(37, 99, 235, 0.28), transparent 60%),
+        linear-gradient(180deg, #0E1729 0%, #0B1220 72%);
+      position: relative;
+    }
+    body::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(36, 48, 73, 0.55) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(36, 48, 73, 0.55) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.5), transparent 78%);
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .frame {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      padding: 64px 72px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .brand { display: flex; align-items: center; gap: 18px; }
+    .mark { width: 64px; height: 64px; border-radius: 14px; flex-shrink: 0; }
+    .brand-name { font-size: 42px; font-weight: 700; letter-spacing: -0.02em; line-height: 1; }
+    .brand-name span { color: #2563eb; margin-left: 8px; }
+    .brand-tag { margin-top: 8px; font-size: 18px; font-weight: 500; color: #94A3B8; }
+    .headline { max-width: 920px; font-size: 52px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.12; }
+    .subhead { margin-top: 16px; font-size: 24px; font-weight: 500; color: #94A3B8; }
+    .footer { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .support { max-width: 720px; font-size: 22px; font-weight: 500; color: #94A3B8; line-height: 1.35; }
+    .url {
+      font-size: 22px;
+      font-weight: 600;
+      color: #F1F5F9;
+      border: 1px solid #243049;
+      background: #121A2B;
+      border-radius: 10px;
+      padding: 14px 22px;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <div class="brand">
+      <svg class="mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="48" height="48" rx="10" fill="#0B1220"/>
+        <rect width="46" height="46" x="1" y="1" rx="9" stroke="#243049" stroke-width="2"/>
+        <path stroke="#2563eb" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M15 16L9 24l6 8"/>
+        <path stroke="#2563eb" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M33 16l6 8-6 8"/>
+        <circle cx="24" cy="24" r="4" fill="#3B82F6"/>
+      </svg>
+      <div>
+        <div class="brand-name">EventArgs<span>LLC</span></div>
+        <div class="brand-tag">Senior-led AI engineering</div>
+      </div>
+    </div>
+    <div>
+      <h1 class="headline">Secure SharePoint RAG Architecture</h1>
+      <p class="subhead">ACLs, Citations, and Evaluation</p>
+    </div>
+    <div class="footer">
+      <p class="support">Pre-retrieval authorization. Inspectable citations. Deterministic abstention.</p>
+      <div class="url">eventargs.llc</div>
+    </div>
+  </div>
+</body>
+</html>
