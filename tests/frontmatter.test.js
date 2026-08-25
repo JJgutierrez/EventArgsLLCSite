@@ -33,15 +33,16 @@ test('parseFrontmatter reads scalars, arrays, and nested cta', () => {
 
 test('catalog loads P0 articles with featured SharePoint RAG guide', () => {
   const articles = loadInsightArticles()
-  assert.equal(articles.length, 4)
+  assert.equal(articles.length, 5)
   const slugs = articles.map((article) => article.slug).sort()
   assert.deepEqual(slugs, [
     'ai-assisted-pr-review-azure-devops',
     'designing-citation-grounded-rag-microsoft-365',
+    'enterprise-rag-evaluation-microsoft-365',
     'secure-sharepoint-rag-architecture',
     'why-enterprise-rag-pilots-fail',
   ])
   const featured = getFeaturedArticle(articles)
-  assert.equal(featured.slug, 'secure-sharepoint-rag-architecture')
-  assert.equal(featured.cta.href, '/services/rag-knowledge-copilot-pilot')
+  assert.equal(featured.slug, 'enterprise-rag-evaluation-microsoft-365')
+  assert.equal(featured.cta.topic, 'rag-evaluation-sprint')
 })

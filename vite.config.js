@@ -18,6 +18,7 @@ export default defineConfig({
         insightRag: resolve(__dirname, 'engineering-insights/designing-citation-grounded-rag-microsoft-365.html'),
         insightPilots: resolve(__dirname, 'engineering-insights/why-enterprise-rag-pilots-fail.html'),
         insightPrReview: resolve(__dirname, 'engineering-insights/ai-assisted-pr-review-azure-devops.html'),
+        insightEvaluation: resolve(__dirname, 'engineering-insights/enterprise-rag-evaluation-microsoft-365.html'),
       },
     },
   },

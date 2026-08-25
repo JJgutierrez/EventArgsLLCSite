@@ -11,6 +11,7 @@ const PAGES = {
   rag: 'engineering-insights/designing-citation-grounded-rag-microsoft-365.html',
   pilots: 'engineering-insights/why-enterprise-rag-pilots-fail.html',
   pr: 'engineering-insights/ai-assisted-pr-review-azure-devops.html',
+  evaluation: 'engineering-insights/enterprise-rag-evaluation-microsoft-365.html',
 }
 
 test('insights index uses featured hero, 2-column grid, and nav target', () => {
@@ -19,6 +20,7 @@ test('insights index uses featured hero, 2-column grid, and nav target', () => {
   assert.match(source, /class="insight-featured"/)
   assert.match(source, /class="insight-grid"/)
   assert.match(source, /Secure SharePoint RAG Architecture/)
+  assert.match(source, /Enterprise RAG Evaluation for Microsoft 365/)
   assert.match(source, /Designing Citation-Grounded RAG for Microsoft 365/)
   assert.match(source, /Why Enterprise RAG Pilots Fail After the Demo/)
   assert.match(source, /AI-Assisted PR Review in Azure DevOps/)
@@ -32,7 +34,8 @@ test('article pages include reading column, TOC hook, JSON-LD, and topic CTAs', 
   const rag = read(PAGES.rag)
   const pilots = read(PAGES.pilots)
   const pr = read(PAGES.pr)
-  for (const page of [sharepoint, rag, pilots, pr]) {
+  const evaluation = read(PAGES.evaluation)
+  for (const page of [sharepoint, rag, pilots, pr, evaluation]) {
     assert.match(page, /class="insight-body"/)
     assert.match(page, /data-insight-toc/)
     assert.match(page, /"@type": "(BlogPosting|Article)"/)
@@ -42,6 +45,7 @@ test('article pages include reading column, TOC hook, JSON-LD, and topic CTAs', 
   assert.match(rag, /contact\.html\?topic=rag-architecture-review/)
   assert.match(pilots, /contact\.html\?topic=rag-architecture-review/)
   assert.match(pr, /contact\.html\?topic=pr-review-automation/)
+  assert.match(evaluation, /contact\.html\?topic=rag-evaluation-sprint/)
   assert.match(pilots, /retrieval latency/i)
 })
 
@@ -52,6 +56,7 @@ test('published HTML titles match catalog frontmatter', () => {
     'designing-citation-grounded-rag-microsoft-365': read(PAGES.rag),
     'why-enterprise-rag-pilots-fail': read(PAGES.pilots),
     'ai-assisted-pr-review-azure-devops': read(PAGES.pr),
+    'enterprise-rag-evaluation-microsoft-365': read(PAGES.evaluation),
   }
   for (const article of articles) {
     assert.ok(htmlBySlug[article.slug].includes(article.title))
@@ -68,4 +73,5 @@ test('sitemap lists insights index and published articles', () => {
   assert.match(sitemap, /designing-citation-grounded-rag-microsoft-365\.html/)
   assert.match(sitemap, /why-enterprise-rag-pilots-fail\.html/)
   assert.match(sitemap, /ai-assisted-pr-review-azure-devops\.html/)
+  assert.match(sitemap, /enterprise-rag-evaluation-microsoft-365\.html/)
 })

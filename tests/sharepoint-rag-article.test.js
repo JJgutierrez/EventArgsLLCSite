@@ -29,10 +29,10 @@ test('SharePoint RAG article keeps documented Microsoft claims qualified', () =>
   assert.doesNotMatch(html, /<15 ms|zero hallucinations|guaranteed accuracy/i)
 })
 
-test('catalog featured article is the SharePoint RAG field guide', () => {
+test('catalog featured article is the Enterprise RAG Evaluation guide', () => {
   const articles = loadInsightArticles()
   const featured = articles.find((article) => article.featured)
-  assert.equal(featured.slug, 'secure-sharepoint-rag-architecture')
-  assert.equal(featured.cta.href, '/services/rag-knowledge-copilot-pilot')
-  assert.equal(articles.length, 4)
+  assert.equal(featured.slug, 'enterprise-rag-evaluation-microsoft-365')
+  assert.equal(featured.cta.topic, 'rag-evaluation-sprint')
+  assert.equal(articles.length, 5)
 })
