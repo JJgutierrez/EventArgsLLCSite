@@ -3,67 +3,93 @@
 
   <url>
     <loc>https://www.eventargs.llc/</loc>
-    <lastmod>2026-07-17</lastmod>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://www.eventargs.llc/services.html</loc>
-    <lastmod>2026-07-17</lastmod>
+    <loc>https://www.eventargs.llc/services</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://www.eventargs.llc/case-studies.html</loc>
-    <lastmod>2026-07-17</lastmod>
+    <loc>https://www.eventargs.llc/case-studies</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://www.eventargs.llc/case-study-knowledge-copilot.html</loc>
-    <lastmod>2026-07-17</lastmod>
+    <loc>https://www.eventargs.llc/case-study-knowledge-copilot</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://www.eventargs.llc/about.html</loc>
-    <lastmod>2026-07-17</lastmod>
+    <loc>https://www.eventargs.llc/about</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://www.eventargs.llc/contact.html</loc>
-    <lastmod>2026-07-17</lastmod>
+    <loc>https://www.eventargs.llc/contact</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://www.eventargs.llc/qualify</loc>
-    <lastmod>2026-08-15</lastmod>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://www.eventargs.llc/engineering-insights.html</loc>
-    <lastmod>2026-08-18</lastmod>
+    <loc>https://www.eventargs.llc/engineering-insights</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://www.eventargs.llc/engineering-insights/secure-sharepoint-rag-architecture.html</loc>
-    <lastmod>2026-08-18</lastmod>
+    <loc>https://www.eventargs.llc/engineering-insights/secure-sharepoint-rag-architecture</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://www.eventargs.llc/engineering-insights/designing-citation-grounded-rag-microsoft-365.html</loc>
-    <lastmod>2026-08-15</lastmod>
+    <loc>https://www.eventargs.llc/engineering-insights/designing-citation-grounded-rag-microsoft-365</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://www.eventargs.llc/engineering-insights/why-enterprise-rag-pilots-fail.html</loc>
-    <lastmod>2026-08-15</lastmod>
+    <loc>https://www.eventargs.llc/engineering-insights/why-enterprise-rag-pilots-fail</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://www.eventargs.llc/engineering-insights/ai-assisted-pr-review-azure-devops.html</loc>
-    <lastmod>2026-08-15</lastmod>
+    <loc>https://www.eventargs.llc/engineering-insights/ai-assisted-pr-review-azure-devops</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://www.eventargs.llc/engineering-insights/enterprise-rag-evaluation-microsoft-365.html</loc>
-    <lastmod>2026-08-25</lastmod>
+    <loc>https://www.eventargs.llc/engineering-insights/enterprise-rag-evaluation-microsoft-365</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
 
 </urlset>

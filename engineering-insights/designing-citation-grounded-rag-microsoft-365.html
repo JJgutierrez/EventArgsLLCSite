@@ -18,10 +18,10 @@
 
   <title>Designing Citation-Grounded RAG for Microsoft 365 | Engineering Insights | EventArgs LLC</title>
   <meta name="description" content="Enterprise permissions, hybrid search, and evaluation gates in Azure environments." />
-  <link rel="canonical" href="https://www.eventargs.llc/engineering-insights/designing-citation-grounded-rag-microsoft-365.html" />
+  <link rel="canonical" href="https://www.eventargs.llc/engineering-insights/designing-citation-grounded-rag-microsoft-365" />
 
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://www.eventargs.llc/engineering-insights/designing-citation-grounded-rag-microsoft-365.html" />
+  <meta property="og:url" content="https://www.eventargs.llc/engineering-insights/designing-citation-grounded-rag-microsoft-365" />
   <meta property="og:title" content="Designing Citation-Grounded RAG for Microsoft 365 | EventArgs LLC" />
   <meta property="og:description" content="Enterprise permissions, hybrid search, and evaluation gates in Azure environments." />
   <meta property="og:image" content="https://www.eventargs.llc/og-image.png" />
@@ -37,14 +37,15 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
+    "@type": "TechArticle",
     "headline": "Designing Citation-Grounded RAG for Microsoft 365: Permissions, Retrieval, and Evidence",
+    "description": "Enterprise permissions, hybrid search, and evaluation gates in Azure environments.",
+    "url": "https://www.eventargs.llc/engineering-insights/designing-citation-grounded-rag-microsoft-365",
     "datePublished": "2026-08-15",
     "dateModified": "2026-08-15",
-    "description": "Enterprise permissions, hybrid search, and evaluation gates in Azure environments.",
     "author": { "@type": "Organization", "name": "EventArgs LLC" },
-    "publisher": { "@type": "Organization", "name": "EventArgs LLC", "url": "https://www.eventargs.llc/" },
-    "mainEntityOfPage": "https://www.eventargs.llc/engineering-insights/designing-citation-grounded-rag-microsoft-365.html",
+    "publisher": { "@type": "Organization", "name": "EventArgs LLC", "url": "https://www.eventargs.llc" },
+    "mainEntityOfPage": "https://www.eventargs.llc/engineering-insights/designing-citation-grounded-rag-microsoft-365",
     "keywords": ["RAG", "Microsoft 365", "Azure"]
   }
   </script>
@@ -142,7 +143,7 @@
           <h2 id="suitability">Implementation suitability</h2>
           <p><strong>Use this pattern when</strong> documentation lives in SharePoint, Teams, and internal git; compliance requires access isolation; and you want an owned FastAPI + PostgreSQL/pgvector backend.</p>
           <p><strong>Do not use it for</strong> unauthenticated public search or image-only corpora without OCR.</p>
-          <p>For the field-guide version of this architecture&mdash;Graph delta ingestion, chunk-level ACLs, and evaluation gates&mdash;see <a href="/engineering-insights/secure-sharepoint-rag-architecture.html">Secure SharePoint RAG Architecture: ACLs, Citations, and Evaluation</a>.</p>
+          <p>For the field-guide version of this architecture&mdash;Graph delta ingestion, chunk-level ACLs, and evaluation gates&mdash;see <a href="/engineering-insights/secure-sharepoint-rag-architecture">Secure SharePoint RAG Architecture: ACLs, Citations, and Evaluation</a>.</p>
         </div>
       </div>
     </section>
@@ -151,7 +152,10 @@
       <div class="container cta-band">
         <h2>Building an internal knowledge copilot?</h2>
         <p>Review your Microsoft 365 permissions model, vector strategy, and citation design with a senior engineer.</p>
-        <a href="/contact.html?topic=rag-architecture-review" class="btn btn-primary">Request a RAG Architecture Review</a>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+          <a href="/contact?topic=rag-architecture-review" class="btn btn-primary">Request a RAG Architecture Review</a>
+          <a href="/services" class="btn btn-secondary">Explore AI Engineering Services</a>
+        </div>
       </div>
     </section>
   </div>

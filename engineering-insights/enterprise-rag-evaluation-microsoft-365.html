@@ -18,10 +18,10 @@
 
   <title>Enterprise RAG Evaluation for Microsoft 365: A Practical Production Readiness Framework | Engineering Insights | EventArgs LLC</title>
   <meta name="description" content="A practical evaluation framework for Microsoft 365 and Azure RAG copilots: golden test sets, authorization testing, citation validation, and CI/CD regression gates." />
-  <link rel="canonical" href="https://www.eventargs.llc/engineering-insights/enterprise-rag-evaluation-microsoft-365.html" />
+  <link rel="canonical" href="https://www.eventargs.llc/engineering-insights/enterprise-rag-evaluation-microsoft-365" />
 
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://www.eventargs.llc/engineering-insights/enterprise-rag-evaluation-microsoft-365.html" />
+  <meta property="og:url" content="https://www.eventargs.llc/engineering-insights/enterprise-rag-evaluation-microsoft-365" />
   <meta property="og:title" content="Enterprise RAG Evaluation for Microsoft 365 | EventArgs LLC" />
   <meta property="og:description" content="A practical evaluation framework for Microsoft 365 and Azure RAG copilots: golden test sets, authorization testing, citation validation, and CI/CD regression gates." />
   <meta property="og:image" content="https://www.eventargs.llc/og-image.png" />
@@ -37,14 +37,15 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
+    "@type": "TechArticle",
     "headline": "Enterprise RAG Evaluation for Microsoft 365: A Practical Production Readiness Framework",
+    "description": "A practical evaluation framework for Microsoft 365 and Azure RAG copilots: golden test sets, authorization testing, citation validation, and CI/CD regression gates.",
+    "url": "https://www.eventargs.llc/engineering-insights/enterprise-rag-evaluation-microsoft-365",
     "datePublished": "2026-08-25",
     "dateModified": "2026-08-25",
-    "description": "A practical evaluation framework for Microsoft 365 and Azure RAG copilots: golden test sets, authorization testing, citation validation, and CI/CD regression gates.",
     "author": { "@type": "Organization", "name": "EventArgs LLC" },
-    "publisher": { "@type": "Organization", "name": "EventArgs LLC", "url": "https://www.eventargs.llc/" },
-    "mainEntityOfPage": "https://www.eventargs.llc/engineering-insights/enterprise-rag-evaluation-microsoft-365.html",
+    "publisher": { "@type": "Organization", "name": "EventArgs LLC", "url": "https://www.eventargs.llc" },
+    "mainEntityOfPage": "https://www.eventargs.llc/engineering-insights/enterprise-rag-evaluation-microsoft-365",
     "keywords": ["RAG", "Evaluation", "Microsoft 365", "Azure"]
   }
   </script>
@@ -398,7 +399,7 @@ def evaluate_test_case(item: Dict, model_output: Dict, authorization_service) ->
             <li>Evaluation scores, trace identifiers, baseline release identifier, and remediation notes for known failures.</li>
           </ul>
           <p>This transforms evaluation from a one-time quality exercise into an auditable engineering practice. It also makes it possible to understand whether a regression came from source document changes, ingestion, retrieval, authorization, prompt behavior, or the generation model.</p>
-          <p>For more details on production permissions and retrieval pipelines, see our guide on <a href="/engineering-insights/designing-citation-grounded-rag-microsoft-365.html">Designing Citation-Grounded RAG for Microsoft 365</a>.</p>
+          <p>For more details on production permissions and retrieval pipelines, see our guide on <a href="/engineering-insights/designing-citation-grounded-rag-microsoft-365">Designing Citation-Grounded RAG for Microsoft 365</a>.</p>
 
           <h2 id="hardening">Hardening Before Deployment</h2>
           <p>A copilot should not move to production because a stakeholder liked a demo. It should move when the team can reproduce its behavior, inspect its retrieved evidence, verify that authorization was enforced before retrieval, and demonstrate that unsupported questions lead to safe abstention rather than plausible invention.</p>
@@ -418,7 +419,10 @@ def evaluate_test_case(item: Dict, model_output: Dict, authorization_service) ->
       <div class="container cta-band">
         <h2>Planning a RAG evaluation or hardening sprint?</h2>
         <p>Build a representative golden dataset, test retrieval and citation quality, validate Entra ID permission isolation, and establish CI/CD regression gates with senior engineers.</p>
-        <a href="/contact.html?topic=rag-evaluation-sprint" class="btn btn-primary">Request a RAG Evaluation Sprint</a>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem;">
+          <a href="/contact?topic=rag-evaluation-sprint" class="btn btn-primary">Request a RAG Evaluation Sprint</a>
+          <a href="/services" class="btn btn-secondary">Explore AI Engineering Services</a>
+        </div>
       </div>
     </section>
   </div>

@@ -21,6 +21,6 @@ test('hero primary CTA uses contract label and contact href', () => {
   const source = html()
   assert.match(
     source,
-    /href="\/contact\.html"[^>]*class="[^"]*btn-primary[^"]*"[^>]*>\s*Schedule a technical feasibility call/,
+    /href="\/contact"[^>]*class="[^"]*btn-primary[^"]*"[^>]*>\s*Schedule a technical feasibility call/,
   )
 })

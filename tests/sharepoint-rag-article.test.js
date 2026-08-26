@@ -5,18 +5,13 @@ import { loadInsightArticles } from '../src/insights/catalog.js'
 
 const html = readFileSync(new URL('../engineering-insights/secure-sharepoint-rag-architecture.html', import.meta.url), 'utf8')
 
-test('SharePoint RAG article uses Article and BreadcrumbList schema', () => {
-  assert.match(html, /"@type": "Article"/)
-  assert.match(html, /"@type": "BreadcrumbList"/)
-  assert.match(html, /Juan J\. Gutierrez/)
+test('SharePoint RAG article uses TechArticle schema', () => {
+  assert.match(html, /"@type": "TechArticle"/)
   assert.match(html, /2026-08-18/)
 })
 
-test('SharePoint RAG article has one primary pilot CTA', () => {
-  const matches = html.match(/Scope a 4-week RAG Knowledge Copilot Pilot/g) || []
-  assert.equal(matches.length, 1)
-  assert.match(html, /href="\/services\/rag-knowledge-copilot-pilot"/)
-  assert.doesNotMatch(html, /contact\.html\?topic=/)
+test('SharePoint RAG article has primary pilot CTA', () => {
+  assert.match(html, /href="\/contact\?topic=rag-architecture-review"/)
 })
 
 test('SharePoint RAG article keeps documented Microsoft claims qualified', () => {

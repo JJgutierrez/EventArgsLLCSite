@@ -74,7 +74,7 @@ test('homepage and case-studies keep custom engineering workflow without multi-a
   assert.ok(home.includes(CASE_TITLE))
   assert.ok(listing.includes(CASE_TITLE))
   assert.match(listing, /id="custom-engineering-workflow-automation"/)
-  assert.match(home, /href="\/case-studies\.html#custom-engineering-workflow-automation"/)
+  assert.match(home, /href="\/case-studies#custom-engineering-workflow-automation"/)
   assert.ok(home.includes('60%'))
   assert.ok(home.includes('Reduction in repetitive triage'))
   assert.ok(home.includes('75%'))

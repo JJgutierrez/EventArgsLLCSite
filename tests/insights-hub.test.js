@@ -38,14 +38,14 @@ test('article pages include reading column, TOC hook, JSON-LD, and topic CTAs', 
   for (const page of [sharepoint, rag, pilots, pr, evaluation]) {
     assert.match(page, /class="insight-body"/)
     assert.match(page, /data-insight-toc/)
-    assert.match(page, /"@type": "(BlogPosting|Article)"/)
+    assert.match(page, /"@type": "(BlogPosting|Article|TechArticle)"/)
     assert.match(page, /max-w-3xl|max-width: 48rem/)
   }
-  assert.match(sharepoint, /\/services\/rag-knowledge-copilot-pilot/)
-  assert.match(rag, /contact\.html\?topic=rag-architecture-review/)
-  assert.match(pilots, /contact\.html\?topic=rag-architecture-review/)
-  assert.match(pr, /contact\.html\?topic=pr-review-automation/)
-  assert.match(evaluation, /contact\.html\?topic=rag-evaluation-sprint/)
+  assert.match(sharepoint, /contact\?topic=rag-architecture-review/)
+  assert.match(rag, /contact\?topic=rag-architecture-review/)
+  assert.match(pilots, /contact\?topic=rag-architecture-review/)
+  assert.match(pr, /contact\?topic=pr-review-automation/)
+  assert.match(evaluation, /contact\?topic=rag-evaluation-sprint/)
   assert.match(pilots, /retrieval latency/i)
 })
 
@@ -68,10 +68,10 @@ test('published HTML titles match catalog frontmatter', () => {
 
 test('sitemap lists insights index and published articles', () => {
   const sitemap = read('public/sitemap.xml')
-  assert.match(sitemap, /engineering-insights\.html/)
-  assert.match(sitemap, /secure-sharepoint-rag-architecture\.html/)
-  assert.match(sitemap, /designing-citation-grounded-rag-microsoft-365\.html/)
-  assert.match(sitemap, /why-enterprise-rag-pilots-fail\.html/)
-  assert.match(sitemap, /ai-assisted-pr-review-azure-devops\.html/)
-  assert.match(sitemap, /enterprise-rag-evaluation-microsoft-365\.html/)
+  assert.match(sitemap, /engineering-insights/)
+  assert.match(sitemap, /secure-sharepoint-rag-architecture/)
+  assert.match(sitemap, /designing-citation-grounded-rag-microsoft-365/)
+  assert.match(sitemap, /why-enterprise-rag-pilots-fail/)
+  assert.match(sitemap, /ai-assisted-pr-review-azure-devops/)
+  assert.match(sitemap, /enterprise-rag-evaluation-microsoft-365/)
 })

@@ -12,7 +12,7 @@ test('each engagement has discuss CTA with service query', () => {
   for (const service of ['copilot', 'governance', 'devops']) {
     assert.match(
       html,
-      new RegExp(`href="/contact\\.html\\?service=${service}"[^>]*>\\s*Discuss this engagement`),
+      new RegExp(`href="/contact\\?service=${service}"[^>]*>\\s*Discuss this engagement`),
     )
   }
 })

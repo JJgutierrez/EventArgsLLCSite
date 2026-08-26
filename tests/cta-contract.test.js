@@ -8,7 +8,7 @@ test('PRIMARY_CTA_LABEL is exact contract string', () => {
 })
 
 test('PRIMARY_CTA_HREF points to contact', () => {
-  assert.equal(PRIMARY_CTA_HREF, '/contact.html')
+  assert.equal(PRIMARY_CTA_HREF, '/contact')
 })
 
 test('Wave 1 pages include primary CTA label', () => {

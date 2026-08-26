@@ -32,7 +32,7 @@ test('homepage outcome banner and featured row use Enterprise RAG naming', () =>
   assert.match(source, /Enterprise RAG Knowledge Copilot/)
   assert.ok(source.includes(TITLE))
   assert.match(source, /75%/)
-  assert.match(source, /href="\/case-study-knowledge-copilot\.html"/)
+  assert.match(source, /href="\/case-study-knowledge-copilot"/)
 })
 
 test('flagship case study hero, stack story, and SVG labels are updated', () => {
